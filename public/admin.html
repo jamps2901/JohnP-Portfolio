@@ -1,0 +1,78 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Additional styling for AI-themed admin login */
+        body {
+        background: linear-gradient(45deg, #1a1a2e, #16213e, #0f3460, #53354a);
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
+        }
+        .admin-login {
+        max-width: 400px;
+        margin: 100px auto;
+        padding: 40px;
+        border: 1px solid #00ffea;
+        border-radius: 10px;
+        background: rgba(0, 0, 0, 0.7);
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        animation: fadeIn 2s;
+        }
+        .admin-login h2 {
+        font-size: 2em;
+        margin-bottom: 20px;
+        background: linear-gradient(90deg, #00ffea, #ff00c8);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        }
+        .admin-login input {
+        width: 90%;
+        padding: 12px;
+        margin: 10px 0;
+        border: 1px solid #00ffea;
+        border-radius: 5px;
+        background: transparent;
+        color: #fff;
+        }
+        .admin-login button {
+        width: 95%;
+        padding: 12px;
+        background: linear-gradient(90deg, #00ffea, #ff00c8);
+        border: none;
+        border-radius: 5px;
+        color: #000;
+        font-size: 1em;
+        cursor: pointer;
+        transition: transform 0.3s;
+        }
+        .admin-login button:hover {
+        transform: scale(1.05);
+        }
+        .back-link {
+        margin-top: 10px;
+        display: block;
+        color: #00ffea;
+        text-decoration: none;
+        }
+        @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+        }
+    </style>
+    </head>
+    <body>
+    <div class="admin-login">
+        <h2>Admin Login</h2>
+        <form action="/admin/login" method="POST">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Log In</button>
+        </form>
+        <a class="back-link" href="index.html">Back to Home</a>
+    </div>
+    </body>
+    </html>

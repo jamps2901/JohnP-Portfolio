@@ -1,0 +1,99 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Advanced AI-themed admin dashboard styling */
+        body {
+        background: linear-gradient(45deg, #1a1a2e, #16213e, #0f3460, #53354a);
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
+        }
+        .dashboard {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 40px;
+        border: 1px solid #00ffea;
+        border-radius: 10px;
+        background: rgba(0, 0, 0, 0.7);
+        color: #fff;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        animation: fadeIn 2s;
+        }
+        .dashboard h2 {
+        font-size: 2em;
+        margin-bottom: 20px;
+        background: linear-gradient(90deg, #00ffea, #ff00c8);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        }
+        .dashboard form input, .dashboard form button {
+        width: 90%;
+        padding: 12px;
+        margin: 10px auto;
+        border-radius: 5px;
+        border: 1px solid #00ffea;
+        }
+        .dashboard form button {
+        background: linear-gradient(90deg, #00ffea, #ff00c8);
+        border: none;
+        color: #000;
+        font-size: 1em;
+        cursor: pointer;
+        transition: transform 0.3s;
+        }
+        .dashboard form button:hover {
+        transform: scale(1.05);
+        }
+        .back-link {
+        display: block;
+        margin-top: 20px;
+        color: #00ffea;
+        text-decoration: none;
+        }
+        #uploadStatus {
+        margin-top: 20px;
+        font-size: 1.2em;
+        color: #00ffea;
+        }
+        @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+        }
+    </style>
+    </head>
+    <body>
+    <div class="dashboard">
+        <h2>Admin Dashboard</h2>
+        <form id="uploadForm" enctype="multipart/form-data">
+        <input type="file" name="videoFile" accept="video/*" required>
+        <input type="text" name="videoTitle" placeholder="Video Title" required>
+        <button type="submit">Upload Video</button>
+        </form>
+        <div id="uploadStatus"></div>
+        <a class="back-link" href="index.html">Back to Home</a>
+    </div>
+    <script>
+        // Use AJAX to submit the video upload form without redirecting
+        document.getElementById('uploadForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        fetch('/admin/upload-video', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('uploadStatus').textContent = data;
+        })
+        .catch(error => {
+            document.getElementById('uploadStatus').textContent = 'Error uploading video.';
+            console.error('Error:', error);
+        });
+        });
+    </script>
+    </body>
+    </html>
