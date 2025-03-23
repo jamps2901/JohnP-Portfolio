@@ -3,10 +3,11 @@
     <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>My AI Themed CV</title>
+    <title>John Patnugot</title>
     <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
+
     <!-- Header Section with Animated Particles & Fixed Navigation -->
     <header>
         <div id="particles-js"></div>
@@ -15,29 +16,28 @@
             <li><a href="#projects">Projects</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
-            <li><a href="admin.html">Admin</a></li>
+            <li style="margin-left:auto;"><a href="admin.html">Admin</a></li>
         </ul>
         </nav>
         <div class="header-content">
-        <h1 class="interactive-heading">My AI Themed CV</h1>
+        <h1 class="interactive-heading">Welcome to My Portfolio</h1>
         <!-- The ai-header element now has additional margin and is centered -->
-        <p class="ai-header" data-text='["Innovative", "Intelligent", "Inspiring"]'></p>
+        <p class="ai-header" data-text='["Full-Stack Developer", "Machine Learning", "Python Developer", "SAP ABAP Developer","SAP Data Migration", "IOT Developer", "SQL Developer", "C#/C++ Developer", "Game Developer"]'></p>
         </div>
     </header>
 
     <!-- Projects Section -->
     <section id="projects">
         <h2>Projects</h2>
-        <div class="project-cards">
+        <div class="project-cards" id="videoProjects">
         <!-- Example video card with animated project title -->
-        <div class="card">
+        <!-- <div class="card">
             <video controls>
             <source src="uploads/sample-video.mp4" type="video/mp4">
             Your browser does not support the video tag.
             </video>
-            <!-- The project title types out once -->
             <h3 class="project-title" data-text="Project Title"></h3>
-        </div>
+        </div> -->
         </div>
     </section>
 
@@ -48,7 +48,8 @@
         <p>Email: example@example.com</p>
         <p>LinkedIn: <a href="https://linkedin.com/in/yourprofile" target="_blank">My Profile</a></p>
         <p>GitHub: <a href="https://github.com/yourprofile" target="_blank">My GitHub</a></p>
-        <a href="cv.pdf" download class="download-btn">Download CV</a>
+        <!-- <a href="cv.pdf" download class="download-btn">Download CV</a> -->
+        <a class="download-btn" href="/cv-download" download>Download CV</a>
         </div>
     </section>
 
@@ -67,6 +68,29 @@
     <footer>
         <p>powered by John Patnugot</p>
     </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Fetch and render videos in the Projects section
+        fetch('/videos')
+            .then(response => response.json())
+            .then(data => {
+                const videoContainer = document.getElementById('videoProjects');
+                data.forEach(video => {
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    card.innerHTML = `
+                        <video controls>
+                            <source src="/uploads/videos/${video.filename}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <h3 class="project-title" data-text="${video.title}">${video.title}</h3>
+                    `;
+                    videoContainer.appendChild(card);
+                });
+            })
+            .catch(error => console.error('Error fetching videos:', error));
+    </script>
 
     <!-- Include Particles.js Library & Our Scripts -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
