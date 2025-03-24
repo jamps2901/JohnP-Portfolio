@@ -189,7 +189,7 @@ app.delete('/admin/delete-video/:id', async (req, res) => {
 });
 
 // Edit video endpoint – allows updating the title and optionally replacing the video file.
-app.put('/admin/edit-video/:id', uploadVideo.single('videoFile'), async (req, res) => {
+app.put('/admin/edit-video/:id', upload.single('videoFile'), async (req, res) => {
   if (!req.session.loggedIn) return res.status(401).send('Unauthorized');
   const fileId = new ObjectId(req.params.id);
   try {
