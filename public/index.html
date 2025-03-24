@@ -46,8 +46,8 @@
         <h2>About Me</h2>
         <div class="about-content">
         <p>Email: example@example.com</p>
-        <p>LinkedIn: <a href="https://linkedin.com/in/yourprofile" target="_blank">My Profile</a></p>
-        <p>GitHub: <a href="https://github.com/yourprofile" target="_blank">My GitHub</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/jampy2901-00143422/" target="_blank">My Profile</a></p>
+        <p>GitHub: <a href="https://github.com/jamps2901" target="_blank">My GitHub</a></p>
         <!-- <a href="cv.pdf" download class="download-btn">Download CV</a> -->
         <a class="download-btn" href="/cv-download" download>Download CV</a>
         </div>
@@ -73,24 +73,24 @@
     <script>
         // Fetch and render videos in the Projects section
         fetch('/videos')
-            .then(response => response.json())
-            .then(data => {
-                const videoContainer = document.getElementById('videoProjects');
-                data.forEach(video => {
-                    const card = document.createElement('div');
-                    card.className = 'card';
-                    card.innerHTML = `
-                        <video controls>
-                            <source src="/uploads/videos/${video.filename}" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                        <h3 class="project-title" data-text="${video.title}">${video.title}</h3>
-                    `;
-                    videoContainer.appendChild(card);
-                });
-            })
-            .catch(error => console.error('Error fetching videos:', error));
-    </script>
+        .then(response => response.json())
+        .then(data => {
+            const videoContainer = document.getElementById('videoProjects');
+            data.forEach(video => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                <video controls>
+                <source src="${video.url}" type="${video.contentType}">
+                Your browser does not support the video tag.
+                </video>
+                <h3 class="project-title" data-text="${video.title}">${video.title}</h3>
+            `;
+            videoContainer.appendChild(card);
+            });
+        })
+        .catch(error => console.error('Error fetching videos:', error));
+        </script>
 
     <!-- Include Particles.js Library & Our Scripts -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>

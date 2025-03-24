@@ -1,15 +1,17 @@
-    {
+{
         "name": "my-cv-website",
         "version": "1.0.0",
         "description": "A fully responsive, AI-themed portfolio for John Rey Patnugot",
         "main": "server.js",
         "scripts": {
-        "start": "node server.js"
+                "start": "node server.js"
         },
         "dependencies": {
-        "body-parser": "^1.20.2",
-        "express": "^4.18.2",
-        "express-session": "^1.17.3",
-        "multer": "1.4.5-lts.1"
+                "body-parser": "^1.20.2",
+                "dotenv": "^16.4.7",
+                "express": "^4.18.2",
+                "express-session": "^1.17.3",
+                "mongodb": "^6.15.0",
+                "multer": "1.4.5-lts.1"
         }
-    }
+}

@@ -187,64 +187,58 @@
             });
         });
         
-        // Load Videos and populate the table
-        function loadVideos() {
-            fetch('/videos')
-                .then(response => response.json())
-                .then(data => {
-                    const tbody = document.querySelector('#videosTable tbody');
-                    tbody.innerHTML = '';
-                    data.forEach(video => {
-                        const tr = document.createElement('tr');
-                        tr.innerHTML = `
-                            <td>${video.id}</td>
-                            <td contenteditable="true" onblur="updateTitle(${video.id}, this.innerText)">${video.title}</td>
-                            <td>
-                                <video width="150" controls>
-                                    <source src="/uploads/videos/${video.filename}" type="video/mp4">
-                                </video>
-                            </td>
-                            <td>
-                                <button class="action-btn" onclick="deleteVideo(${video.id})">Delete</button>
-                            </td>
-                        `;
-                        tbody.appendChild(tr);
-                    });
-                })
-                .catch(error => console.error('Error loading videos:', error));
-        }
+            // Load Videos and populate the table
+            function loadVideos() {
+    fetch('/videos')
+        .then(response => response.json())
+        .then(data => {
+        const tbody = document.querySelector('#videosTable tbody');
+        tbody.innerHTML = '';
+        data.forEach(video => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+            <td>${video.id}</td>
+            <td contenteditable="true" onblur="updateTitle('${video.id}', this.innerText)">${video.title}</td>
+            <td>
+                <video width="150" controls>
+                <source src="${video.url}" type="${video.contentType}">
+                </video>
+            </td>
+            <td>
+                <button class="action-btn" onclick="deleteVideo('${video.id}')">Delete</button>
+            </td>
+            `;
+            tbody.appendChild(tr);
+        });
+        })
+        .catch(error => console.error('Error loading videos:', error));
+    }
         
-        // Update video title when edited
-        function updateTitle(id, newTitle) {
-            const formData = new FormData();
-            formData.append('videoTitle', newTitle);
-            fetch('/admin/edit-video/' + id, {
-                method: 'PUT',
-                body: formData
-            })
-            .then(response => response.text())
-            .then(data => {
-                console.log(data);
-                loadVideos();
-            })
-            .catch(error => console.error('Error updating video:', error));
-        }
-        
-        // Delete video
-        function deleteVideo(id) {
-            fetch('/admin/delete-video/' + id, {
-                method: 'DELETE'
-            })
-            .then(response => response.text())
-            .then(data => {
-                alert(data);
-                loadVideos();
-            })
-            .catch(error => console.error('Error deleting video:', error));
-        }
-        
-        // Initial load
+            // Update video title when edited
+    function updateTitle(id, newTitle) {
+    const formData = new FormData();
+    formData.append('videoTitle', newTitle);
+    fetch('/admin/edit-video/' + id, { method: 'PUT', body: formData })
+        .then(response => response.text())
+        .then(data => {
+        console.log(data);
         loadVideos();
+        })
+        .catch(error => console.error('Error updating video:', error));
+    }
+            
+        // Delete video
+    function deleteVideo(id) {
+    fetch('/admin/delete-video/' + id, { method: 'DELETE' })
+        .then(response => response.text())
+        .then(message => {
+        alert(message);
+        loadVideos();
+        })
+        .catch(error => console.error('Error deleting video:', error));
+    }
+            // Initial load
+    loadVideos();
     </script>
 </body>
 </html>
