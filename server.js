@@ -98,7 +98,7 @@ let cvFilePath = null;
 
 // Admin login endpoint (AJAX-based).
 const adminUser = process.env.ADMIN_USER || "admin";
-const adminPass = process.env.ADMIN_PASS || "password";
+const adminPass = process.env.ADMIN_PASS || "admin12345";
 
 app.post('/admin/login', (req, res) => {
   const { username, password } = req.body;
