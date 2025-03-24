@@ -35,7 +35,7 @@ const uploadVideo = multer({ storage: multer.memoryStorage() });
 const uploadCV = multer({ storage: multer.memoryStorage() });
 
 // Admin credentials (for demo – in production, use secure storage)
-let adminUser = { username: "admin", password: "password" };
+//let adminUser = { username: "admin", password: "password" };
 
 // Ensure upload directories exist
 const ensureDir = (dir) => {
@@ -97,9 +97,12 @@ let cvFilePath = null;
 // -------------------- Endpoints --------------------
 
 // Admin login endpoint (AJAX-based).
+const adminUser = process.env.ADMIN_USER || "admin";
+const adminPass = process.env.ADMIN_PASS || "password";
+
 app.post('/admin/login', (req, res) => {
   const { username, password } = req.body;
-  if (username === adminUser.username && password === adminUser.password) {
+  if (username === adminUser && password === adminPass) {
     req.session.loggedIn = true;
     res.json({ success: true });
   } else {
