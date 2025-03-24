@@ -37,7 +37,6 @@ app.use(session({
 app.use(express.static('public'));  // serve static files in public/
 
 // Configure Multer to store file data in memory (we will handle persistence)
-const multer = require("multer");
 const storage = multer.memoryStorage(); // Store in memory before sending to GridFS
 const upload = multer({ storage });
 
