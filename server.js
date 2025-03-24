@@ -13,13 +13,19 @@ const PORT = process.env.PORT || 3000;
 // Connect to MongoDB
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/portfolio';
 const client = new MongoClient(MONGO_URI);
-let db, videoBucket, cvBucket;
-client.connect().then(() => {
-  db = client.db();  // use default DB from URI
-  videoBucket = new GridFSBucket(db, { bucketName: 'videos' });
-  cvBucket = new GridFSBucket(db, { bucketName: 'cvFiles' });
-  console.log('Connected to MongoDB and initialized GridFS buckets');
-}).catch(err => console.error('MongoDB connection error:', err));
+let videoBucket, cvBucket;
+
+async function connectToDB() {
+  try {
+    await client.connect();
+    const db = client.db(); // Uses DB from URI
+    videoBucket = new GridFSBucket(db, { bucketName: "videos" });
+    cvBucket = new GridFSBucket(db, { bucketName: "cv" });
+    console.log("✅ Connected to MongoDB and initialized GridFS buckets");
+  } catch (err) {
+    console.error("MongoDB connection error:", err);
+  }
+}
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -31,8 +37,9 @@ app.use(session({
 app.use(express.static('public'));  // serve static files in public/
 
 // Configure Multer to store file data in memory (we will handle persistence)
-const uploadVideo = multer({ storage: multer.memoryStorage() });
-const uploadCV = multer({ storage: multer.memoryStorage() });
+const multer = require("multer");
+const storage = multer.memoryStorage(); // Store in memory before sending to GridFS
+const upload = multer({ storage });
 
 // Admin credentials (for demo – in production, use secure storage)
 //let adminUser = { username: "admin", password: "password" };
@@ -100,39 +107,31 @@ let cvFilePath = null;
 const adminUser = process.env.ADMIN_USER || "admin";
 const adminPass = process.env.ADMIN_PASS || "admin12345";
 
-app.post('/admin/login', (req, res) => {
+app.post("/admin/login", (req, res) => {
   const { username, password } = req.body;
   if (username === adminUser && password === adminPass) {
     req.session.loggedIn = true;
-    res.json({ success: true });
-  } else {
-    res.status(401).json({ success: false, message: "Invalid credentials" });
+    return res.json({ success: true });
   }
+  return res.status(401).json({ success: false, message: "Invalid credentials" });
 });
 
-// Video upload endpoint.
-app.post('/admin/upload-video', uploadVideo.single('videoFile'), (req, res) => {
-  if (!req.session.loggedIn) return res.status(401).send('Unauthorized');
-  if (!req.file) return res.status(400).send('No video file uploaded');
 
-  const videoTitle = req.body.videoTitle || 'Untitled Video';
-  // Save file to GridFS
-  try {
-    const uploadStream = videoBucket.openUploadStream(req.file.originalname, {
-      metadata: { title: videoTitle, contentType: req.file.mimetype }
-    });
-    uploadStream.end(req.file.buffer);
-    uploadStream.on('error', err => {
-      console.error('GridFS video upload error:', err);
-      res.status(500).send('Error storing video');
-    });
-    uploadStream.on('finish', () => {
-      res.send('Video uploaded successfully');
-    });
-  } catch (err) {
-    console.error('Upload video exception:', err);
-    res.status(500).send('Internal server error');
-  }
+// Video upload endpoint.
+app.post("/upload-video", upload.single("video"), (req, res) => {
+  if (!videoBucket) return res.status(500).send("DB not ready");
+
+  const uploadStream = videoBucket.openUploadStream(req.file.originalname);
+  uploadStream.end(req.file.buffer);
+
+  uploadStream.on("finish", () => {
+    res.status(200).send("Video uploaded successfully");
+  });
+
+  uploadStream.on("error", (err) => {
+    console.error("Video upload error:", err);
+    res.status(500).send("Upload failed");
+  });
 });
 
 // Endpoint to fetch videos (for main page and admin dashboard).
@@ -229,29 +228,20 @@ app.put('/admin/edit-video/:id', uploadVideo.single('videoFile'), async (req, re
 });
 
 // CV upload endpoint.
-app.post('/admin/upload-cv', uploadCV.single('cvFile'), async (req, res) => {
-  if (!req.session.loggedIn) return res.status(401).send('Unauthorized');
-  if (!req.file) return res.status(400).send('No CV file uploaded');
-  try {
-    // Remove old CV files
-    const oldFiles = await cvBucket.find({}).toArray();
-    for (let f of oldFiles) {
-      await cvBucket.delete(f._id);
-    }
-    // Save new CV file
-    const cvStream = cvBucket.openUploadStream('cv.pdf', {
-      metadata: { contentType: req.file.mimetype }
-    });
-    cvStream.end(req.file.buffer);
-    cvStream.on('finish', () => res.send('CV uploaded successfully'));
-    cvStream.on('error', err => {
-      console.error('CV upload error:', err);
-      res.status(500).send('Error storing CV');
-    });
-  } catch (err) {
-    console.error('Upload CV exception:', err);
-    res.status(500).send('Internal server error');
-  }
+app.post("/upload-cv", upload.single("cv"), (req, res) => {
+  if (!cvBucket) return res.status(500).send("DB not ready");
+
+  const uploadStream = cvBucket.openUploadStream(req.file.originalname);
+  uploadStream.end(req.file.buffer);
+
+  uploadStream.on("finish", () => {
+    res.status(200).send("CV uploaded successfully");
+  });
+
+  uploadStream.on("error", (err) => {
+    console.error("CV upload error:", err);
+    res.status(500).send("Upload failed");
+  });
 });
 
 // Endpoint to download the CV.
