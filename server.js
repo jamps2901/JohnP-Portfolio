@@ -260,9 +260,14 @@ app.post('/admin/change-credentials', (req, res) => {
 
 // Demo email endpoint.
 app.post('admin/send-email', (req, res) => {
+  //const { name, email, message } = req.body;
+  //console.log(`Received contact form submission from ${name} <${email}>: ${message}`);
+  // In production, integrate with an email service.
+  //res.send('Email sent successfully (demo endpoint)');
+
   const { name, email, message } = req.body;
   console.log(`Received contact form submission from ${name} <${email}>: ${message}`);
-  // In production, integrate with an email service.
+  // Here, integrate with an email service in production.
   res.send('Email sent successfully (demo endpoint)');
 });
 
@@ -270,3 +275,4 @@ app.post('admin/send-email', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+

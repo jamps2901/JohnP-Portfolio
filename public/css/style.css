@@ -29,7 +29,7 @@
             background: transparent;
             overflow: hidden;
         }
-        
+
         /* Particles container */
         #particles-js {
             position: absolute;
@@ -39,7 +39,7 @@
             left: 0;
             z-index: 0;
         }
-        
+
         /* Fixed Navigation Bar */
         .nav-bar {
             position: fixed;
@@ -63,7 +63,7 @@
             color: #fff;
             text-decoration:dotted;
             font-size: 1em;
-            font-weight: 500;
+            font-weight: bold;
             font-style: inherit;
             font-family:'Courier New', Courier, monospace;
             position: relative;
@@ -313,23 +313,61 @@
     .video-cards {
         display: flex;
         flex-wrap: wrap;
+        justify-content: center;
         gap: 20px;
     }
     
     .video-card {
+        width: 300px; /* Uniform width */
+        height: 220px; /* Uniform height */
         background: #fff;
         border: 1px solid #ddd;
         border-radius: 5px;
         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        width: 320px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
     
     .video-card video {
         width: 100%;
+        height: auto;
+        max-height: 150px;
+        object-fit: cover;
         display: block;
     }
-    
+
+    .video-card p {
+        margin: 10px 0 0;
+        font-size: 1em;
+        color: #00ffea;
+    }
+
     .video-info {
         padding: 10px;
     }
-    
+
+/* Slogan Styling */
+.slogan {
+    font-size: 1.5em;
+    font-style: italic;
+    margin-top: 10px;
+  }
+
+  /* Social Links in About Section */
+.social-links {
+    margin-top: 20px;
+  }
+  .social-link {
+    display: inline-block;
+    margin: 0 10px;
+    font-size: 2em;
+    color: #00ffea;
+    transition: transform 0.3s, color 0.3s;
+  }
+  .social-link:hover {
+    transform: scale(1.2);
+    color: #ff00c8;
+  }
