@@ -198,6 +198,35 @@ app.put('/admin/edit-video/:id', upload.single('videoFile'), async (req, res) =>
   }
 });
 
+//Upload CV Endpoint
+// CV upload endpoint.
+app.post("/upload-cv", upload.single("cvFile"), (req, res) => {
+  console.log("Received CV upload request.");
+  console.log("req.file:", req.file); // Debug log
+
+  if (!req.file) {
+    console.error("No CV file received.");
+    return res.status(400).send("No CV file uploaded.");
+  }
+  if (!cvBucket) {
+    console.error("MongoDB CV bucket not ready.");
+    return res.status(500).send("DB not ready");
+  }
+  const uploadStream = cvBucket.openUploadStream(req.file.originalname, {
+    metadata: { contentType: req.file.mimetype }
+  });
+  uploadStream.end(req.file.buffer);
+
+  uploadStream.on("finish", () => {
+    console.log("CV uploaded to GridFS successfully.");
+    res.status(200).send("CV uploaded successfully");
+  });
+
+  uploadStream.on("error", (err) => {
+    console.error("CV upload error:", err);
+    res.status(500).send("Upload failed");
+  });
+});
 
 // Endpoint to download the CV.
 app.get('admin/cv-download', (req, res) => {
