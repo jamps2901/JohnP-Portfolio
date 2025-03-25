@@ -1,4 +1,4 @@
-require('dotenv').config(); // if using .env for local development
+require('dotenv').config(); // Load environment variables
 const express = require('express');
 const multer = require('multer');
 const path = require('path');
@@ -26,7 +26,9 @@ async function connectToDB() {
     console.error("MongoDB connection error:", err);
   }
 }
+connectToDB();
 
+// Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(session({
@@ -34,16 +36,9 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }));
-app.use(express.static('public'));  // serve static files in public/
+app.use(express.static('public'));  // Serve static files from public/
 
-// Configure Multer to store file data in memory (we will handle persistence)
-const storage = multer.memoryStorage(); // Store in memory before sending to GridFS
-const upload = multer({ storage });
-
-// Admin credentials (for demo – in production, use secure storage)
-//let adminUser = { username: "admin", password: "password" };
-
-// Ensure upload directories exist
+// Ensure upload directories exist (for temporary disk storage, if needed)
 const ensureDir = (dir) => {
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true });
@@ -54,58 +49,18 @@ ensureDir(path.join(__dirname, 'uploads'));
 ensureDir(path.join(__dirname, 'uploads/videos'));
 ensureDir(path.join(__dirname, 'uploads/cv'));
 
-// Middleware ordering: body-parser and session before static middleware.
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(session({
-  secret: 'your-secret-key', // Change this in production.
-  resave: false,
-  saveUninitialized: true
-}));
+// For this implementation, we'll use Multer's memory storage
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 
-// Serve static files from the public folder
-app.use(express.static('public'));
-
-// Serve uploaded files (videos and CVs)
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
-// Create storage for videos and CV separately
-const videoStorage = multer.diskStorage({
-  destination: function(req, file, cb) {
-    cb(null, path.join(__dirname, 'uploads/videos'));
-  },
-  filename: function(req, file, cb) {
-    cb(null, Date.now() + path.extname(file.originalname));
-  }
-});
-const cvStorage = multer.diskStorage({
-  destination: function(req, file, cb) {
-    cb(null, path.join(__dirname, 'uploads/cv'));
-  },
-  filename: function(req, file, cb) {
-    // Always save as "cv" with the original extension.
-    cb(null, 'cv' + path.extname(file.originalname));
-  }
-});
-// const uploadVideo = multer({ storage: videoStorage });
-// const uploadCV = multer({ storage: cvStorage });
-
-// Dummy admin credentials stored in memory (for demo only).
-//let adminUser = { username: "admin", password: "password" };
-
-// In-memory store for videos
-//let videos = [];
-//let videoIdCounter = 1;
-
-// In-memory store for CV file path
-let cvFilePath = null;
+// -------------------- Admin Credentials --------------------
+// Use mutable variables so they can be updated (for demo only).
+let adminUser = process.env.ADMIN_USER || "admin";
+let adminPass = process.env.ADMIN_PASS || "admin12345";
 
 // -------------------- Endpoints --------------------
 
-// Admin login endpoint (AJAX-based).
-const adminUser = process.env.ADMIN_USER || "admin";
-const adminPass = process.env.ADMIN_PASS || "admin12345";
-
+// Admin login endpoint
 app.post("/admin/login", (req, res) => {
   const { username, password } = req.body;
   if (username === adminUser && password === adminPass) {
@@ -115,12 +70,13 @@ app.post("/admin/login", (req, res) => {
   return res.status(401).json({ success: false, message: "Invalid credentials" });
 });
 
-
-// Video upload endpoint.
+// Video upload endpoint (store file in MongoDB GridFS)
 app.post("/upload-video", upload.single("video"), (req, res) => {
   if (!videoBucket) return res.status(500).send("DB not ready");
 
-  const uploadStream = videoBucket.openUploadStream(req.file.originalname);
+  const uploadStream = videoBucket.openUploadStream(req.file.originalname, {
+    metadata: { title: req.body.videoTitle || req.file.originalname, contentType: req.file.mimetype }
+  });
   uploadStream.end(req.file.buffer);
 
   uploadStream.on("finish", () => {
@@ -133,16 +89,15 @@ app.post("/upload-video", upload.single("video"), (req, res) => {
   });
 });
 
-// Endpoint to fetch videos (for main page and admin dashboard).
-// Get Videos (list metadata for front-end)
+// Endpoint to list videos
 app.get('/videos', async (req, res) => {
   try {
     const files = await videoBucket.find({}).toArray();
     const videoList = files.map(file => ({
       id: file._id.toString(),
       title: file.metadata?.title || file.filename,
-      url: `/video/${file._id.toString()}`,                  // endpoint to stream
-      contentType: file.metadata?.contentType || 'video/mp4' // default to mp4 if missing
+      url: `/video/${file._id.toString()}`,  // Endpoint to stream video
+      contentType: file.metadata?.contentType || 'video/mp4'
     }));
     res.json(videoList);
   } catch (err) {
@@ -151,7 +106,7 @@ app.get('/videos', async (req, res) => {
   }
 });
 
-// Stream Video by ID
+// Stream video by ID
 app.get('/video/:id', async (req, res) => {
   try {
     const fileId = new ObjectId(req.params.id);
@@ -171,7 +126,7 @@ app.get('/video/:id', async (req, res) => {
   }
 });
 
-// Delete video endpoint.
+// Delete video endpoint
 app.delete('/admin/delete-video/:id', async (req, res) => {
   if (!req.session.loggedIn) return res.status(401).send('Unauthorized');
   try {
@@ -198,9 +153,9 @@ app.put('/admin/edit-video/:id', upload.single('videoFile'), async (req, res) =>
     const fileDoc = files[0];
     const newTitle = req.body.videoTitle;
     if (newTitle) {
-      // Update title in metadata
-      await db.collection('videos.files').updateOne(
-        { _id: fileId }, 
+      // Update title in metadata in the GridFS files collection
+      await client.db().collection('videos.files').updateOne(
+        { _id: fileId },
         { $set: { "metadata.title": newTitle } }
       );
     }
@@ -208,8 +163,7 @@ app.put('/admin/edit-video/:id', upload.single('videoFile'), async (req, res) =>
       // Replace the video file
       await videoBucket.delete(fileId);
       const newStream = videoBucket.openUploadStream(req.file.originalname, {
-        metadata: { title: newTitle || fileDoc.metadata?.title || fileDoc.filename,
-                    contentType: req.file.mimetype }
+        metadata: { title: newTitle || fileDoc.metadata?.title || fileDoc.filename, contentType: req.file.mimetype }
       });
       newStream.end(req.file.buffer);
       newStream.on('finish', () => res.send('Video updated successfully'));
@@ -226,11 +180,13 @@ app.put('/admin/edit-video/:id', upload.single('videoFile'), async (req, res) =>
   }
 });
 
-// CV upload endpoint.
+// CV upload endpoint (store file in GridFS)
 app.post("/upload-cv", upload.single("cv"), (req, res) => {
   if (!cvBucket) return res.status(500).send("DB not ready");
 
-  const uploadStream = cvBucket.openUploadStream(req.file.originalname);
+  const uploadStream = cvBucket.openUploadStream(req.file.originalname, {
+    metadata: { contentType: req.file.mimetype }
+  });
   uploadStream.end(req.file.buffer);
 
   uploadStream.on("finish", () => {
@@ -260,13 +216,13 @@ app.get('/cv-download', (req, res) => {
   }
 });
 
-// Endpoint to change admin credentials.
+// Endpoint to change admin credentials (demo only; changes are in-memory)
 app.post('/admin/change-credentials', (req, res) => {
   if (!req.session.loggedIn) return res.status(401).send('Unauthorized');
   const { newUsername, newPassword } = req.body;
   if (newUsername && newPassword) {
-    adminUser.username = newUsername;
-    adminUser.password = newPassword;
+    adminUser = newUsername;
+    adminPass = newPassword;
     res.send('Credentials updated successfully');
   } else {
     res.status(400).send('Both username and password are required');
@@ -277,11 +233,11 @@ app.post('/admin/change-credentials', (req, res) => {
 app.post('/send-email', (req, res) => {
   const { name, email, message } = req.body;
   console.log(`Received contact form submission from ${name} <${email}>: ${message}`);
-  // In real deployment, integrate with an email service (e.g., SendGrid, Nodemailer)
+  // In a real app, integrate with an email service.
   res.send('Email sent successfully (demo endpoint)');
 });
 
-
+// Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
