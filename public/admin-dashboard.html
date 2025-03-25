@@ -1,261 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="css/style.css">
-    <style>
-        /* Advanced AI-themed admin dashboard styling */
-        body {
-            background: linear-gradient(45deg, #1a1a2e, #16213e, #0f3460, #53354a);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-        }
-        .dashboard {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 40px;
-            border: 1px solid #00ffea;
-            border-radius: 10px;
-            background: rgba(0, 0, 0, 0.7);
-            color: #fff;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-            animation: fadeIn 2s;
-        }
-        .dashboard h2 {
-            font-size: 2em;
-            margin-bottom: 20px;
-            background: linear-gradient(90deg, #00ffea, #ff00c8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .dashboard form input, .dashboard form button {
-            width: 90%;
-            padding: 12px;
-            margin: 10px auto;
-            border-radius: 5px;
-            border: 1px solid #00ffea;
-        }
-        .dashboard form button {
-            background: linear-gradient(90deg, #00ffea, #ff00c8);
-            border: none;
-            color: #000;
-            font-size: 1em;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-        .dashboard form button:hover {
-            transform: scale(1.05);
-        }
-        .back-link {
-            display: block;
-            margin-top: 20px;
-            color: #00ffea;
-            text-decoration: none;
-        }
-        #uploadStatus, #cvUploadStatus, #credentialsStatus {
-            margin-top: 20px;
-            font-size: 1.2em;
-            color: #00ffea;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            color: #fff;
-        }
-        table, th, td {
-            border: 1px solid #00ffea;
-        }
-        th, td {
-            padding: 10px;
-            text-align: center;
-        }
-        .action-btn {
-            padding: 5px 10px;
-            background: #ff00c8;
-            border: none;
-            color: #fff;
-            cursor: pointer;
-            border-radius: 3px;
-            margin: 0 5px;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>Admin Dashboard</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+    /* Advanced AI-themed admin dashboard styling */
+    body {
+    background: linear-gradient(45deg, #1a1a2e, #16213e, #0f3460, #53354a);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    }
+    .dashboard {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 40px;
+    border: 1px solid #00ffea;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    animation: fadeIn 2s;
+    }
+    .dashboard h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    background: linear-gradient(90deg, #00ffea, #ff00c8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    }
+    .dashboard form input, .dashboard form button {
+    width: 90%;
+    padding: 12px;
+    margin: 10px auto;
+    border-radius: 5px;
+    border: 1px solid #00ffea;
+    }
+    .dashboard form button {
+    background: linear-gradient(90deg, #00ffea, #ff00c8);
+    border: none;
+    color: #000;
+    font-size: 1em;
+    cursor: pointer;
+    transition: transform 0.3s;
+    }
+    .dashboard form button:hover {
+    transform: scale(1.05);
+    }
+    .back-link {
+    display: block;
+    margin-top: 20px;
+    color: #00ffea;
+    text-decoration: none;
+    }
+    #uploadStatus, #cvUploadStatus, #credentialsStatus {
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #00ffea;
+    }
+    table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    color: #fff;
+    }
+    table, th, td {
+    border: 1px solid #00ffea;
+    }
+    th, td {
+    padding: 10px;
+    text-align: center;
+    }
+    .action-btn {
+    padding: 5px 10px;
+    background: #ff00c8;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 3px;
+    margin: 0 5px;
+    }
+</style>
 </head>
 <body>
-    <div class="dashboard">
-        <h2>Admin Dashboard</h2>
+<div class="dashboard">
+    <h2>Admin Dashboard</h2>
 
-        <!-- Video Upload Form -->
-        <form id="videoForm" enctype="multipart/form-data" onsubmit="return false;">
-            <input type="file" name="video" id="videoInput" required>
-            <br>
-            <input type="text" name="videoTitle" id="videoTitle" placeholder="Enter video title">
-            <br>
-            <button type="submit">Upload Video</button>
-        </form>
-        <div id="uploadStatus"></div>
+    <!-- Video Upload Form -->
+    <form id="videoForm" enctype="multipart/form-data" onsubmit="return false;">
+    <input type="file" name="video" id="videoInput" required>
+    <input type="text" name="videoTitle" id="videoTitle" placeholder="Enter video title">
+    <button type="submit">Upload Video</button>
+    </form>
+    <div id="videoUploadStatus"></div>
 
-        <!-- CV Upload Form -->
-        <h3>Upload CV</h3>
-        <form id="uploadCVForm" enctype="multipart/form-data" onsubmit="return false;">
-            <input type="file" name="cvFile" accept="application/pdf" required>
-            <button type="submit">Upload CV</button>
-        </form>
-        <div id="cvUploadStatus"></div>
+    <!-- CV Upload Form -->
+    <h3>Upload CV</h3>
+    <form id="uploadCVForm" enctype="multipart/form-data" onsubmit="return false;">
+    <input type="file" name="cv" accept="application/pdf" required>
+    <button type="submit">Upload CV</button>
+    </form>
+    <div id="cvUploadStatus"></div>
 
-        <!-- Change Credentials Form -->
-        <h3>Change Admin Credentials</h3>
-        <form id="changeCredentialsForm" onsubmit="return false;">
-            <input type="text" name="newUsername" placeholder="New Username" required>
-            <input type="password" name="newPassword" placeholder="New Password" required>
-            <button type="submit">Change Credentials</button>
-        </form>
-        <div id="credentialsStatus"></div>
+    <!-- Change Credentials Form -->
+    <h3>Change Admin Credentials</h3>
+    <form id="changeCredentialsForm" onsubmit="return false;">
+    <input type="text" name="newUsername" placeholder="New Username" required>
+    <input type="password" name="newPassword" placeholder="New Password" required>
+    <button type="submit">Change Credentials</button>
+    </form>
+    <div id="credentialsStatus"></div>
 
-        <!-- Video Listing Table -->
-        <h3>Uploaded Videos</h3>
-        <table id="videosTable">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Title</th>
-                    <th>Preview</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Videos will be dynamically inserted here -->
-            </tbody>
-        </table>
+    <!-- Video Listing Table -->
+    <h3>Uploaded Videos</h3>
+    <table id="videosTable">
+    <thead>
+        <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Preview</th>
+        <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Videos will be dynamically inserted here -->
+    </tbody>
+    </table>
 
-        <a class="back-link" href="index.html">Back to Home</a>
-    </div>
+    <a class="back-link" href="index.html">Back to Home</a>
+</div>
 
 <script>
-        // Video Upload Form Submission
+    // Video Upload Form Submission
     document.getElementById('videoForm').addEventListener('submit', function(e) {
-    e.preventDefault(); // Prevent the default form submission
-
-    // Create a FormData object
-    const formData = new FormData();
-    const fileInput = document.getElementById('videoInput');
-    const titleInput = document.getElementById('videoTitle');
-
-    if (fileInput.files.length === 0) {
-        alert("Please select a video file to upload.");
-        return;
-    }
-
-    formData.append('video', fileInput.files[0]);
-    formData.append('videoTitle', titleInput.value);
-
-    // Use fetch to POST the form data to the correct endpoint
+    e.preventDefault();
+    const formData = new FormData(this);
     fetch('/upload-video', {
         method: 'POST',
         body: formData
     })
     .then(response => response.text())
     .then(result => {
-        console.log("Upload result:", result);
-        alert(result);
+        document.getElementById('videoUploadStatus').textContent = result;
+        loadVideos(); // refresh video list
     })
     .catch(error => {
-        console.error("Error uploading video:", error);
-        alert("Upload failed. See console for details.");
+        document.getElementById('videoUploadStatus').textContent = 'Error uploading video.';
+        console.error('Error uploading video:', error);
     });
     });
-</script>
 
-        // CV Upload Form Submission
-        document.getElementById('uploadCVForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const formData = new FormData(this);
-            fetch('/admin/upload-cv', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('cvUploadStatus').textContent = data;
-            })
-            .catch(error => {
-                document.getElementById('cvUploadStatus').textContent = 'Error uploading CV.';
-                console.error('Error:', error);
-            });
-        });
-        
-        // Change Credentials Form Submission (AJAX)
-        document.getElementById('changeCredentialsForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const formData = new FormData(this);
-            fetch('/admin/change-credentials', {
-                method: 'POST',
-                body: new URLSearchParams(formData)
-            })
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('credentialsStatus').textContent = data;
-            })
-            .catch(error => {
-                document.getElementById('credentialsStatus').textContent = 'Error changing credentials.';
-                console.error('Error:', error);
-            });
-        });
-        
-            // Load Videos and populate the table
-            function loadVideos() {
+    // CV Upload Form Submission
+    document.getElementById('uploadCVForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    // Correct endpoint: /upload-cv (not /admin/upload-cv)
+    fetch('/upload-cv', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('cvUploadStatus').textContent = data;
+    })
+    .catch(error => {
+        document.getElementById('cvUploadStatus').textContent = 'Error uploading CV.';
+        console.error('Error uploading CV:', error);
+    });
+    });
+
+    // Change Credentials Form Submission (AJAX)
+    document.getElementById('changeCredentialsForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    fetch('/admin/change-credentials', {
+        method: 'POST',
+        body: new URLSearchParams(formData)
+    })
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('credentialsStatus').textContent = data;
+    })
+    .catch(error => {
+        document.getElementById('credentialsStatus').textContent = 'Error changing credentials.';
+        console.error('Error:', error);
+    });
+    });
+
+    // Load Videos and populate the table
+    function loadVideos() {
     fetch('/videos')
-        .then(response => response.json())
-        .then(data => {
+    .then(response => response.json())
+    .then(data => {
         const tbody = document.querySelector('#videosTable tbody');
         tbody.innerHTML = '';
         data.forEach(video => {
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
             <td>${video.id}</td>
             <td contenteditable="true" onblur="updateTitle('${video.id}', this.innerText)">${video.title}</td>
             <td>
-                <video width="150" controls>
+            <video width="150" controls>
                 <source src="${video.url}" type="${video.contentType}">
-                </video>
+                Your browser does not support the video tag.
+            </video>
             </td>
             <td>
-                <button class="action-btn" onclick="deleteVideo('${video.id}')">Delete</button>
+            <button class="action-btn" onclick="deleteVideo('${video.id}')">Delete</button>
             </td>
-            `;
-            tbody.appendChild(tr);
+        `;
+        tbody.appendChild(tr);
         });
-        })
-        .catch(error => console.error('Error loading videos:', error));
+    })
+    .catch(error => console.error('Error loading videos:', error));
     }
-        
-            // Update video title when edited
+
+    // Update video title when edited
     function updateTitle(id, newTitle) {
     const formData = new FormData();
     formData.append('videoTitle', newTitle);
     fetch('/admin/edit-video/' + id, { method: 'PUT', body: formData })
-        .then(response => response.text())
-        .then(data => {
-        console.log(data);
+    .then(response => response.text())
+    .then(data => {
+        console.log("Update title response:", data);
         loadVideos();
-        })
-        .catch(error => console.error('Error updating video:', error));
+    })
+    .catch(error => console.error('Error updating video:', error));
     }
-            
-        // Delete video
+
+    // Delete video
     function deleteVideo(id) {
     fetch('/admin/delete-video/' + id, { method: 'DELETE' })
-        .then(response => response.text())
-        .then(message => {
+    .then(response => response.text())
+    .then(message => {
         alert(message);
         loadVideos();
-        })
-        .catch(error => console.error('Error deleting video:', error));
+    })
+    .catch(error => console.error('Error deleting video:', error));
     }
-            // Initial load
+
+    // Initial load of videos
     loadVideos();
-    </script>
+</script>
 </body>
 </html>

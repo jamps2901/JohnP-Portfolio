@@ -198,38 +198,9 @@ app.put('/admin/edit-video/:id', upload.single('videoFile'), async (req, res) =>
   }
 });
 
-app.post("/upload-cv", upload.single("cv"), (req, res) => {
-  console.log("Received CV upload request.");
-  console.log("req.file:", req.file); // Debug log for file details
-
-  if (!req.file) {
-    console.error("No CV file received.");
-    return res.status(400).send("No CV file uploaded.");
-  }
-  if (!cvBucket) {
-    console.error("MongoDB CV bucket not ready.");
-    return res.status(500).send("DB not ready");
-  }
-
-  const uploadStream = cvBucket.openUploadStream(req.file.originalname, {
-    metadata: { contentType: req.file.mimetype }
-  });
-  uploadStream.end(req.file.buffer);
-
-  uploadStream.on("finish", () => {
-    console.log("CV uploaded to GridFS successfully.");
-    res.status(200).send("CV uploaded successfully");
-  });
-
-  uploadStream.on("error", (err) => {
-    console.error("CV upload error:", err);
-    res.status(500).send("Upload failed");
-  });
-});
-
 
 // Endpoint to download the CV.
-app.get('/cv-download', (req, res) => {
+app.get('admin/cv-download', (req, res) => {
   try {
     const downloadStream = cvBucket.openDownloadStreamByName('cv.pdf', { revision: -1 });
     res.setHeader('Content-Disposition', 'attachment; filename=CV.pdf');
@@ -259,7 +230,7 @@ app.post('/admin/change-credentials', (req, res) => {
 });
 
 // Demo email endpoint.
-app.post('/send-email', (req, res) => {
+app.post('admin/send-email', (req, res) => {
   const { name, email, message } = req.body;
   console.log(`Received contact form submission from ${name} <${email}>: ${message}`);
   // In production, integrate with an email service.
