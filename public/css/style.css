@@ -209,7 +209,7 @@
         }
         
         /* Contact Form */
-        #contact h2 {
+        #contactForm h2 {
             text-align: center;
             margin-bottom: 20px;
             font-size: 2.5em;  /* Larger font size */
@@ -319,7 +319,7 @@
     
     .video-card {
         width: 300px; /* Uniform width */
-        height: 220px; /* Uniform height */
+        height: 300px; /* Uniform height */
         background: #fff;
         border: 1px solid #ddd;
         border-radius: 5px;
@@ -356,18 +356,31 @@
     margin-top: 10px;
   }
 
-  /* Social Links in About Section */
+ /* Social Media Links in About Section */
 .social-links {
     margin-top: 20px;
+    text-align: center;
   }
+  
   .social-link {
     display: inline-block;
     margin: 0 10px;
-    font-size: 2em;
-    color: #00ffea;
-    transition: transform 0.3s, color 0.3s;
+    font-size: 2.5em; /* Adjust size as needed */
+    color: #c4cfce;
+    transition: transform 0.3s ease, color 0.3s ease;
+    animation: float 3s ease-in-out infinite;
   }
+  
+  /* On hover, enlarge and change color */
   .social-link:hover {
-    transform: scale(1.2);
+    transform: scale(1.3);
     color: #ff00c8;
   }
+  
+  /* Optional subtle floating animation for extra interactivity */
+  @keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0); }
+  }
+  

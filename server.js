@@ -1,4 +1,15 @@
 require('dotenv').config(); // Load environment variables
+const nodemailer = require('nodemailer');
+// Create a Nodemailer transporter
+const transporter = nodemailer.createTransport({
+  host: process.env.EMAIL_HOST,           // e.g., smtp.gmail.com
+  port: process.env.EMAIL_PORT,           // e.g., 465 for secure, 587 for TLS
+  secure: process.env.EMAIL_SECURE === 'true', // true if port is 465
+  auth: {
+    user: process.env.EMAIL_USER,         // your email address
+    pass: process.env.EMAIL_PASS          // your email password or app password
+  }
+});
 const express = require('express');
 const multer = require('multer');
 const path = require('path');
@@ -259,20 +270,23 @@ app.post('/admin/change-credentials', (req, res) => {
 });
 
 // Demo email endpoint.
-app.post('admin/send-email', (req, res) => {
-  //const { name, email, message } = req.body;
-  //console.log(`Received contact form submission from ${name} <${email}>: ${message}`);
-  // In production, integrate with an email service.
-  //res.send('Email sent successfully (demo endpoint)');
-
+app.post('/send-email', (req, res) => {
   const { name, email, message } = req.body;
-  console.log(`Received contact form submission from ${name} <${email}>: ${message}`);
-  // Here, integrate with an email service in production.
-  res.send('Email sent successfully (demo endpoint)');
-});
+  const mailOptions = {
+    from: process.env.EMAIL_FROM || process.env.EMAIL_USER,  // sender address
+    to: process.env.EMAIL_TO,       // your personal email address (set in environment variables)
+    subject: `New message from ${name}`,
+    text: `You have received a new message from ${name} (${email}):\n\n${message}`
+  };
 
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.error('Error sending email:', error);
+      res.status(500).send('Error sending email.');
+    } else {
+      console.log('Email sent: ' + info.response);
+      res.send('Message sent successfully.');
+    }
+  });
 });
 
