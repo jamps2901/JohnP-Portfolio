@@ -86,15 +86,17 @@
 <body>
     <div class="dashboard">
         <h2>Admin Dashboard</h2>
-        
+
         <!-- Video Upload Form -->
-        <form id="uploadForm" enctype="multipart/form-data" onsubmit="return false;">
-            <input type="file" name="videoFile" accept="video/*" required>
-            <input type="text" name="videoTitle" placeholder="Video Title" required>
+        <form id="videoForm" enctype="multipart/form-data" onsubmit="return false;">
+            <input type="file" name="video" id="videoInput" required>
+            <br>
+            <input type="text" name="videoTitle" id="videoTitle" placeholder="Enter video title">
+            <br>
             <button type="submit">Upload Video</button>
         </form>
         <div id="uploadStatus"></div>
-        
+
         <!-- CV Upload Form -->
         <h3>Upload CV</h3>
         <form id="uploadCVForm" enctype="multipart/form-data" onsubmit="return false;">
@@ -102,7 +104,7 @@
             <button type="submit">Upload CV</button>
         </form>
         <div id="cvUploadStatus"></div>
-        
+
         <!-- Change Credentials Form -->
         <h3>Change Admin Credentials</h3>
         <form id="changeCredentialsForm" onsubmit="return false;">
@@ -111,7 +113,7 @@
             <button type="submit">Change Credentials</button>
         </form>
         <div id="credentialsStatus"></div>
-        
+
         <!-- Video Listing Table -->
         <h3>Uploaded Videos</h3>
         <table id="videosTable">
@@ -127,30 +129,45 @@
                 <!-- Videos will be dynamically inserted here -->
             </tbody>
         </table>
-        
+
         <a class="back-link" href="index.html">Back to Home</a>
     </div>
-    
-    <script>
+
+<script>
         // Video Upload Form Submission
-        document.getElementById('uploadForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const formData = new FormData(this);
-            fetch('/admin/upload-video', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('uploadStatus').textContent = data;
-                loadVideos();
-            })
-            .catch(error => {
-                document.getElementById('uploadStatus').textContent = 'Error uploading video.';
-                console.error('Error:', error);
-            });
-        });
-        
+    document.getElementById('videoForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevent the default form submission
+
+    // Create a FormData object
+    const formData = new FormData();
+    const fileInput = document.getElementById('videoInput');
+    const titleInput = document.getElementById('videoTitle');
+
+    if (fileInput.files.length === 0) {
+        alert("Please select a video file to upload.");
+        return;
+    }
+
+    formData.append('video', fileInput.files[0]);
+    formData.append('videoTitle', titleInput.value);
+
+    // Use fetch to POST the form data to the correct endpoint
+    fetch('/upload-video', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text())
+    .then(result => {
+        console.log("Upload result:", result);
+        alert(result);
+    })
+    .catch(error => {
+        console.error("Error uploading video:", error);
+        alert("Upload failed. See console for details.");
+    });
+    });
+</script>
+
         // CV Upload Form Submission
         document.getElementById('uploadCVForm').addEventListener('submit', function(e) {
             e.preventDefault();
