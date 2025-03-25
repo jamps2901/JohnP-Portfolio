@@ -72,38 +72,34 @@ app.post("/admin/login", (req, res) => {
 
 // Video upload endpoint (use POST /upload-video)
 app.post("/upload-video", upload.single("video"), (req, res) => {
-  if (!videoBucket) return res.status(500).send("DB not ready");
+  console.log("Received video upload request.");
+  console.log("req.file:", req.file); // Debug: log file info
 
+  if (!req.file) {
+    console.error("No video file received.");
+    return res.status(400).send("No video file uploaded.");
+  }
+  if (!videoBucket) {
+    console.error("MongoDB video bucket not ready.");
+    return res.status(500).send("DB not ready");
+  }
+
+  // Create an upload stream to GridFS
   const uploadStream = videoBucket.openUploadStream(req.file.originalname, {
-    metadata: { title: req.body.videoTitle || req.file.originalname, contentType: req.file.mimetype }
+    metadata: { 
+      title: req.body.videoTitle || req.file.originalname, 
+      contentType: req.file.mimetype 
+    }
   });
   uploadStream.end(req.file.buffer);
 
   uploadStream.on("finish", () => {
+    console.log("Video uploaded to GridFS successfully.");
     res.status(200).send("Video uploaded successfully");
   });
 
   uploadStream.on("error", (err) => {
     console.error("Video upload error:", err);
-    res.status(500).send("Upload failed");
-  });
-});
-
-// CV upload endpoint (use POST /upload-cv)
-app.post("/upload-cv", upload.single("cv"), (req, res) => {
-  if (!cvBucket) return res.status(500).send("DB not ready");
-
-  const uploadStream = cvBucket.openUploadStream(req.file.originalname, {
-    metadata: { contentType: req.file.mimetype }
-  });
-  uploadStream.end(req.file.buffer);
-
-  uploadStream.on("finish", () => {
-    res.status(200).send("CV uploaded successfully");
-  });
-
-  uploadStream.on("error", (err) => {
-    console.error("CV upload error:", err);
     res.status(500).send("Upload failed");
   });
 });
@@ -201,6 +197,36 @@ app.put('/admin/edit-video/:id', upload.single('videoFile'), async (req, res) =>
     res.status(500).send('Error updating video');
   }
 });
+
+app.post("/upload-cv", upload.single("cv"), (req, res) => {
+  console.log("Received CV upload request.");
+  console.log("req.file:", req.file); // Debug log for file details
+
+  if (!req.file) {
+    console.error("No CV file received.");
+    return res.status(400).send("No CV file uploaded.");
+  }
+  if (!cvBucket) {
+    console.error("MongoDB CV bucket not ready.");
+    return res.status(500).send("DB not ready");
+  }
+
+  const uploadStream = cvBucket.openUploadStream(req.file.originalname, {
+    metadata: { contentType: req.file.mimetype }
+  });
+  uploadStream.end(req.file.buffer);
+
+  uploadStream.on("finish", () => {
+    console.log("CV uploaded to GridFS successfully.");
+    res.status(200).send("CV uploaded successfully");
+  });
+
+  uploadStream.on("error", (err) => {
+    console.error("CV upload error:", err);
+    res.status(500).send("Upload failed");
+  });
+});
+
 
 // Endpoint to download the CV.
 app.get('/cv-download', (req, res) => {
