@@ -1,8 +1,6 @@
 require('dotenv').config(); // Load environment variables
 const nodemailer = require('nodemailer');
-// Create a Nodemailer transporter
-const nodemailer = require('nodemailer');
-
+// Create a Nodemailer transported
 const transporter = nodemailer.createTransport({
   host: process.env.EMAIL_HOST, // e.g., smtp.gmail.com
   port: process.env.EMAIL_PORT, // e.g., 465
