@@ -351,9 +351,13 @@
 
 /* Slogan Styling */
 .slogan {
-    font-size: 1.5em;
-    font-style: italic;
-    margin-top: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.5em;  /* Larger font size */
+    background: linear-gradient(90deg, #00ffea, #ff00c8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fadeIn 2s;
   }
 
  /* Social Media Links in About Section */
