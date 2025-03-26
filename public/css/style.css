@@ -184,8 +184,6 @@
 
         /* Individual video card styling */
         .video-card {
-            width: 300px; /* Uniform width */
-            height: 200px; /* Uniform height */
             background: #fff;
             border: 1px solid #00ffea;
             border-radius: 8px;
@@ -384,7 +382,7 @@
     display: inline-block;
     margin: 0 10px;
     font-size: 2.5em; /* Adjust size as needed */
-    color: #c4cfce;
+    color: red;
     transition: transform 0.3s ease, color 0.3s ease;
     animation: float 3s ease-in-out infinite;
   }
