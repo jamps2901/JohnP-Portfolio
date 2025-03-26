@@ -11,25 +11,6 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-app.post('/send-email', (req, res) => {
-  const { name, email, message } = req.body;
-  const mailOptions = {
-    from: process.env.EMAIL_FROM || process.env.EMAIL_USER,
-    to: process.env.EMAIL_TO, // your personal email
-    subject: `New message from ${name}`,
-    text: `From: ${name} <${email}>\n\nMessage:\n${message}`
-  };
-
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.error('Error sending email:', error);
-      return res.status(500).send('Error sending email.');
-    }
-    console.log('Email sent:', info.response);
-    res.send('Message sent successfully.');
-  });
-});
-
 const express = require('express');
 const multer = require('multer');
 const path = require('path');
@@ -292,6 +273,24 @@ app.post('/admin/change-credentials', (req, res) => {
   }
 });
 
+//send email end point
+app.post('/send-email', (req, res) => {
+  const { name, email, message } = req.body;
+  const mailOptions = {
+    from: process.env.EMAIL_FROM || process.env.EMAIL_USER,
+    to: process.env.EMAIL_TO, // your personal email
+    subject: `New message from ${name}`,
+    text: `From: ${name} <${email}>\n\nMessage:\n${message}`
+  };
 
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.error('Error sending email:', error);
+      return res.status(500).send('Error sending email.');
+    }
+    console.log('Email sent:', info.response);
+    res.send('Message sent successfully.');
+  });
+});
 
 
