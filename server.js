@@ -272,7 +272,7 @@ app.post('/admin/change-credentials', (req, res) => {
   }
 });
 
-// Demo email endpoint.
+// email endpoint.
 app.post('/send-email', (req, res) => {
   const { name, email, message } = req.body;
   const mailOptions = {
