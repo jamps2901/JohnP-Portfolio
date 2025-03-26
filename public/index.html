@@ -5,8 +5,159 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>John Patnugot</title>
     <link rel="stylesheet" href="css/style.css">
-     <!-- Font Awesome for social media icons -->
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-pap5pE+5c2S0Alfug0hXvpcJE+R6Q4mYYb4e3x1X4p1FKwD4OzZp1/PUrQMRXtjU1dS4H9VBBZ7cvJ8Nstx9GQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Font Awesome for social media icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-pap5pE+5c2S0Alfug0hXvpcJE+R6Q4mYYb4e3x1X4p1FKwD4OzZp1/PUrQMRXtjU1dS4H9VBBZ7cvJ8Nstx9GQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Global Styles */
+        html {
+        scroll-behavior: smooth;
+        }
+        body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        }
+        /* Navigation Bar */
+        .navbar {
+        background: #16213e;
+        padding: 10px 20px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        }
+        .navbar ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+        }
+        .navbar ul li {
+        margin: 0 15px;
+        }
+        .navbar ul li a {
+        color: #00ffea;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s;
+        }
+        .navbar ul li a:hover {
+        color: #ff00c8;
+        }
+        /* Section Styles */
+        .section {
+        padding: 100px 20px 60px; /* top padding to account for fixed navbar */
+        text-align: center;
+        color: #fff;
+        }
+        #home {
+        background: #0f3460;
+        }
+        #projects {
+        background: #16213e;
+        }
+        #about {
+        background: #1a1a2e;
+        }
+        #contact {
+        background: #0f3460;
+        }
+        /* Home Section - Interactive Heading & Slogan */
+        .interactive-heading {
+        font-size: 2.5em;
+        margin-top: 80px;
+        animation: fadeInDown 1.5s ease-out;
+        }
+        @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+        }
+        .slogan {
+        font-size: 1.5em;
+        margin: 10px 0;
+        animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+        }
+        /* Projects Section - Uniform Video Cards */
+        .video-cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 20px;
+        }
+        .video-card {
+        width: 300px;
+        height: 200px;
+        background: #000;
+        border: 1px solid #00ffea;
+        border-radius: 5px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        }
+        .video-card video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        }
+        .video-card p {
+        margin: 10px 0 0;
+        font-size: 1em;
+        color: #00ffea;
+        }
+        /* About Section - Social Media Links */
+        .social-links {
+        margin-top: 20px;
+        text-align: center;
+        }
+        .social-link {
+        display: inline-block;
+        margin: 0 10px;
+        font-size: 2.5rem;
+        color: #00ffea;
+        transition: transform 0.3s ease, color 0.3s ease;
+        animation: float 3s ease-in-out infinite;
+        }
+        .social-link:hover {
+        transform: scale(1.2);
+        color: #ff00c8;
+        }
+        @keyframes float {
+        0% { transform: translateY(0); }
+        50% { transform: translateY(-5px); }
+        100% { transform: translateY(0); }
+        }
+        /* Contact Form */
+        #contactForm input,
+        #contactForm textarea,
+        #contactForm button {
+        width: 90%;
+        padding: 12px;
+        margin: 10px auto;
+        border-radius: 5px;
+        border: 1px solid #00ffea;
+        display: block;
+        }
+        #contactForm button {
+        background: linear-gradient(90deg, #00ffea, #ff00c8);
+        border: none;
+        color: #000;
+        font-size: 1em;
+        cursor: pointer;
+        transition: transform 0.3s;
+        }
+        #contactForm button:hover {
+        transform: scale(1.05);
+        }
+    </style>
     </head>
     <body>
 
@@ -37,7 +188,7 @@
     <!-- Projects Section -->
     <section id="projects">
         <h2>Projects</h2>
-        <div class="video-cards" id="video-cards">
+        <div class="video-cards" id="video">
         <!-- Example video card with animated project title -->
         <!-- <div class="card">
             <video controls>
@@ -53,10 +204,10 @@
     <section id="about" class="section about-section">
         <h2>About</h2>
         <div class="social-links">
-        <a href="https://github.com/yourusername" target="_blank" class="social-link">
+        <a href="https://github.com/jamps2901/JohnP-Portfolio" target="_blank" class="social-link">
             <i class="fab fa-github"></i>
         </a>
-        <a href="https://linkedin.com/in/yourusername" target="_blank" class="social-link">
+        <a href="https://www.linkedin.com/in/jampy2901-00143422/" target="_blank" class="social-link">
             <i class="fab fa-linkedin"></i>
         </a>
         <a href="https://twitter.com/yourusername" target="_blank" class="social-link">
@@ -81,45 +232,49 @@
     </section>
 
     <!-- Scripts -->
-<script>
-    // Load Videos and render video cards
-    function loadVideos() {
-    fetch('/videos')
-    .then(response => response.json())
-    .then(data => {
-        const container = document.getElementById('.video-cards');
-        container.innerHTML = '';
-        data.forEach(video => {
+    <script>
+        // Load Videos and display video cards dynamically
+        function loadVideos() {
+        fetch('/videos')
+        .then(response => response.json())
+        .then(data => {
+            const container = document.getElementById('videoCards');
+            container.innerHTML = '';
+            if (data.length === 0) {
+            container.innerHTML = '<p>No videos available at the moment.</p>';
+            return;
+            }
+            data.forEach(video => {
             const card = document.createElement('div');
             card.classList.add('video-card');
             card.innerHTML = `
                 <video src="${video.url}" controls></video>
                 <p>${video.title}</p>
-        `;
-        container.appendChild(card);
+            `;
+            container.appendChild(card);
+            });
+        })
+        .catch(error => console.error('Error loading videos:', error));
+        }
+        loadVideos();
+        // Contact Form Submission (AJAX)
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        fetch('/send-email', {
+            method: 'POST',
+            body: new URLSearchParams(formData)
+        })
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('contactStatus').textContent = data;
+        })
+        .catch(error => {
+            document.getElementById('contactStatus').textContent = 'Error sending message.';
+            console.error('Error:', error);
         });
-    })
-    .catch(error => console.error('Error loading videos:', error));
-    }
-
-    // Contact Form Submission (AJAX)
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const formData = new FormData(this);
-    fetch('/send-email', {
-        method: 'POST',
-        body: new URLSearchParams(formData)
-    })
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById('contactStatus').textContent = data;
-    })
-    .catch(error => {
-        document.getElementById('contactStatus').textContent = 'Error sending message.';
-        console.error('Error:', error);
-    });
-    });
-</script>
+        });
+    </script>
 
     <!-- Footer Section -->
     <footer>
