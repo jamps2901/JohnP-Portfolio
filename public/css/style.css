@@ -180,7 +180,7 @@
         flex-wrap: wrap;
         gap: 20px;
     }
-    
+
     .video-card {
         background: #fff;
         border: 1px solid #ddd;
@@ -188,16 +188,15 @@
         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         width: 320px;
     }
-    
+
     .video-card video {
         width: 100%;
         display: block;
     }
-    
+
     .video-info {
         padding: 10px;
     }
-
 
         /* Project Title: Larger with dynamic color animation */
         .project-title {
@@ -370,8 +369,8 @@
   .social-link {
     display: inline-block;
     margin: 0 10px;
-    font-size: 2.5em; /* Adjust size as needed */
-    color: red;
+    font-size: 3rem; /* Adjust size as needed */
+    color: rgb(0, 247, 255);
     transition: transform 0.3s ease, color 0.3s ease;
     animation: float 3s ease-in-out infinite;
   }
