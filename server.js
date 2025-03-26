@@ -20,6 +20,9 @@ const fs = require('fs');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server is running on port ${PORT}`);
+});
 
 // Connect to MongoDB
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/portfolio';
@@ -289,4 +292,5 @@ app.post('/send-email', (req, res) => {
     }
   });
 });
+
 
