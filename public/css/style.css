@@ -404,6 +404,13 @@ padding: 20px;
     100% { transform: translateY(0); }
 }
 
+#contactStatus {
+    margin-top: 20px;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+/* Animated confirmation message style */
 .confirmation {
     display: inline-block;
     font-size: 1.5em;
@@ -412,11 +419,12 @@ padding: 20px;
     border-radius: 8px;
     background: linear-gradient(45deg, #00ffea, #ff00c8, #00ffea);
     background-size: 200% auto;
-    color: transparent;             /* Ensures the gradient shows through */
+    color: transparent; /* Show the gradient */
     -webkit-background-clip: text;
     animation: gradientAnimation 3s linear infinite, confirmationAnimation 3s ease forwards;
 }
 
+/* Keyframes for the gradient animation */
 @keyframes gradientAnimation {
     0% {
     background-position: 0% 50%;
@@ -429,6 +437,7 @@ padding: 20px;
     }
 }
 
+/* Keyframes for the confirmation animation */
 @keyframes confirmationAnimation {
     0% {
     opacity: 0;
