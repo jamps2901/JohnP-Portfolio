@@ -293,4 +293,30 @@ app.post('/send-email', (req, res) => {
   });
 });
 
+function loadVideos() {
+  fetch('/videos')
+    .then(response => {
+      console.log('Fetch response:', response);
+      return response.json();
+    })
+    .then(data => {
+      console.log('Videos data:', data);
+      const container = document.getElementById('videoCards');
+      container.innerHTML = '';
+      if (data.length === 0) {
+        container.innerHTML = '<p>No videos available at the moment.</p>';
+        return;
+      }
+      data.forEach(video => {
+        const card = document.createElement('div');
+        card.classList.add('video-card');
+        card.innerHTML = `
+          <video src="${video.url}" controls></video>
+          <p>${video.title}</p>
+        `;
+        container.appendChild(card);
+      });
+    })
+    .catch(error => console.error('Error loading videos:', error));
+}
 
