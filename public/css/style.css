@@ -1,363 +1,363 @@
-        /* Base Styles & Animated Background for the entire page */
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
-        
-        body {
-            background: linear-gradient(45deg, #1a1a2e, #16213e, #0f3460, #53354a);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-        }
-        
-        /* Animated gradient background keyframes */
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        /* Header Section with Particles Overlay */
-        header {
-            position: relative;
-            height: 100vh;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            background: transparent;
-            overflow: hidden;
-        }
-
-        /* Particles container */
-        #particles-js {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 0;
-        }
-
-        /* Fixed Navigation Bar */
-        .nav-bar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 3;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 10px 0;
-        }
-        .nav-bar ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: left;
-        }
-        .nav-bar ul li {
-            margin: 0 15px;
-        }
-        .nav-bar ul li a {
-            color: #fff;
-            text-decoration:dotted;
-            font-size: 1em;
-            font-weight: bold;
-            font-style: inherit;
-            font-family:'Courier New', Courier, monospace;
-            position: relative;
-            transition: color 0.3s;
-        }
-        .nav-bar ul li a:hover {
-            color: #00ffea;
-        }
-        .nav-bar ul li a::after {
-            content: "";
-            position: absolute;
-            width: 0%;
-            height: 2px;
-            bottom: -3px;
-            left: 0;
-            background-color: #00ffea;
-            transition: width 0.3s;
-        }
-        .nav-bar ul li a:hover::after {
-            width: 100%;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Header Content */
-    .header-content {
-        position: relative;
-        z-index: 1;
-        margin-top: 80px;
-        min-height: 150px; /* Fixed minimum height */
-        font-family:'Courier New', Courier, monospace;
-        font-weight: bold;
-    }
-    .interactive-heading {
-        font-size: 3em;
-        animation: fadeInDown 1.5s ease-out;
-        background: linear-gradient(90deg, #00ffea, #ff00c8);
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        color: transparent; /* Ensures proper visibility in all browsers */
-        margin: 0;
-    }
-
-    @keyframes fadeInDown {
-        from { opacity: 0; transform: translateY(-20px); }
-        to { opacity: 1; transform: translateY(0); }
+/* Base Styles & Animated Background for the entire page */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
 }
+
+body {
+    background: linear-gradient(45deg, #1a1a2e, #16213e, #0f3460, #53354a);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+}
+
+/* Animated gradient background keyframes */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Header Section with Particles Overlay */
+header {
+    position: relative;
+    height: 100vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: transparent;
+    overflow: hidden;
+}
+
+/* Particles container */
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+/* Fixed Navigation Bar */
+.nav-bar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 3;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px 0;
+}
+.nav-bar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: left;
+}
+.nav-bar ul li {
+    margin: 0 15px;
+}
+.nav-bar ul li a {
+    color: #fff;
+    text-decoration:dotted;
+    font-size: 1em;
+    font-weight: bold;
+    font-style: inherit;
+    font-family:'Courier New', Courier, monospace;
+    position: relative;
+    transition: color 0.3s;
+}
+.nav-bar ul li a:hover {
+    color: #00ffea;
+}
+.nav-bar ul li a::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: -3px;
+    left: 0;
+    background-color: #00ffea;
+    transition: width 0.3s;
+}
+.nav-bar ul li a:hover::after {
+    width: 100%;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Header Content */
+.header-content {
+position: relative;
+z-index: 1;
+margin-top: 80px;
+min-height: 150px; /* Fixed minimum height */
+font-family:'Courier New', Courier, monospace;
+font-weight: bold;
+}
+.interactive-heading {
+font-size: 3em;
+animation: fadeInDown 1.5s ease-out;
+background: linear-gradient(90deg, #00ffea, #ff00c8);
+background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+color: transparent; /* Ensures proper visibility in all browsers */
+margin: 0;
+}
+
+@keyframes fadeInDown {
+from { opacity: 0; transform: translateY(-20px); }
+to { opacity: 1; transform: translateY(0); }
+}
+.ai-header {
+font-size: 2em;
+margin-top: 20px; /* Extra margin to push it lower */
+color: #fff;
+width: 350px; /* Fixed width */
+height: 1.2em; /* Fixed height to prevent layout shifts */
+margin-left: auto;
+margin-right: auto;
+white-space: nowrap;
+overflow: hidden;
+}
+
+/* AI Header: moved lower and centered with extra margin */
+.ai-header {
+    font-size: 2em;
+    margin-top: 20px; /* Extra margin to move it lower from the main heading */
+    color: #fff;
+    width: 350px; /* Fixed width to prevent layout shifts */
+    margin-left: auto;
+    margin-right: auto;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/* Projects Section */
+section {
+    padding: 60px 20px;
+}
+#projects h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2.5em;  /* Larger font size */
+    background: linear-gradient(90deg, #00ffea, #ff00c8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fadeIn 2s;
+}
+.project-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    overflow: auto;
+}
+.card {
+    background: #140b0b;
+    border-radius: 8px;
+    padding: 15px;
+    width: 300px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+.card video {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.video-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+.video-card {
+    width: 300px;
+    height: 200px;
+    background: linear-gradient(135deg, #0f3460, #16213e);
+    border: 1px solid #00ffea;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 2px 5px rgba(0, 255, 234, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.video-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 255, 234, 0.5);
+}
+.video-card video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.video-card p {
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    color: #00ffea;
+    padding: 5px;
+    text-align: center;
+    font-size: 1em;
+}
+
+/* Project Title: Larger with dynamic color animation */
+.project-title {
+    font-size: 1.5em;
+    margin-top: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: colorChange 5s infinite alternate;
+}
+@keyframes colorChange {
+    0% { color: #00ffea; }
+    50% { color: #ff00c8; }
+    100% { color: #00ffea; }
+}
+
+/* About Section (AI-themed & interactive) */
+#about {
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 60px 20px;
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 800px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+#about h2 {
+    text-align: center;
+}
+.about-content {
+    text-align: center;
+}
+.download-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: linear-gradient(90deg, #00ffea, #ff00c8);
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.3s;
+}
+.download-btn:hover {
+    transform: scale(1.1);
+}
+
+/* Contact Form */
+#contactForm h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2.5em;  /* Larger font size */
+    background: linear-gradient(90deg, #00ffea, #ff00c8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fadeIn 2s;
+}
+#contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+#contact-form input,
+#contact-form textarea {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+#contact-form button {
+    padding: 10px;
+    background: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Footer Section */
+footer {
+    text-align: center;
+    padding: 20px 10px;
+    background: rgba(0, 0, 0, 0.7);
+    position: relative;
+    z-index: 2;
+}
+footer p {
+    font-size: 1em;
+    background: linear-gradient(90deg, #ff00c8, #00ffea);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fadeIn 3s;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .interactive-heading {
+    font-size: 2em;
+    }
     .ai-header {
-        font-size: 2em;
-        margin-top: 20px; /* Extra margin to push it lower */
-        color: #fff;
-        width: 350px; /* Fixed width */
-        height: 1.2em; /* Fixed height to prevent layout shifts */
-        margin-left: auto;
-        margin-right: auto;
-        white-space: nowrap;
-        overflow: hidden;
+    font-size: 1.5em;
+    width: 250px;
     }
-        
-        /* AI Header: moved lower and centered with extra margin */
-        .ai-header {
-            font-size: 2em;
-            margin-top: 20px; /* Extra margin to move it lower from the main heading */
-            color: #fff;
-            width: 350px; /* Fixed width to prevent layout shifts */
-            margin-left: auto;
-            margin-right: auto;
-            white-space: nowrap;
-            overflow: hidden;
-        }
-        
-        /* Projects Section */
-        section {
-            padding: 60px 20px;
-        }
-        #projects h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 2.5em;  /* Larger font size */
-            background: linear-gradient(90deg, #00ffea, #ff00c8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: fadeIn 2s;
-        }
-        .project-cards {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-            overflow: auto;
-        }
-        .card {
-            background: #140b0b;
-            border-radius: 8px;
-            padding: 15px;
-            width: 300px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        }
-        .card video {
-            width: 100%;
-            border-radius: 5px;
-        }
+    .card {
+    width: 90%;
+    }
+}
 
-        .video-cards {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        .video-card {
-            width: 300px;
-            height: 200px;
-            background: linear-gradient(135deg, #0f3460, #16213e);
-            border: 1px solid #00ffea;
-            border-radius: 5px;
-            overflow: hidden;
-            position: relative;
-            box-shadow: 0 2px 5px rgba(0, 255, 234, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .video-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 15px rgba(0, 255, 234, 0.5);
-        }
-        .video-card video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .video-card p {
-            position: absolute;
-            bottom: 0;
-            margin: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            color: #00ffea;
-            padding: 5px;
-            text-align: center;
-            font-size: 1em;
-        }
+/* Simple fade-in animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
 
-        /* Project Title: Larger with dynamic color animation */
-        .project-title {
-            font-size: 1.5em;
-            margin-top: 10px;
-            white-space: nowrap;
-            overflow: hidden;
-            animation: colorChange 5s infinite alternate;
-        }
-        @keyframes colorChange {
-            0% { color: #00ffea; }
-            50% { color: #ff00c8; }
-            100% { color: #00ffea; }
-        }
+/* Left-side Navigation Styles */
+#main-nav {
+position: fixed;
+top: 0;
+left: 0;
+width: 200px;
+height: 100%;
+background-color: #f4f4f4;
+padding: 20px;
+box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
 
-        /* About Section (AI-themed & interactive) */
-        #about {
-            background: rgba(0, 0, 0, 0.5);
-            color: #fff;
-            padding: 60px 20px;
-            border-radius: 10px;
-            margin: 20px auto;
-            max-width: 800px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-        }
-        #about h2 {
-            text-align: center;
-        }
-        .about-content {
-            text-align: center;
-        }
-        .download-btn {
-            margin-top: 20px;
-            padding: 10px 20px;
-            background: linear-gradient(90deg, #00ffea, #ff00c8);
-            color: #fff;
-            border-radius: 5px;
-            text-decoration: none;
-            display: inline-block;
-            transition: transform 0.3s;
-        }
-        .download-btn:hover {
-            transform: scale(1.1);
-        }
-        
-        /* Contact Form */
-        #contactForm h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 2.5em;  /* Larger font size */
-            background: linear-gradient(90deg, #00ffea, #ff00c8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: fadeIn 2s;
-        }
-        #contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-        }
-        #contact-form input,
-        #contact-form textarea {
-            margin-bottom: 10px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        #contact-form button {
-            padding: 10px;
-            background: #28a745;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
+#main-nav ul {
+list-style: none;
+padding: 0;
+}
 
-        /* Footer Section */
-        footer {
-            text-align: center;
-            padding: 20px 10px;
-            background: rgba(0, 0, 0, 0.7);
-            position: relative;
-            z-index: 2;
-        }
-        footer p {
-            font-size: 1em;
-            background: linear-gradient(90deg, #ff00c8, #00ffea);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: fadeIn 3s;
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .interactive-heading {
-            font-size: 2em;
-            }
-            .ai-header {
-            font-size: 1.5em;
-            width: 250px;
-            }
-            .card {
-            width: 90%;
-            }
-        }
-        
-        /* Simple fade-in animation */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-    /* Left-side Navigation Styles */
-    #main-nav {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 200px;
-        height: 100%;
-        background-color: #f4f4f4;
-        padding: 20px;
-        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-    }
-    
-    #main-nav ul {
-        list-style: none;
-        padding: 0;
-    }
-    
-    #main-nav ul li {
-        margin-bottom: 20px;
-    }
-    
-    #main-nav ul li a {
-        text-decoration: none;
-        color: #333;
-        font-weight: bold;
-    }
-    
-    /* Adjust main content area to not overlap the navigation */
-    #main-content {
-        margin-left: 220px; /* Adjust this if your nav width changes */
-        padding: 20px;
-    }
+#main-nav ul li {
+margin-bottom: 20px;
+}
+
+#main-nav ul li a {
+text-decoration: none;
+color: #333;
+font-weight: bold;
+}
+
+/* Adjust main content area to not overlap the navigation */
+#main-content {
+margin-left: 220px; /* Adjust this if your nav width changes */
+padding: 20px;
+}
 
 /* Slogan Styling */
 .slogan {
@@ -368,67 +368,78 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: pulse 2s infinite;
-  }
+}
 
-  @keyframes pulse {
+@keyframes pulse {
     0% { transform: scale(1); }
     50% { transform: scale(1.05); }
     100% { transform: scale(1); }
-  }
+}
 
- /* Social Media Links in About Section */
+/* Social Media Links in About Section */
 .social-links {
     margin-top: 20px;
     text-align: center;
-  }
-  
-  .social-link {
+}
+
+.social-link {
     display: inline-block;
     margin: 0 10px;
     font-size: 3rem; /* Adjust size as needed */
     color: rgb(0, 247, 255);
     transition: transform 0.3s ease, color 0.3s ease;
     animation: float 3s ease-in-out infinite;
-  }
-  
-  /* On hover, enlarge and change color */
-  .social-link:hover {
+}
+
+/* On hover, enlarge and change color */
+.social-link:hover {
     transform: scale(1.2);
     color: #ff00c8;
-  }
-  
-  /* Optional subtle floating animation for extra interactivity */
-  @keyframes float {
+}
+
+/* Optional subtle floating animation for extra interactivity */
+@keyframes float {
     0% { transform: translateY(0); }
     50% { transform: translateY(-5px); }
     100% { transform: translateY(0); }
-  }
+}
 
-  .confirmation {
+.confirmation {
     display: inline-block;
     font-size: 1.5em;
     font-weight: bold;
     padding: 10px 20px;
     border-radius: 8px;
     background: linear-gradient(45deg, #00ffea, #ff00c8, #00ffea);
-    background-size: 200%;
+    background-size: 200% auto;
+    color: transparent;             /* Ensures the gradient shows through */
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: confirmationAnimation 3s ease;
-  }
-  
-  @keyframes confirmationAnimation {
+    animation: gradientAnimation 3s linear infinite, confirmationAnimation 3s ease forwards;
+}
+
+@keyframes gradientAnimation {
     0% {
-      opacity: 0;
-      transform: scale(0.8);
+    background-position: 0% 50%;
     }
     50% {
-      opacity: 1;
-      transform: scale(1.05);
+    background-position: 100% 50%;
     }
     100% {
-      opacity: 1;
-      transform: scale(1);
+    background-position: 0% 50%;
     }
-  }
-  
+}
+
+@keyframes confirmationAnimation {
+    0% {
+    opacity: 0;
+    transform: scale(0.8);
+    }
+    50% {
+    opacity: 1;
+    transform: scale(1.05);
+    }
+    100% {
+    opacity: 1;
+    transform: scale(1);
+    }
+}
