@@ -135,74 +135,64 @@
     <!-- Header Section with Animated Particles & Fixed Navigation -->
     <header>
         <div id="particles-js"></div>
-        <nav class="nav-bar">
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li style="margin-left:auto;"><a href="admin.html">Admin</a></li>
-        </ul>
-        </nav>
-    <!-- Home Section -->
-        <section id="home" class="section home-section">
-            <p class="slogan">Building the future of Technology, ONE line of code at a time.</p>
-        </section>
-
-        <div class="header-content">
+    <nav class="nav-bar">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li style="margin-left:auto;"><a href="admin.html">Admin</a></li>
+      </ul>
+    </nav>
+    <section id="home" class="section home-section">
+        <p class="slogan">Building the future of Technology, ONE line of code at a time.</p>
+      </section>
+      <div class="header-content">
         <h1 class="interactive-heading">Development Portfolio</h1>
-        <!-- The ai-header element now has additional margin and is centered -->
         <p class="ai-header" data-text='["Full-Stack", "Machine Learning", "Python", "SAP ABAP","SAP Data Migration", "IOT", "SQL Development", "C#/C++", "Game Development"]'></p>
-        </div>
+      </div>
     </header>
 
     <!-- Projects Section -->
     <section id="projects">
         <h2>Projects</h2>
         <div class="video-cards" id="videoCards">
-        <!-- Example video card with animated project title -->
-        <!-- <div class="card">
-            <video controls>
-            <source src="uploads/sample-video.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-            </video>
-            <h3 class="project-title" data-text="Project Title"></h3>
-        </div> -->
+          <!-- Video cards will be dynamically inserted here -->
         </div>
-    </section>
-
-    <!-- About Section (includes Download CV) -->
-    <section id="about" class="section about-section">
+      </section>
+    
+      <!-- About Section -->
+      <section id="about" class="section about-section">
         <h2>About Me</h2>
         <p>I'm a Software Engineer dedicated to harnessing AI for innovative solutions.</p>
         <div class="social-links">
-        <a href="https://github.com/jamps2901/JohnP-Portfolio" target="_blank" class="social-link">
+          <a href="https://github.com/jamps2901/JohnP-Portfolio" target="_blank" class="social-link">
             <i class="fab fa-github"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/jampy2901-00143422/" target="_blank" class="social-link">
+          </a>
+          <a href="https://www.linkedin.com/in/jampy2901-00143422/" target="_blank" class="social-link">
             <i class="fab fa-linkedin"></i>
-        </a>
-        <a href="https://twitter.com/yourusername" target="_blank" class="social-link">
+          </a>
+          <a href="https://twitter.com/yourusername" target="_blank" class="social-link">
             <i class="fab fa-twitter"></i>
-        </a>
-        <a href="https://ai.example.com" target="_blank" class="social-link">
+          </a>
+          <a href="https://ai.example.com" target="_blank" class="social-link">
             <i class="fas fa-robot"></i>
-        </a>
+          </a>
         </div>
-    </section>
+      </section>
 
 
     <!-- Contact Section -->
-    <section id="contactForm">
-        <h2>Flick Me A Message</h2>
-            <form id="contact-form" action="/send-email" method="POST">
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <textarea name="message" placeholder="Your Message" required></textarea>
-            <button type="submit">Send Message</button>
-        </form>
-        <div id="contactStatus"></div>
-    </section>
+  <section id="contactForm">
+    <h2>Flick Me A Message</h2>
+    <form id="contact-form" action="/send-email" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+    <div id="contactStatus"></div>
+  </section>
 
     <!-- Scripts -->
     <script>
@@ -231,22 +221,46 @@
         }
         loadVideos();
         // Contact Form Submission (AJAX)
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
         e.preventDefault();
         const formData = new FormData(this);
         fetch('/send-email', {
-            method: 'POST',
-            body: new URLSearchParams(formData)
+          method: 'POST',
+          body: new URLSearchParams(formData)
         })
         .then(response => response.text())
         .then(data => {
-            document.getElementById('contactStatus').textContent = data;
+          document.getElementById('contactStatus').textContent = data;
         })
         .catch(error => {
-            document.getElementById('contactStatus').textContent = 'Error sending message.';
-            console.error('Error:', error);
+          document.getElementById('contactStatus').textContent = 'Error sending message.';
+          console.error('Error:', error);
         });
-        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+  const form = document.getElementById("contact-form");
+  if (form) {
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const formData = new FormData(form); // 'form' is now a valid HTMLFormElement
+      fetch('/send-email', {
+        method: 'POST',
+        body: new URLSearchParams(formData)
+      })
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('contactStatus').textContent = data;
+      })
+      .catch(error => {
+        document.getElementById('contactStatus').textContent = 'Error sending message.';
+        console.error('Error:', error);
+      });
+    });
+  }
+});
+
+
     </script>
 
     <!-- Footer Section -->
@@ -260,7 +274,7 @@
         fetch('/videos')
         .then(response => response.json())
         .then(data => {
-            const videoContainer = document.getElementById('videoProjects');
+            const videoContainer = document.getElementById('videoCards');
             data.forEach(video => {
             const card = document.createElement('div');
             card.className = 'card';
