@@ -250,6 +250,8 @@
       })
       .then(response => response.text())
       .then(data => {
+        // Clear the form
+        form.reset();
         document.getElementById('contactStatus').textContent = data;
       })
       .catch(error => {
