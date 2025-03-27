@@ -34,4 +34,3 @@
         },
         "retina_detect": true
     });
-    
