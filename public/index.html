@@ -250,8 +250,14 @@
       })
       .then(response => response.text())
       .then(data => {
+        console.log("Response:", data);
         // Clear the form
         form.reset();
+        // Animate the confirmation message using the server's response
+        const statusEl = document.getElementById('contactStatus');
+        statusEl.innerHTML = `<span class="confirmation">${data}</span>`;
+        // Remove the confirmation after 5 seconds (optional)
+        setTimeout(() => { statusEl.innerHTML = ''; }, 5000);
         document.getElementById('contactStatus').textContent = data;
       })
       .catch(error => {
