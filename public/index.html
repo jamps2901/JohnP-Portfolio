@@ -80,9 +80,8 @@
         font-size: 1.5em;
         margin: 10px 0;
         animation: sloganAnimation 8s ease infinite;
-        animation-delay: 10s;
+        animation-delay: 6s;
       }
-
 
       @keyframes sloganAnimation {
         0% {
@@ -92,6 +91,11 @@
         20% {
           opacity: 1;
           transform: translateX(0);
+        }
+        40% {
+          /* Enlarge the slogan */
+          opacity: 1;
+          transform: translateX(0) scale(1.2);
         }
         80% {
           opacity: 1;
