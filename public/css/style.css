@@ -452,3 +452,76 @@ padding: 20px;
     transform: scale(1);
     }
 }
+
+/* AI-themed File Folder Container */
+.folder-tabs {
+    border: 2px solid transparent;
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 20px auto;
+    max-width: 900px;
+    /* Animated gradient background */
+    background: linear-gradient(45deg, #0f3460, #16213e, #1a1a2e);
+    background-size: 200% 200%;
+    animation: folderGradient 5s ease infinite;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Gradient Animation for Folder Container */
+@keyframes folderGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Tabs Header */
+.folder-tabs .tabs {
+    display: flex;
+    background: rgba(0, 0, 0, 0.5);
+    border-bottom: 2px solid #00ffea;
+}
+
+/* Tab Buttons */
+.folder-tabs .tab-button {
+    flex: 1;
+    padding: 12px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-weight: bold;
+    color: #00ffea;
+    transition: background 0.3s ease, transform 0.3s ease;
+    position: relative;
+}
+
+.folder-tabs .tab-button:hover {
+    background: rgba(0, 0, 0, 0.7);
+    transform: scale(1.05);
+}
+
+.folder-tabs .tab-button.active {
+    background: #0f3460;
+    border-bottom: 2px solid transparent;
+    color: #ff00c8;
+    transform: scale(1.1);
+}
+
+/* Tab Content Panels */
+.folder-tabs .tab-content {
+    display: none;
+    padding: 20px;
+    background: #0f3460;
+    color: #fff;
+    animation: fadeIn 0.5s ease;
+}
+
+.folder-tabs .tab-content.active {
+    display: block;
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

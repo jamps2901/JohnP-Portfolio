@@ -178,12 +178,28 @@
 
   <!-- Projects Section -->
   <section id="projects">
-      <h2>Projects</h2>
-      <div class="video-cards" id="videoCards">
-        <!-- Video cards will be dynamically inserted here -->
+    <div class="folder-tabs">
+      <!-- Tabs Header -->
+      <div class="tabs">
+        <button class="tab-button active" data-tab="videos">Videos</button>
+        <button class="tab-button" data-tab="projectsContent">Projects</button>
+        <button class="tab-button" data-tab="other">Other</button>
       </div>
-    </section>
-  
+      <!-- Tab Content Panels -->
+      <div class="tab-content active" id="videos">
+        <div class="video-cards" id="videoCards">
+          <!-- Video cards inserted dynamically -->
+        </div>
+      </div>
+      <div class="tab-content" id="projectsContent">
+        <p>Additional project details can be displayed here.</p>
+      </div>
+      <div class="tab-content" id="other">
+        <p>This is the Other tab content.</p>
+      </div>
+    </div>
+  </section>
+
     <!-- About Section -->
     <section id="about" class="section about-section">
       <h2>About Me</h2>
