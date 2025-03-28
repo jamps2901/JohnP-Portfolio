@@ -1,282 +1,300 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>John Patnugot</title>
-    <link rel="stylesheet" href="css/style.css">
-    <!-- Font Awesome for social media icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.0/tsparticles.bundle.min.js"></script>
-    <style>
-        /* Global Styles */
-        html {
-        scroll-behavior: smooth;
-        }
-        body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        }
-        /* Navigation Bar */
-        .navbar {
-        background: #16213e;
-        padding: 10px 20px;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: 1000;
-        }
-        .navbar ul {
-        list-style: none;
-        display: flex;
-        justify-content: center;
-        margin: 0;
-        padding: 0;
-        }
-        .navbar ul li {
-        margin: 0 15px;
-        }
-        .navbar ul li a {
-        color: #00ffea;
-        text-decoration: none;
-        font-weight: bold;
-        transition: color 0.3s;
-        }
-        .navbar ul li a:hover {
-        color: #ff00c8;
-        }
-        /* Section Styles */
-        .section {
-        padding: 100px 20px 60px; /* top padding to account for fixed navbar */
-        text-align: center;
-        color: #fff;
-        }
-        #home {
-        background: #0f3460;
-        }
-        #projects {
-        background: #16213e;
-        }
-        #about {
-        background: #1a1a2e;
-        }
-        #contact {
-        background: #0f3460;
-        }
-        /* Home Section - Interactive Heading & Slogan */
-        .interactive-heading {
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>John Patnugot</title>
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Font Awesome for social media icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.0/tsparticles.bundle.min.js"></script>
+  <style>
+      /* Global Styles */
+      html {
+      scroll-behavior: smooth;
+      }
+      body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      }
+      /* Navigation Bar */
+      .navbar {
+      background: #16213e;
+      padding: 10px 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      }
+      .navbar ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+      }
+      .navbar ul li {
+      margin: 0 15px;
+      }
+      .navbar ul li a {
+      color: #00ffea;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+      }
+      .navbar ul li a:hover {
+      color: #ff00c8;
+      }
+      /* Section Styles */
+      .section {
+      padding: 100px 20px 60px; /* top padding to account for fixed navbar */
+      text-align: center;
+      color: #fff;
+      }
+      #home {
+      background: #0f3460;
+      }
+      #projects {
+      background: #16213e;
+      }
+      #about {
+      background: #1a1a2e;
+      }
+      #contact {
+      background: #0f3460;
+      }
+      /* Home Section - Interactive Heading & Slogan */
+      .interactive-heading {
         font-size: 2.5em;
         margin-top: 80px;
         animation: fadeInDown 1.5s ease-out;
-        }
-        @keyframes fadeInDown {
+      }
+      @keyframes fadeInDown {
         from { opacity: 0; transform: translateY(-20px); }
         to { opacity: 1; transform: translateY(0); }
-        }
-        .slogan {
+      }
+
+      /* Slogan animation: fade in from left, pause, then fade out to right */
+      .slogan {
         font-size: 1.5em;
         margin: 10px 0;
-        animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.05); }
-        100% { transform: scale(1); }
-        }
-        /* About Section - Social Media Links */
-        .social-links {
-        margin-top: 20px;
-        text-align: center;
-        }
-        .social-link {
-        display: inline-block;
-        margin: 0 10px;
-        font-size: 2.5rem;
-        color: #00ffea;
-        transition: transform 0.3s ease, color 0.3s ease;
-        animation: float 3s ease-in-out infinite;
-        }
-        .social-link:hover {
-        transform: scale(1.2);
-        color: #ff00c8;
-        }
-        @keyframes float {
-        0% { transform: translateY(0); }
-        50% { transform: translateY(-5px); }
-        100% { transform: translateY(0); }
-        }
-        /* Contact Form */
-        #contactForm input,
-        #contactForm textarea,
-        #contactForm button {
-        width: 90%;
-        padding: 12px;
-        margin: 10px auto;
-        border-radius: 5px;
-        border: 1px solid #00ffea;
-        display: block;
-        }
-        #contactForm button {
-        background: linear-gradient(90deg, #00ffea, #ff00c8);
-        border: none;
-        color: #000;
-        font-size: 1em;
-        cursor: pointer;
-        transition: transform 0.3s;
-        }
-        #contactForm button:hover {
-        transform: scale(1.05);
-        }
-    </style>
-    </head>
-    <body>
+        animation: sloganAnimation 8s ease infinite;
+        animation-delay: 5s;
+      }
 
-    <!-- Header Section with Animated Particles & Fixed Navigation -->
-    <header>
-        <div id="particles-js"></div>
-    <nav class="nav-bar">
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li style="margin-left:auto;"><a href="admin.html">Admin</a></li>
-      </ul>
-    </nav>
-    <section id="home" class="section home-section">
-        <p class="slogan">Building the future of Technology, ONE line of code at a time.</p>
-      </section>
-      <div class="header-content">
-        <h1 class="interactive-heading">Development Portfolio</h1>
-        <p class="ai-header" data-text='["Full-Stack", "Machine Learning", "Python", "SAP ABAP","SAP Data Migration", "IOT", "SQL Development", "C#/C++", "Game Development"]'></p>
+      @keyframes sloganAnimation {
+        0% {
+          opacity: 0;
+          transform: translateX(-50px);
+        }
+        20% {
+          opacity: 1;
+          transform: translateX(0);
+        }
+        80% {
+          opacity: 1;
+          transform: translateX(0);
+        }
+        100% {
+          opacity: 0;
+          transform: translateX(50px);
+        }
+      }
+
+      /* About Section - Social Media Links */
+      .social-links {
+      margin-top: 20px;
+      text-align: center;
+      }
+      .social-link {
+      display: inline-block;
+      margin: 0 10px;
+      font-size: 2.5rem;
+      color: #00ffea;
+      transition: transform 0.3s ease, color 0.3s ease;
+      animation: float 3s ease-in-out infinite;
+      }
+      .social-link:hover {
+      transform: scale(1.2);
+      color: #ff00c8;
+      }
+      @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+      100% { transform: translateY(0); }
+      }
+      /* Contact Form */
+      #contactForm input,
+      #contactForm textarea,
+      #contactForm button {
+      width: 90%;
+      padding: 12px;
+      margin: 10px auto;
+      border-radius: 5px;
+      border: 1px solid #00ffea;
+      display: block;
+      }
+      #contactForm button {
+      background: linear-gradient(90deg, #00ffea, #ff00c8);
+      border: none;
+      color: #000;
+      font-size: 1em;
+      cursor: pointer;
+      transition: transform 0.3s;
+      }
+      #contactForm button:hover {
+      transform: scale(1.05);
+      }
+  </style>
+  </head>
+  <body>
+
+  <!-- Header Section with Animated Particles & Fixed Navigation -->
+  <header>
+      <div id="particles-js"></div>
+  <nav class="nav-bar">
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li style="margin-left:auto;"><a href="admin.html">Admin</a></li>
+    </ul>
+  </nav>
+  <section id="home" class="section home-section">
+      <p class="slogan">Building the future of Technology, ONE line of code at a time.</p>
+    </section>
+    <div class="header-content">
+      <h1 class="interactive-heading">Development Portfolio</h1>
+      <p class="ai-header" data-text='["Full-Stack", "Machine Learning", "Python", "SAP ABAP","SAP Data Migration", "IOT", "SQL Development", "C#/C++", "Game Development"]'></p>
+    </div>
+  </header>
+
+  <!-- Projects Section -->
+  <section id="projects">
+      <h2>Projects</h2>
+      <div class="video-cards" id="videoCards">
+        <!-- Video cards will be dynamically inserted here -->
       </div>
-    </header>
-
-    <!-- Projects Section -->
-    <section id="projects">
-        <h2>Projects</h2>
-        <div class="video-cards" id="videoCards">
-          <!-- Video cards will be dynamically inserted here -->
-        </div>
-      </section>
-    
-      <!-- About Section -->
-      <section id="about" class="section about-section">
-        <h2>About Me</h2>
-        <p>I'm a Software Engineer dedicated to harnessing AI for innovative solutions.</p>
-        <div class="social-links">
-          <a href="https://github.com/jamps2901/JohnP-Portfolio" target="_blank" class="social-link">
-            <i class="fab fa-github"></i>
-          </a>
-          <a href="https://www.linkedin.com/in/jampy2901-00143422/" target="_blank" class="social-link">
-            <i class="fab fa-linkedin"></i>
-          </a>
-          <a href="https://twitter.com/yourusername" target="_blank" class="social-link">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a href="https://ai.example.com" target="_blank" class="social-link">
-            <i class="fas fa-robot"></i>
-          </a>
-        </div>
-      </section>
+    </section>
+  
+    <!-- About Section -->
+    <section id="about" class="section about-section">
+      <h2>About Me</h2>
+      <p>I'm a Software Engineer dedicated to harnessing AI for innovative solutions.</p>
+      <div class="social-links">
+        <a href="https://github.com/jamps2901/JohnP-Portfolio" target="_blank" class="social-link">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/jampy2901-00143422/" target="_blank" class="social-link">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://twitter.com/yourusername" target="_blank" class="social-link">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://ai.example.com" target="_blank" class="social-link">
+          <i class="fas fa-robot"></i>
+        </a>
+      </div>
+    </section>
 
 
-    <!-- Contact Section -->
-  <section id="contactForm">
-    <h2>Flick Me A Message</h2>
-    <form id="contact-form" action="/send-email" method="POST">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" placeholder="Your Message" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-    <div id="contactStatus"></div>
-  </section>
+  <!-- Contact Section -->
+<section id="contactForm">
+  <h2>Flick Me A Message</h2>
+  <form id="contact-form" action="/send-email" method="POST">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <textarea name="message" placeholder="Your Message" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+  <div id="contactStatus"></div>
+</section>
 
-    <!-- Scripts -->
-    <script>
-        // Load Videos and display video cards dynamically
-        function loadVideos() {
-        fetch('/videos')
-        .then(response => response.json())
-        .then(data => {
-            const container = document.getElementById('videoCards');
-            container.innerHTML = '';
-            if (data.length === 0) {
-            container.innerHTML = '<p>No videos available at the moment.</p>';
-            return;
-            }
-            data.forEach(video => {
-            const card = document.createElement('div');
-            card.classList.add('video-card');
-            card.innerHTML = `
-                <video src="${video.url}" controls></video>
-                <p>${video.title}</p>
-            `;
-            container.appendChild(card);
-            });
-        })
-        .catch(error => console.error('Error loading videos:', error));
-        }
-        loadVideos();
-        // Contact Form Submission (AJAX)
-        document.getElementById('contact-form').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const formData = new FormData(this);
-        fetch('/send-email', {
-          method: 'POST',
-          body: new URLSearchParams(formData)
-        })
-        .then(response => response.text())
-        .then(data => {
-          document.getElementById('contactStatus').textContent = data;
-        })
-        .catch(error => {
-          document.getElementById('contactStatus').textContent = 'Error sending message.';
-          console.error('Error:', error);
-        });
-    });
-
-    document.addEventListener("DOMContentLoaded", function() {
-  const form = document.getElementById("contact-form");
-  if (form) {
-    form.addEventListener("submit", function(e) {
+  <!-- Scripts -->
+  <script>
+      // Load Videos and display video cards dynamically
+      function loadVideos() {
+      fetch('/videos')
+      .then(response => response.json())
+      .then(data => {
+          const container = document.getElementById('videoCards');
+          container.innerHTML = '';
+          if (data.length === 0) {
+          container.innerHTML = '<p>No videos available at the moment.</p>';
+          return;
+          }
+          data.forEach(video => {
+          const card = document.createElement('div');
+          card.classList.add('video-card');
+          card.innerHTML = `
+              <video src="${video.url}" controls></video>
+              <p>${video.title}</p>
+          `;
+          container.appendChild(card);
+          });
+      })
+      .catch(error => console.error('Error loading videos:', error));
+      }
+      loadVideos();
+      // Contact Form Submission (AJAX)
+      document.getElementById('contact-form').addEventListener('submit', function(e) {
       e.preventDefault();
-      const formData = new FormData(form); // 'form' is now a valid HTMLFormElement
+      const formData = new FormData(this);
       fetch('/send-email', {
         method: 'POST',
         body: new URLSearchParams(formData)
       })
       .then(response => response.text())
       .then(data => {
-        console.log("Response:", data);
-        // Clear the form
-        form.reset();
-        // Animate the confirmation message using the server's response
-        const statusEl = document.getElementById('contactStatus');
-        statusEl.innerHTML = `<span class="confirmation">${data}</span>`;
-        // Remove the confirmation after 5 seconds (optional)
-        setTimeout(() => { statusEl.innerHTML = ''; }, 5000);
         document.getElementById('contactStatus').textContent = data;
       })
       .catch(error => {
         document.getElementById('contactStatus').textContent = 'Error sending message.';
         console.error('Error:', error);
       });
+  });
+
+  document.addEventListener("DOMContentLoaded", function() {
+const form = document.getElementById("contact-form");
+if (form) {
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const formData = new FormData(form); // 'form' is now a valid HTMLFormElement
+    fetch('/send-email', {
+      method: 'POST',
+      body: new URLSearchParams(formData)
+    })
+    .then(response => response.text())
+    .then(data => {
+      console.log("Response:", data);
+      // Clear the form
+      form.reset();
+      // Animate the confirmation message using the server's response
+      const statusEl = document.getElementById('contactStatus');
+      statusEl.innerHTML = `<span class="confirmation">${data}</span>`;
+      // Remove the confirmation after 5 seconds (optional)
+      setTimeout(() => { statusEl.innerHTML = ''; }, 5000);
+      document.getElementById('contactStatus').textContent = data;
+    })
+    .catch(error => {
+      document.getElementById('contactStatus').textContent = 'Error sending message.';
+      console.error('Error:', error);
     });
-  }
+  });
+}
 });
-    </script>
+  </script>
 
-    <!-- Footer Section -->
-    <footer>
-        <p>powered by John Patnugot</p>
-    </footer>
+  <!-- Footer Section -->
+  <footer>
+      <p>powered by John Patnugot</p>
+  </footer>
 
-    <!-- Include Particles.js Library & Our Scripts -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="js/particles-config.js"></script>
-    <script src="js/script.js"></script>
-    </body>
-    </html>
+  <!-- Include Particles.js Library & Our Scripts -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="js/particles-config.js"></script>
+  <script src="js/script.js"></script>
+  </body>
+  </html>
