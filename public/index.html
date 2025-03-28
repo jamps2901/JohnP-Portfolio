@@ -278,26 +278,7 @@
   });
 
   document.addEventListener("DOMContentLoaded", function() {
-    // Your existing tab switching code...
-  const tabButtons = document.querySelectorAll('.folder-tabs .tab-button');
-  const tabContents = document.querySelectorAll('.folder-tabs .tab-content');
-
-  tabButtons.forEach(button => {
-    button.addEventListener('click', function() {
-      // Remove active classes from all buttons and panels
-      tabButtons.forEach(btn => btn.classList.remove('active'));
-      tabContents.forEach(content => content.classList.remove('active'));
-
-      // Activate the clicked button and its corresponding panel
-      this.classList.add('active');
-      const tabId = this.getAttribute('data-tab');
-      document.getElementById(tabId).classList.add('active');
-    });
-  });
-
-  // Programmatically select the "Videos" tab on page load
-  document.querySelector('.tab-button[data-tab="videos"]').click();
-});
+    
 const form = document.getElementById("contact-form");
 if (form) {
   form.addEventListener("submit", function(e) {
