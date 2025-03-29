@@ -182,44 +182,59 @@
       <!-- Tabs Header -->
       <div class="tabs">
         <button class="tab-button active" data-tab="videos">Videos</button>
-        <button class="tab-button" data-tab="projectsContent">Projects</button>
-        <button class="tab-button" data-tab="other">Other</button>
+        <button class="tab-button" data-tab="case-studies">Case Studies</button>
+        <button class="tab-button" data-tab="resume">Interactive Resume</button>
+        <button class="tab-button" data-tab="blog">Blog & Insights</button>
+        <button class="tab-button" data-tab="testimonials">Testimonials</button>
       </div>
       <!-- Tab Content Panels -->
       <div class="tab-content active" id="videos">
         <div class="video-cards" id="videoCards">
-          <!-- Video cards inserted dynamically -->
+          <!-- Your video cards (or dynamic content) go here -->
         </div>
       </div>
-      <div class="tab-content" id="projectsContent">
-        <p>Additional project details can be displayed here.</p>
+      <div class="tab-content" id="case-studies">
+        <h3>Case Study: Project Alpha</h3>
+        <p>Detail the problem, solution, and impact of Project Alpha here. Include images or interactive diagrams as needed.</p>
       </div>
-      <div class="tab-content" id="other">
-        <p>This is the Other tab content.</p>
+      <div class="tab-content" id="resume">
+        <h3>Interactive Resume</h3>
+        <ul class="timeline">
+          <li>
+            <span class="date">2020</span>
+            <p>Started my career as a Software Engineer at Company A.</p>
+          </li>
+          <li>
+            <span class="date">2021</span>
+            <p>Promoted to Senior Developer at Company B.</p>
+          </li>
+          <!-- Add more timeline items as needed -->
+        </ul>
+      </div>
+      <div class="tab-content" id="blog">
+        <h3>Blog & Insights</h3>
+        <div class="blog-post">
+          <h4>Understanding AI in 2023</h4>
+          <p>An overview of AI trends and predictions for the near future.</p>
+        </div>
+        <div class="blog-post">
+          <h4>Advanced Web Development Techniques</h4>
+          <p>Discussing modern approaches to interactive, responsive web applications.</p>
+        </div>
+      </div>
+      <div class="tab-content" id="testimonials">
+        <h3>Testimonials</h3>
+        <div class="testimonial">
+          <p>"Exceptional work and creativity in every project!"</p>
+          <span>- Client A</span>
+        </div>
+        <div class="testimonial">
+          <p>"A true professional delivering innovative solutions."</p>
+          <span>- Client B</span>
+        </div>
       </div>
     </div>
   </section>
-
-    <!-- About Section -->
-    <section id="about" class="section about-section">
-      <h2>About Me</h2>
-      <p>I'm a Software Engineer dedicated to harnessing AI for innovative solutions.</p>
-      <div class="social-links">
-        <a href="https://github.com/jamps2901/JohnP-Portfolio" target="_blank" class="social-link">
-          <i class="fab fa-github"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/jampy2901-00143422/" target="_blank" class="social-link">
-          <i class="fab fa-linkedin"></i>
-        </a>
-        <a href="https://twitter.com/yourusername" target="_blank" class="social-link">
-          <i class="fab fa-twitter"></i>
-        </a>
-        <a href="https://ai.example.com" target="_blank" class="social-link">
-          <i class="fas fa-robot"></i>
-        </a>
-      </div>
-    </section>
-
 
   <!-- Contact Section -->
 <section id="contactForm">
@@ -305,6 +320,23 @@ if (form) {
     });
   });
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+  const advancedTabButtons = document.querySelectorAll('#projects .tab-button');
+  const advancedTabContents = document.querySelectorAll('#projects .tab-content');
+
+  advancedTabButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      advancedTabButtons.forEach(btn => btn.classList.remove('active'));
+      advancedTabContents.forEach(content => content.classList.remove('active'));
+
+      this.classList.add('active');
+      const tabId = this.getAttribute('data-tab');
+      document.getElementById(tabId).classList.add('active');
+    });
+  });
+});
+
 
 // This will programmatically click/select the "Videos" tab on page load.
 const videosTab = document.querySelector('.tab-button[data-tab="videos"]');

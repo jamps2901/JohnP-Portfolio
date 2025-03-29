@@ -526,4 +526,124 @@ padding: 20px;
     to { opacity: 1; }
 }
 
+/* ===== Advanced Folder Tabs Styling ===== */
+#projects {
+    margin: 60px 20px;
+    padding: 20px;
+    background: #1a1a2e;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* Folder Tabs Container with Animated Gradient */
+.folder-tabs {
+    border: 2px solid transparent;
+    border-radius: 12px;
+    overflow: hidden;
+    max-width: 900px;
+    margin: 0 auto;
+    background: linear-gradient(45deg, #0f3460, #16213e, #1a1a2e);
+    background-size: 200% 200%;
+    animation: folderGradient 5s ease infinite;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Folder Gradient Animation */
+@keyframes folderGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Tabs Header */
+.folder-tabs .tabs {
+    display: flex;
+    border-bottom: 2px solid #00ffea;
+    margin-bottom: 20px;
+}
+
+/* Tab Buttons */
+.folder-tabs .tab-button {
+    flex: 1;
+    padding: 12px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1.2em;
+    color: #00ffea;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.folder-tabs .tab-button:hover {
+    background: rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
+}
+
+.folder-tabs .tab-button.active {
+    background: #0f3460;
+    color: #ff00c8;
+    transform: scale(1.1);
+}
+
+/* Tab Content Panels */
+.folder-tabs .tab-content {
+    display: none;
+    padding: 10px 0;
+    animation: fadeIn 0.5s ease;
+}
+
+.folder-tabs .tab-content.active {
+    display: block;
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Timeline for Resume Section */
+.timeline {
+    list-style: none;
+    padding: 0;
+}
+
+.timeline li {
+    margin-bottom: 20px;
+    border-left: 3px solid #00ffea;
+    padding-left: 10px;
+}
+
+.timeline .date {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+/* Blog Post Styling */
+.blog-post {
+    background: #0f3460;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+/* Testimonial Styling */
+.testimonial {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-style: italic;
+}
+.testimonial span {
+    display: block;
+    text-align: right;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+
 
