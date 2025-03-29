@@ -181,72 +181,45 @@
     <div class="folder-tabs">
       <!-- Tabs Header -->
       <div class="tabs">
-        <button class="tab-button active" data-tab="videos">Videos</button>
-        <button class="tab-button" data-tab="case-studies">Case Studies</button>
-        <button class="tab-button" data-tab="resume">Interactive Resume</button>
-        <button class="tab-button" data-tab="blog">Blog & Insights</button>
-        <button class="tab-button" data-tab="testimonials">Testimonials</button>
+        <button class="tab-button active" data-tab="videos">Showroom</button>
+        <button class="tab-button" data-tab="projectsContent">Tutorials</button>
+        <button class="tab-button" data-tab="other">Downloads</button>
       </div>
       <!-- Tab Content Panels -->
       <div class="tab-content active" id="videos">
         <div class="video-cards" id="videoCards">
-          <!-- Your video cards (or dynamic content) go here -->
+          <!-- Video cards inserted dynamically -->
         </div>
       </div>
-      <div class="tab-content" id="case-studies">
-        <h3>Case Study: Project Alpha</h3>
-        <p>
-          Project Alpha was an innovative solution designed to optimize logistics using AI and machine learning.
-          <strong>Challenge:</strong> Integrating real-time data with predictive analytics.
-        </p>
-        <ul>
-          <li>Real-time data processing</li>
-          <li>Predictive modeling with TensorFlow</li>
-          <li>Interactive dashboard for live monitoring</li>
-        </ul>
-        <p>
-          The solution improved efficiency by 30% and saved significant costs.
-        </p>
+      <div class="tab-content" id="projectsContent">
+        <p>Additional project details can be displayed here.</p>
       </div>
-      <div class="tab-content" id="resume">
-        <h3>Interactive Resume</h3>
-        <ul class="timeline">
-          <li>
-            <span class="date">2018</span>
-            <p>Graduated with a Bachelor's in Computer Science from University X.</p>
-          </li>
-          <li>
-            <span class="date">2019</span>
-            <p>Started as a Junior Developer at Company A.</p>
-          </li>
-          <li>
-            <span class="date">2020</span>
-            <p>Promoted to Software Engineer at Company A.</p>
-          </li>
-          <li>
-            <span class="date">2022</span>
-            <p>Began freelancing, focusing on AI-driven solutions.</p>
-          </li>
-        </ul>
-      </div>
-      <!-- Blog & Insights Tab -->
-      <div class="tab-content" id="blog">
-        <h3>Blog & Insights</h3>
-        <div class="blog-post">
-          <h4>Understanding AI in 2023</h4>
-          <p>
-            An overview of the latest trends in artificial intelligence and predictions for the near future.
-          </p>
-        </div>
-        <div class="blog-post">
-          <h4>Modern Web Development Techniques</h4>
-          <p>
-            A deep dive into contemporary approaches for building interactive, responsive web applications.
-          </p>
-        </div>
+      <div class="tab-content" id="other">
+        <p>This is the Other tab content.</p>
       </div>
     </div>
   </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about-section">
+      <h2>About Me</h2>
+      <p>I'm a Software Engineer dedicated to harnessing AI for innovative solutions.</p>
+      <div class="social-links">
+        <a href="https://github.com/jamps2901/JohnP-Portfolio" target="_blank" class="social-link">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/jampy2901-00143422/" target="_blank" class="social-link">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://twitter.com/yourusername" target="_blank" class="social-link">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://ai.example.com" target="_blank" class="social-link">
+          <i class="fas fa-robot"></i>
+        </a>
+      </div>
+    </section>
+
 
   <!-- Contact Section -->
 <section id="contactForm">
@@ -262,101 +235,86 @@
 
   <!-- Scripts -->
   <script>
+    document.addEventListener("DOMContentLoaded", function() {
       // Load Videos and display video cards dynamically
       function loadVideos() {
-      fetch('/videos')
-      .then(response => response.json())
-      .then(data => {
-          const container = document.getElementById('videoCards');
-          container.innerHTML = '';
-          if (data.length === 0) {
-          container.innerHTML = '<p>No videos available at the moment.</p>';
-          return;
-          }
-          data.forEach(video => {
-          const card = document.createElement('div');
-          card.classList.add('video-card');
-          card.innerHTML = `
-              <video src="${video.url}" controls></video>
-              <p>${video.title}</p>
-          `;
-          container.appendChild(card);
-          });
-      })
-      .catch(error => console.error('Error loading videos:', error));
+        fetch('/videos')
+          .then(response => response.json())
+          .then(data => {
+            const container = document.getElementById('videoCards');
+            container.innerHTML = '';
+            if (data.length === 0) {
+              container.innerHTML = '<p>No videos available at the moment.</p>';
+              return;
+            }
+            data.forEach(video => {
+              const card = document.createElement('div');
+              card.classList.add('video-card');
+              card.innerHTML = `
+                <video src="${video.url}" controls></video>
+                <p>${video.title}</p>
+              `;
+              container.appendChild(card);
+            });
+          })
+          .catch(error => console.error('Error loading videos:', error));
       }
       loadVideos();
+    
       // Contact Form Submission (AJAX)
-      document.getElementById('contact-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const formData = new FormData(this);
-      fetch('/send-email', {
-        method: 'POST',
-        body: new URLSearchParams(formData)
-      })
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('contactStatus').textContent = data;
-      })
-      .catch(error => {
-        document.getElementById('contactStatus').textContent = 'Error sending message.';
-        console.error('Error:', error);
+      const form = document.getElementById("contact-form");
+      if (form) {
+        form.addEventListener("submit", function(e) {
+          e.preventDefault();
+          const formData = new FormData(form);
+          fetch('/send-email', {
+            method: 'POST',
+            body: new URLSearchParams(formData)
+          })
+          .then(response => response.text())
+          .then(data => {
+            console.log("Response:", data);
+            // Clear the form
+            form.reset();
+            // Animate the confirmation message using the server's response
+            const statusEl = document.getElementById('contactStatus');
+            statusEl.innerHTML = `<span class="confirmation">${data}</span>`;
+            // Remove the confirmation after 5 seconds (optional)
+            setTimeout(() => { statusEl.innerHTML = ''; }, 5000);
+          })
+          .catch(error => {
+            document.getElementById('contactStatus').textContent = 'Error sending message.';
+            console.error('Error:', error);
+          });
+        });
+      }
+    
+      // Tab Switching for Projects Section
+      const tabButtons = document.querySelectorAll('#projects .tab-button');
+      const tabContents = document.querySelectorAll('#projects .tab-content');
+      tabButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          tabButtons.forEach(btn => btn.classList.remove('active'));
+          tabContents.forEach(content => content.classList.remove('active'));
+          this.classList.add('active');
+          const tabId = this.getAttribute('data-tab');
+          const activePanel = document.getElementById(tabId);
+          if (activePanel) {
+            activePanel.classList.add('active');
+          } else {
+            console.error("No content panel found with id:", tabId);
+          }
+        });
       });
-  });
-
-  document.addEventListener("DOMContentLoaded", function() {
-const form = document.getElementById("contact-form");
-if (form) {
-  form.addEventListener("submit", function(e) {
-    e.preventDefault();
-    const formData = new FormData(form); // 'form' is now a valid HTMLFormElement
-    fetch('/send-email', {
-      method: 'POST',
-      body: new URLSearchParams(formData)
-    })
-    .then(response => response.text())
-    .then(data => {
-      console.log("Response:", data);
-      // Clear the form
-      form.reset();
-      // Animate the confirmation message using the server's response
-      const statusEl = document.getElementById('contactStatus');
-      statusEl.innerHTML = `<span class="confirmation">${data}</span>`;
-      // Remove the confirmation after 5 seconds (optional)
-      setTimeout(() => { statusEl.innerHTML = ''; }, 5000);
-      document.getElementById('contactStatus').textContent = data;
-    })
-    .catch(error => {
-      document.getElementById('contactStatus').textContent = 'Error sending message.';
-      console.error('Error:', error);
+    
+      // Programmatically select the "Videos" tab on page load
+      const videosTab = document.querySelector('#projects .tab-button[data-tab="videos"]');
+      if (videosTab) {
+        videosTab.click();
+      }
     });
-  });
-}
-
-document.addEventListener("DOMContentLoaded", function() {
-  const advancedTabButtons = document.querySelectorAll('#projects .tab-button');
-  const advancedTabContents = document.querySelectorAll('#projects .tab-content');
-
-  advancedTabButtons.forEach(button => {
-    button.addEventListener('click', function() {
-      advancedTabButtons.forEach(btn => btn.classList.remove('active'));
-      advancedTabContents.forEach(content => content.classList.remove('active'));
-
-      this.classList.add('active');
-      const tabId = this.getAttribute('data-tab');
-      document.getElementById(tabId).classList.add('active');
-    });
-  });
-});
-
-
-// This will programmatically click/select the "Videos" tab on page load.
-const videosTab = document.querySelector('.tab-button[data-tab="videos"]');
-  if (videosTab) {
-    videosTab.click();
-  }
-});
-  </script>
+    </script>
+    
 
   <!-- Footer Section -->
   <footer>
