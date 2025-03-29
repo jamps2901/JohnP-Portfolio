@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="css/style.css">
   <!-- Font Awesome for social media icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.0/tsparticles.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
   <style>
       /* Global Styles */
       html {
@@ -177,26 +177,33 @@
   </header>
 
   <!-- Projects Section -->
-  <section id="projects">
-    <div class="folder-tabs">
-      <!-- Tabs Header -->
-      <div class="tabs">
-        <button class="tab-button active" data-tab="videos">Videos</button>
-        <button class="tab-button" data-tab="projectsContent">Projects</button>
-        <button class="tab-button" data-tab="other">Other</button>
-      </div>
-      <!-- Tab Content Panels -->
-      <div class="tab-content active" id="videos">
-        <div class="video-cards" id="videoCards">
-          <!-- Video cards inserted dynamically -->
+  <section id="swipeCards">
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <!-- Card for Videos -->
+        <div class="swiper-slide">
+          <div class="card" onclick="cardClicked('Videos')">
+            <h3>Videos</h3>
+            <p>View video projects</p>
+          </div>
+        </div>
+        <!-- Card for Projects -->
+        <div class="swiper-slide">
+          <div class="card" onclick="cardClicked('Projects')">
+            <h3>Projects</h3>
+            <p>View project details</p>
+          </div>
+        </div>
+        <!-- Card for Other -->
+        <div class="swiper-slide">
+          <div class="card" onclick="cardClicked('Other')">
+            <h3>Other</h3>
+            <p>See other content</p>
+          </div>
         </div>
       </div>
-      <div class="tab-content" id="projectsContent">
-        <p>Additional project details can be displayed here.</p>
-      </div>
-      <div class="tab-content" id="other">
-        <p>This is the Other tab content.</p>
-      </div>
+      <!-- Optional Pagination -->
+      <div class="swiper-pagination"></div>
     </div>
   </section>
 
@@ -277,7 +284,7 @@
       });
   });
 
-  document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function() {
 const form = document.getElementById("contact-form");
 if (form) {
   form.addEventListener("submit", function(e) {
@@ -304,6 +311,34 @@ if (form) {
       console.error('Error:', error);
     });
   });
+
+  document.addEventListener("DOMContentLoaded", function() {
+  // Initialize Swiper with the "cards" effect
+  const swiper = new Swiper('.swiper-container', {
+    effect: 'cards',
+    grabCursor: true,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+  });
+});
+
+// Function to handle a card click
+function cardClicked(cardType) {
+  // For example, navigate to a new page or show a modal
+  // Here, we simply log the selection:
+  console.log("Card clicked:", cardType);
+
+  // Example: redirect to a specific page (uncomment and customize if needed)
+  // if(cardType === 'Videos') {
+  //   window.location.href = '/videos-page.html';
+  // }
+
+  // Or you could open a modal that contains an AI-themed, interactive container for video cards.
+  alert("Card clicked: " + cardType);
+}
+
 }
 
 // This will programmatically click/select the "Videos" tab on page load.
@@ -323,5 +358,7 @@ const videosTab = document.querySelector('.tab-button[data-tab="videos"]');
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script src="js/particles-config.js"></script>
   <script src="js/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.0/tsparticles.bundle.min.js"></script>
+  <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
   </body>
   </html>
