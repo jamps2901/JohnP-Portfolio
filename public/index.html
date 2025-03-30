@@ -157,13 +157,23 @@
 
   <!-- Header Section with Animated Particles & Fixed Navigation -->
   <header>
-      <div id="particles-js"></div>
+  <div id="particles-js"></div>
   <nav class="nav-bar">
     <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#projects">Projects</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li class="dropdown">
+        <a href="javascript:void(0)" class="dropbtn">Projects <i class="fa fa-chevron-down"></i></a>
+        <div class="dropdown-content">
+          <a href="iot-projects.html">IoT Projects</a>
+          <a href="python-projects.html">Python Projects</a>
+          <a href="gamedev-projects.html">Game Dev Projects</a>
+          <a href="sap-abap-projects.html">SAP ABAP Projects</a>
+          <a href="sql-projects.html">SQL Projects</a>
+          <a href="csharp-projects.html">C# Projects</a>
+        </div>
+      </li>
       <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#contactForm">Contact</a></li>
       <li style="margin-left:auto;"><a href="admin.html">Admin</a></li>
     </ul>
   </nav>

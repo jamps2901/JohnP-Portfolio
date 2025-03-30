@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Game Dev Projects | John Patnugot</title>
+<link rel="stylesheet" href="css/style.css">
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+    body { background: #121212; color: #fff; font-family: Arial, sans-serif; }
+    .nav-bar { background: #1a1a1a; padding: 10px 20px; }
+    .nav-bar ul { list-style: none; display: flex; align-items: center; margin: 0; padding: 0; }
+    .nav-bar ul li { margin-right: 20px; }
+    .nav-bar ul li a { color: #00ffea; text-decoration: none; font-weight: bold; }
+    .container { max-width: 1200px; margin: 20px auto; padding: 20px; }
+    .page-title { font-size: 2.5em; margin-left: 20px; margin-bottom: 20px; background: linear-gradient(90deg, #00ffea, #ff00c8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .project-card { background: #222; border: 1px solid #00ffea; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+    .project-card img { width: 100%; }
+    .project-info { padding: 15px; }
+    .project-info h3 { margin-top: 0; }
+    .accordion-toggle { background: #00ffea; color: #000; border: none; padding: 10px; width: 100%; cursor: pointer; text-align: left; font-weight: bold; }
+    .accordion-content { display: none; padding: 10px; background: #333; }
+    pre { background: #444; padding: 10px; overflow-x: auto; }
+</style>
+</head>
+<body>
+<!-- Navigation Bar -->
+<header>
+    <nav class="nav-bar">
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="iot-projects.html">IoT Projects</a></li>
+        <li><a href="python-projects.html">Python Projects</a></li>
+        <li><a href="gamedev-projects.html">Game Dev Projects</a></li>
+        <li><a href="sap-abap-projects.html">SAP ABAP Projects</a></li>
+        <li><a href="sql-projects.html">SQL Projects</a></li>
+        <li><a href="csharp-projects.html">C# Projects</a></li>
+        <li style="margin-left:auto;"><a href="admin.html">Admin</a></li>
+    </ul>
+    </nav>
+</header>
+<main class="container">
+    <h1 class="page-title">Game Development Projects</h1>
+    <div class="project-grid">
+    <!-- Project 1 -->
+    <div class="project-card">
+        <img src="images/gamedev1.jpg" alt="2D Platformer">
+        <div class="project-info">
+        <h3>2D Platformer</h3>
+        <p>A retro-style 2D platformer with challenging levels and dynamic gameplay built in Unity.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>// Unity C# script for player movement
+void Update() {
+float move = Input.GetAxis("Horizontal");
+transform.Translate(move * speed * Time.deltaTime, 0, 0);
+}
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Includes Unity project settings, physics parameters, and asset pipeline configuration.</p>
+            <h4>Documentation</h4>
+            <p>Detailed report on level design, control schemes, and gameplay mechanics.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 2 -->
+    <div class="project-card">
+        <img src="images/gamedev2.jpg" alt="3D Adventure Game">
+        <div class="project-info">
+        <h3>3D Adventure Game</h3>
+        <p>An immersive 3D adventure game with rich storytelling and interactive puzzles.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>// C# code for character controller in Unity
+void FixedUpdate() {
+// Physics-based movement
+}
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Unity scene setup, lighting configurations, and asset management details.</p>
+            <h4>Documentation</h4>
+            <p>Complete design document outlining gameplay mechanics, story arcs, and technical specs.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Projects 3 to 10 follow similar structure -->
+    <div class="project-card">
+        <img src="images/gamedev3.jpg" alt="Puzzle Game">
+        <div class="project-info">
+        <h3>Puzzle Game</h3>
+        <p>An engaging puzzle game with innovative mechanics and visual effects.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>// Puzzle logic sample code
+void CheckPuzzle() {
+// Verify puzzle solution
+}
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Level configuration, difficulty settings, and UI integration details.</p>
+            <h4>Documentation</h4>
+            <p>Documentation covering design philosophy, gameplay flow, and testing procedures.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 4 -->
+    <div class="project-card">
+        <img src="images/gamedev4.jpg" alt="Multiplayer Shooter">
+        <div class="project-info">
+        <h3>Multiplayer Shooter</h3>
+        <p>A fast-paced multiplayer shooter with real-time networking and competitive leaderboards.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>// Networking sample using Unity's UNet
+using UnityEngine.Networking;
+public class PlayerController : NetworkBehaviour {
+// Multiplayer code here...
+}
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Network settings, server-client configuration, and balancing parameters.</p>
+            <h4>Documentation</h4>
+            <p>Comprehensive documentation on multiplayer architecture, matchmaking, and cheat prevention.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 5 -->
+    <div class="project-card">
+        <img src="images/gamedev5.jpg" alt="Racing Game">
+        <div class="project-info">
+        <h3>Racing Game</h3>
+        <p>A high-speed racing game featuring realistic physics and customizable vehicles.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>// C# code for vehicle physics
+void FixedUpdate() {
+// Calculate dynamics
+}
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Car settings, track design, and AI opponent configuration.</p>
+            <h4>Documentation</h4>
+            <p>Documentation covering race mechanics, control systems, and upgrade paths.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 6 -->
+    <div class="project-card">
+        <img src="images/gamedev6.jpg" alt="Real-Time Strategy Game">
+        <div class="project-info">
+        <h3>Real-Time Strategy Game</h3>
+        <p>A strategy game featuring resource management, unit control, and dynamic battlefields.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>// Unit AI sample code
+void Update() {
+// Strategy logic here...
+}
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Game balance, unit attributes, and map design settings.</p>
+            <h4>Documentation</h4>
+            <p>Documentation on AI algorithms, resource management, and gameplay testing.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 7 -->
+    <div class="project-card">
+        <img src="images/gamedev7.jpg" alt="Virtual Reality Experience">
+        <div class="project-info">
+        <h3>Virtual Reality Experience</h3>
+        <p>An immersive VR game with interactive environments and intuitive controls.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>// VR interaction code sample
+void Update() {
+// Handle VR input and object interaction
+}
+</code></pre>
+            <h4>Configuration</h4>
+            <p>VR hardware calibration, scene optimization, and performance settings.</p>
+            <h4>Documentation</h4>
+            <p>Guide on setting up VR experiences, safety guidelines, and technical requirements.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 8 -->
+    <div class="project-card">
+        <img src="images/gamedev8.jpg" alt="Mobile Arcade Game">
+        <div class="project-info">
+        <h3>Mobile Arcade Game</h3>
+        <p>An addictive arcade game optimized for mobile devices with touch controls.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>// Code for handling touch input in Unity
+void Update() {
+// Touch input processing
+}
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Mobile performance optimization, UI scaling, and asset compression.</p>
+            <h4>Documentation</h4>
+            <p>Instructions for deploying the game on mobile platforms and user interface guidelines.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 9 -->
+    <div class="project-card">
+        <img src="images/gamedev9.jpg" alt="Puzzle Adventure">
+        <div class="project-info">
+        <h3>Puzzle Adventure</h3>
+        <p>A hybrid adventure-puzzle game with intricate levels and engaging storylines.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>// Code for integrating puzzle mechanics
+void SolvePuzzle() {
+// Puzzle verification logic
+}
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Level design, difficulty settings, and narrative integration details.</p>
+            <h4>Documentation</h4>
+            <p>Complete documentation covering game concept, level flow, and technical implementation.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 10 -->
+    <div class="project-card">
+        <img src="images/gamedev10.jpg" alt="City Simulation">
+        <div class="project-info">
+        <h3>City Simulation</h3>
+        <p>A simulation game modeling urban development, traffic flow, and resource management.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>// Code snippet for simulating city dynamics
+void SimulateCity() {
+// Urban simulation logic here...
+}
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Simulation parameters, environmental settings, and performance tuning.</p>
+            <h4>Documentation</h4>
+            <p>Full documentation on simulation algorithms, data visualization, and system requirements.</p>
+        </div>
+        </div>
+    </div>
+    </div>
+</main>
+<script>
+    document.querySelectorAll('.accordion-toggle').forEach(button => {
+    button.addEventListener('click', () => {
+        const content = button.nextElementSibling;
+        content.style.display = content.style.display === "block" ? "none" : "block";
+    });
+    });
+</script>
+</body>
+</html>

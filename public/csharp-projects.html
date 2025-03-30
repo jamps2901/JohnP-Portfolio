@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>C# Projects | John Patnugot</title>
+<link rel="stylesheet" href="css/style.css">
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+    body { background: #121212; color: #fff; font-family: Arial, sans-serif; }
+    .nav-bar { background: #1a1a1a; padding: 10px 20px; }
+    .nav-bar ul { list-style: none; display: flex; align-items: center; margin: 0; padding: 0; }
+    .nav-bar ul li { margin-right: 20px; }
+    .nav-bar ul li a { color: #00ffea; text-decoration: none; font-weight: bold; }
+    .container { max-width: 1200px; margin: 20px auto; padding: 20px; }
+    .page-title { font-size: 2.5em; margin-left: 20px; margin-bottom: 20px; background: linear-gradient(90deg, #00ffea, #ff00c8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .project-card { background: #222; border: 1px solid #00ffea; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+    .project-card img { width: 100%; }
+    .project-info { padding: 15px; }
+    .project-info h3 { margin-top: 0; }
+    .accordion-toggle { background: #00ffea; color: #000; border: none; padding: 10px; width: 100%; cursor: pointer; text-align: left; font-weight: bold; }
+    .accordion-content { display: none; padding: 10px; background: #333; }
+    pre { background: #444; padding: 10px; overflow-x: auto; }
+</style>
+</head>
+<body>
+<!-- Navigation Bar -->
+<header>
+    <nav class="nav-bar">
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="iot-projects.html">IoT Projects</a></li>
+        <li><a href="python-projects.html">Python Projects</a></li>
+        <li><a href="gamedev-projects.html">Game Dev Projects</a></li>
+        <li><a href="sap-abap-projects.html">SAP ABAP Projects</a></li>
+        <li><a href="sql-projects.html">SQL Projects</a></li>
+        <li><a href="csharp-projects.html">C# Projects</a></li>
+        <li style="margin-left:auto;"><a href="admin.html">Admin</a></li>
+    </ul>
+    </nav>
+</header>
+<main class="container">
+    <h1 class="page-title">C# Projects</h1>
+    <div class="project-grid">
+    <!-- Project 1 -->
+    <div class="project-card">
+        <img src="images/csharp1.jpg" alt="Desktop Application">
+        <div class="project-info">
+        <h3>Desktop Application</h3>
+        <p>A Windows desktop application built with WPF for business automation.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>// Sample C# WPF code
+public partial class MainWindow : Window {
+public MainWindow() {
+    InitializeComponent();
+}
+}
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Configured in Visual Studio with necessary dependencies and XAML UI design.</p>
+            <h4>Documentation</h4>
+            <p>Complete documentation on application architecture, UI guidelines, and deployment.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 2 -->
+    <div class="project-card">
+        <img src="images/csharp2.jpg" alt="Web API Development">
+        <div class="project-info">
+        <h3>Web API Development</h3>
+        <p>Creating RESTful APIs using ASP.NET Core for scalable web services.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>// ASP.NET Core Web API sample
+[ApiController]
+[Route("api/[controller]")]
+public class ValuesController : ControllerBase {
+[HttpGet]
+public IActionResult Get() {
+    return Ok(new string[] { "value1", "value2" });
+}
+}
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Configured in Visual Studio with middleware and dependency injection settings.</p>
+            <h4>Documentation</h4>
+            <p>Documentation covering API endpoints, security configurations, and deployment strategies.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 3 -->
+    <div class="project-card">
+        <img src="images/csharp3.jpg" alt="Mobile App with Xamarin">
+        <div class="project-info">
+        <h3>Mobile App with Xamarin</h3>
+        <p>Cross-platform mobile application using Xamarin for iOS and Android.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>// Xamarin Forms sample code
+public class MainPage : ContentPage {
+public MainPage() {
+    Content = new Label { Text = "Hello, Xamarin!" };
+}
+}
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Setup includes Xamarin configuration, NuGet packages, and platform-specific settings.</p>
+            <h4>Documentation</h4>
+            <p>Documentation on cross-platform development, UI design, and testing on multiple devices.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 4 -->
+    <div class="project-card">
+        <img src="images/csharp4.jpg" alt="Unity Game Development">
+        <div class="project-info">
+        <h3>Unity Game Development</h3>
+        <p>Developing interactive games with Unity and C# for dynamic gameplay.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>// Unity C# script example
+void Update() {
+// Game logic here...
+}
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Configured Unity project settings, asset management, and performance optimization.</p>
+            <h4>Documentation</h4>
+            <p>Detailed documentation on game mechanics, level design, and scripting best practices.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 5 -->
+    <div class="project-card">
+        <img src="images/csharp5.jpg" alt="Cloud Integration">
+        <div class="project-info">
+        <h3>Cloud Integration</h3>
+        <p>Integrating C# applications with Azure for scalable cloud solutions.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>// Azure Blob Storage sample code
+CloudBlobContainer container = blobClient.GetContainerReference("mycontainer");
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Configured via the Azure portal with connection strings and security settings.</p>
+            <h4>Documentation</h4>
+            <p>Documentation covering cloud integration, deployment, and monitoring strategies.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 6 -->
+    <div class="project-card">
+        <img src="images/csharp6.jpg" alt="Desktop Utility Tool">
+        <div class="project-info">
+        <h3>Desktop Utility Tool</h3>
+        <p>A C# tool for automating routine tasks on Windows desktops.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>// C# utility tool sample code
+public void RunUtility() {
+// Automation logic here...
+}
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Includes installer configuration, application settings, and logging setup.</p>
+            <h4>Documentation</h4>
+            <p>Usage instructions, system requirements, and troubleshooting documentation.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 7 -->
+    <div class="project-card">
+        <img src="images/csharp7.jpg" alt="E-commerce Platform">
+        <div class="project-info">
+        <h3>E-commerce Platform</h3>
+        <p>Building a full-featured e-commerce platform using ASP.NET MVC.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>// ASP.NET MVC sample controller
+public class ProductsController : Controller {
+public IActionResult Index() {
+    return View();
+}
+}
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Project configuration, database integration, and payment gateway setup.</p>
+            <h4>Documentation</h4>
+            <p>Complete documentation on system design, user flow, and security measures.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 8 -->
+    <div class="project-card">
+        <img src="images/csharp8.jpg" alt="Financial Calculator">
+        <div class="project-info">
+        <h3>Financial Calculator</h3>
+        <p>An application for complex financial calculations and modeling using C#.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>// C# sample for ROI calculation
+public double CalculateROI(double gain, double cost) {
+return (gain - cost) / cost;
+}
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Configuration for financial models and input validations.</p>
+            <h4>Documentation</h4>
+            <p>Documentation detailing calculation methods, assumptions, and user guidelines.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 9 -->
+    <div class="project-card">
+        <img src="images/csharp9.jpg" alt="Chat Application">
+        <div class="project-info">
+        <h3>Chat Application</h3>
+        <p>A real-time chat application using SignalR and C# for seamless communication.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>// SignalR hub example
+public class ChatHub : Hub {
+public async Task SendMessage(string user, string message) {
+    await Clients.All.SendAsync("ReceiveMessage", user, message);
+}
+}
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Includes SignalR setup, server configuration, and client integration.</p>
+            <h4>Documentation</h4>
+            <p>Detailed documentation on real-time communication, security, and scalability.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 10 -->
+    <div class="project-card">
+        <img src="images/csharp10.jpg" alt="IoT Dashboard">
+        <div class="project-info">
+        <h3>IoT Dashboard</h3>
+        <p>A dashboard for monitoring IoT devices and analytics, built with C# and .NET Core.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>// Sample C# code for dashboard data retrieval
+public IActionResult GetDashboardData() {
+// Retrieve and return data
+}
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Configuration for data sources, API endpoints, and real-time updates.</p>
+            <h4>Documentation</h4>
+            <p>Documentation on dashboard design, UI, and integration with IoT devices.</p>
+        </div>
+        </div>
+    </div>
+    </div>
+</main>
+<script>
+    document.querySelectorAll('.accordion-toggle').forEach(button => {
+    button.addEventListener('click', () => {
+        const content = button.nextElementSibling;
+        content.style.display = content.style.display === "block" ? "none" : "block";
+    });
+    });
+</script>
+</body>
+</html>

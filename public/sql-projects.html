@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SQL Projects | John Patnugot</title>
+<link rel="stylesheet" href="css/style.css">
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+    body { background: #121212; color: #fff; font-family: Arial, sans-serif; }
+    .nav-bar { background: #1a1a1a; padding: 10px 20px; }
+    .nav-bar ul { list-style: none; display: flex; align-items: center; margin: 0; padding: 0; }
+    .nav-bar ul li { margin-right: 20px; }
+    .nav-bar ul li a { color: #00ffea; text-decoration: none; font-weight: bold; }
+    .container { max-width: 1200px; margin: 20px auto; padding: 20px; }
+    .page-title { font-size: 2.5em; margin-left: 20px; margin-bottom: 20px; background: linear-gradient(90deg, #00ffea, #ff00c8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .project-card { background: #222; border: 1px solid #00ffea; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+    .project-card img { width: 100%; }
+    .project-info { padding: 15px; }
+    .project-info h3 { margin-top: 0; }
+    .accordion-toggle { background: #00ffea; color: #000; border: none; padding: 10px; width: 100%; cursor: pointer; text-align: left; font-weight: bold; }
+    .accordion-content { display: none; padding: 10px; background: #333; }
+    pre { background: #444; padding: 10px; overflow-x: auto; }
+</style>
+</head>
+<body>
+<!-- Navigation Bar -->
+<header>
+    <nav class="nav-bar">
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="iot-projects.html">IoT Projects</a></li>
+        <li><a href="python-projects.html">Python Projects</a></li>
+        <li><a href="gamedev-projects.html">Game Dev Projects</a></li>
+        <li><a href="sap-abap-projects.html">SAP ABAP Projects</a></li>
+        <li><a href="sql-projects.html">SQL Projects</a></li>
+        <li><a href="csharp-projects.html">C# Projects</a></li>
+        <li style="margin-left:auto;"><a href="admin.html">Admin</a></li>
+    </ul>
+    </nav>
+</header>
+<main class="container">
+    <h1 class="page-title">SQL Projects</h1>
+    <div class="project-grid">
+    <!-- Project 1 -->
+    <div class="project-card">
+        <img src="images/sql1.jpg" alt="Database Optimization">
+        <div class="project-info">
+        <h3>Database Optimization</h3>
+        <p>SQL scripts and strategies to optimize query performance and indexing.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>-- Optimized query example
+EXPLAIN ANALYZE SELECT * FROM orders WHERE order_date > '2020-01-01';
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Database configuration, index recommendations, and tuning tips.</p>
+            <h4>Documentation</h4>
+            <p>Guide on query optimization techniques and schema design best practices.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 2 -->
+    <div class="project-card">
+        <img src="images/sql2.jpg" alt="Data Warehousing">
+        <div class="project-info">
+        <h3>Data Warehousing</h3>
+        <p>Design and implementation of data warehousing solutions using SQL and ETL processes.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>-- ETL process sample
+INSERT INTO warehouse (col1, col2)
+SELECT col1, col2 FROM staging_table;
+</code></pre>
+            <h4>Configuration</h4>
+            <p>ETL job setup, data modeling, and warehouse design guidelines.</p>
+            <h4>Documentation</h4>
+            <p>Complete documentation on data warehousing strategies and schema design.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Projects 3-10 (similar structure) -->
+    <div class="project-card">
+        <img src="images/sql3.jpg" alt="Reporting System">
+        <div class="project-info">
+        <h3>Reporting System</h3>
+        <p>SQL-based reporting system that generates dynamic business reports and dashboards.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>-- Report generation sample
+SELECT department, COUNT(*) as employee_count FROM employees GROUP BY department;
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Report scheduling, data source integration, and performance tuning.</p>
+            <h4>Documentation</h4>
+            <p>Guide on building reports, SQL best practices, and dashboard integration.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 4 -->
+    <div class="project-card">
+        <img src="images/sql4.jpg" alt="Backup and Recovery">
+        <div class="project-info">
+        <h3>Backup and Recovery Solutions</h3>
+        <p>Implementing SQL scripts and procedures for automated backup and recovery.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>-- Database backup sample
+BACKUP DATABASE mydb TO DISK = 'backup.bak';
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Scheduling backups, retention policies, and recovery testing details.</p>
+            <h4>Documentation</h4>
+            <p>Documentation on backup strategies and recovery procedures.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 5 -->
+    <div class="project-card">
+        <img src="images/sql5.jpg" alt="Data Migration">
+        <div class="project-info">
+        <h3>Data Migration Projects</h3>
+        <p>SQL scripts and procedures for migrating data between different database systems.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>-- Data migration example
+INSERT INTO new_table SELECT * FROM old_table;
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Data mapping, ETL process setup, and error handling.</p>
+            <h4>Documentation</h4>
+            <p>Full documentation on migration planning, execution, and validation.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 6 -->
+    <div class="project-card">
+        <img src="images/sql6.jpg" alt="Database Security">
+        <div class="project-info">
+        <h3>Database Security</h3>
+        <p>Implementing SQL security measures, user roles, and access controls.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>-- Create role sample
+CREATE ROLE secure_user;
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO secure_user;
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Role assignments, permission settings, and audit logging configurations.</p>
+            <h4>Documentation</h4>
+            <p>Documentation on security practices, compliance, and risk mitigation.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 7 -->
+    <div class="project-card">
+        <img src="images/sql7.jpg" alt="Advanced Query Optimization">
+        <div class="project-info">
+        <h3>Advanced Query Optimization</h3>
+        <p>Techniques and scripts to optimize complex SQL queries for improved performance.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>-- Optimized query example with hint
+SELECT /*+ INDEX(employees emp_idx) */ * FROM employees;
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Index creation, query plan analysis, and performance monitoring.</p>
+            <h4>Documentation</h4>
+            <p>Guide on optimization strategies, indexing best practices, and troubleshooting.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 8 -->
+    <div class="project-card">
+        <img src="images/sql8.jpg" alt="ETL Pipeline">
+        <div class="project-info">
+        <h3>ETL Pipeline Development</h3>
+        <p>Designing robust ETL pipelines for data integration and transformation.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>-- Data transformation sample
+SELECT col1, UPPER(col2) FROM source_table;
+</code></pre>
+            <h4>Configuration</h4>
+            <p>ETL tool setup, scheduling, and data validation procedures.</p>
+            <h4>Documentation</h4>
+            <p>Documentation covering design, error handling, and performance considerations.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 9 -->
+    <div class="project-card">
+        <img src="images/sql9.jpg" alt="Real-Time Analytics">
+        <div class="project-info">
+        <h3>Real-Time Analytics Dashboard</h3>
+        <p>SQL-based analytics for monitoring business metrics and KPIs in real time.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>-- Real-time analytics sample
+SELECT NOW(), COUNT(*) FROM transactions;
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Dashboard configuration, data streaming, and aggregation techniques.</p>
+            <h4>Documentation</h4>
+            <p>Guide on building real-time dashboards and tuning query performance.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 10 -->
+    <div class="project-card">
+        <img src="images/sql10.jpg" alt="Cloud Database Integration">
+        <div class="project-info">
+        <h3>Cloud Database Integration</h3>
+        <p>Connecting on-premises databases with cloud solutions using advanced SQL techniques.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>-- Sample query for cloud integration
+SELECT * FROM cloud_table;
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Cloud connector settings, secure data transfer configurations, and synchronization strategies.</p>
+            <h4>Documentation</h4>
+            <p>Documentation covering integration steps, security protocols, and performance benchmarks.</p>
+        </div>
+        </div>
+    </div>
+    </div>
+</main>
+<script>
+    document.querySelectorAll('.accordion-toggle').forEach(button => {
+    button.addEventListener('click', () => {
+        const content = button.nextElementSibling;
+        content.style.display = content.style.display === "block" ? "none" : "block";
+    });
+    });
+</script>
+</body>
+</html>

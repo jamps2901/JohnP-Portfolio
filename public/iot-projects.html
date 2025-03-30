@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IoT Projects | John Patnugot</title>
+<link rel="stylesheet" href="css/style.css">
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+    body { background: #121212; color: #fff; font-family: Arial, sans-serif; }
+    .nav-bar { background: #1a1a1a; padding: 10px 20px; }
+    .nav-bar ul { list-style: none; display: flex; align-items: center; margin: 0; padding: 0; }
+    .nav-bar ul li { margin-right: 20px; }
+    .nav-bar ul li a { color: #00ffea; text-decoration: none; font-weight: bold; }
+    .container { max-width: 1200px; margin: 20px auto; padding: 20px; }
+    .page-title { font-size: 2.5em; margin-left: 20px; margin-bottom: 20px; background: linear-gradient(90deg, #00ffea, #ff00c8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .project-card { background: #222; border: 1px solid #00ffea; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+    .project-card img { width: 100%; }
+    .project-info { padding: 15px; }
+    .project-info h3 { margin-top: 0; }
+    .accordion-toggle { background: #00ffea; color: #000; border: none; padding: 10px; width: 100%; cursor: pointer; text-align: left; font-weight: bold; }
+    .accordion-content { display: none; padding: 10px; background: #333; }
+    pre { background: #444; padding: 10px; overflow-x: auto; }
+</style>
+</head>
+<body>
+<!-- Navigation Bar -->
+<header>
+    <nav class="nav-bar">
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="iot-projects.html">IoT Projects</a></li>
+        <li><a href="python-projects.html">Python Projects</a></li>
+        <li><a href="gamedev-projects.html">Game Dev Projects</a></li>
+        <li><a href="sap-abap-projects.html">SAP ABAP Projects</a></li>
+        <li><a href="sql-projects.html">SQL Projects</a></li>
+        <li><a href="csharp-projects.html">C# Projects</a></li>
+        <li style="margin-left:auto;"><a href="admin.html">Admin</a></li>
+    </ul>
+    </nav>
+</header>
+<main class="container">
+    <h1 class="page-title">IoT Projects</h1>
+    <div class="project-grid">
+    <!-- Project 1 -->
+    <div class="project-card">
+        <img src="images/iot1.jpg" alt="Smart Home Automation">
+        <div class="project-info">
+        <h3>Smart Home Automation</h3>
+        <p>Integrating sensors and smart devices to automate home functions and improve energy efficiency.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>// Sample Arduino code for home automation
+void setup() {
+Serial.begin(9600);
+// Initialize sensors and actuators
+}
+void loop() {
+// Read sensor data and control devices
+}
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Setup involves connecting a Raspberry Pi to an Arduino, configuring WiFi modules, and installing necessary libraries.</p>
+            <h4>Documentation</h4>
+            <p>Complete guide covering hardware setup, code walkthrough, and troubleshooting tips.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 2 -->
+    <div class="project-card">
+        <img src="images/iot2.jpg" alt="Industrial IoT Monitoring">
+        <div class="project-info">
+        <h3>Industrial IoT Monitoring</h3>
+        <p>Real-time monitoring of industrial equipment with predictive maintenance alerts.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>// Python code using MQTT for sensor data collection
+import paho.mqtt.client as mqtt
+def on_message(client, userdata, msg):
+    print(msg.topic, msg.payload)
+client = mqtt.Client()
+client.connect("broker.hivemq.com", 1883, 60)
+client.subscribe("industrial/sensors")
+client.loop_forever()
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Includes MQTT broker setup, sensor calibration, and network configuration.</p>
+            <h4>Documentation</h4>
+            <p>Detailed documentation with wiring diagrams, software configuration, and maintenance guidelines.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 3 -->
+    <div class="project-card">
+        <img src="images/iot3.jpg" alt="Wearable Health Monitor">
+        <div class="project-info">
+        <h3>Wearable Health Monitor</h3>
+        <p>A compact device for tracking heart rate, temperature, and movement.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>// Example code for sensor integration on a wearable device
+#include <Wire.h>
+#include <Adafruit_Sensor.h>
+#include <Adafruit_BME280.h>
+Adafruit_BME280 bme;
+void setup() { bme.begin(0x76); }
+void loop() { float temp = bme.readTemperature(); }
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Setup includes sensor calibration, Bluetooth pairing, and power management.</p>
+            <h4>Documentation</h4>
+            <p>Guide detailing hardware assembly, code explanation, and data visualization techniques.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 4 -->
+    <div class="project-card">
+        <img src="images/iot4.jpg" alt="Smart Agriculture System">
+        <div class="project-info">
+        <h3>Smart Agriculture System</h3>
+        <p>Uses IoT sensors to monitor soil moisture, temperature, and crop health.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>// Sample code for soil moisture sensor reading
+int sensorValue = analogRead(A0);
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Configured sensor network layout, irrigation control, and alert system.</p>
+            <h4>Documentation</h4>
+            <p>Full documentation on system design, sensor calibration, and user manual.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 5 -->
+    <div class="project-card">
+        <img src="images/iot5.jpg" alt="Connected Car System">
+        <div class="project-info">
+        <h3>Connected Car System</h3>
+        <p>IoT solution for vehicle diagnostics and remote monitoring.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>// Pseudocode for vehicle data logging
+void logData() {
+// Retrieve OBD-II data and log it
+}
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Configuration of OBD-II interfaces, cellular communication, and cloud storage.</p>
+            <h4>Documentation</h4>
+            <p>Documentation covers hardware integration, data flow, and maintenance procedures.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 6 -->
+    <div class="project-card">
+        <img src="images/iot6.jpg" alt="Environmental Monitoring">
+        <div class="project-info">
+        <h3>Environmental Monitoring</h3>
+        <p>Networked sensors tracking air quality, temperature, and humidity in urban areas.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>// Code snippet for air quality measurement
+#include <Adafruit_Sensor.h>
+// Further code...
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Network configuration, sensor calibration, and cloud integration setup.</p>
+            <h4>Documentation</h4>
+            <p>Documentation detailing installation steps, sensor specifications, and data analysis.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 7 -->
+    <div class="project-card">
+        <img src="images/iot7.jpg" alt="Smart Energy Meter">
+        <div class="project-info">
+        <h3>Smart Energy Meter</h3>
+        <p>Monitors energy consumption in real time using IoT-enabled sensors.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>// Sample code for reading energy data
+float consumption = readEnergySensor();
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Configuration includes sensor thresholds, calibration settings, and data transmission protocols.</p>
+            <h4>Documentation</h4>
+            <p>Guide covering hardware setup, code explanation, and performance metrics.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 8 -->
+    <div class="project-card">
+        <img src="images/iot8.jpg" alt="Smart City Lighting">
+        <div class="project-info">
+        <h3>Smart City Lighting</h3>
+        <p>Automated street lighting system adjusting brightness based on ambient light and traffic.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>// Code to adjust lighting levels
+void adjustLighting() {
+// Use sensor data to modify light intensity
+}
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Includes sensor integration, network settings, and scheduling parameters.</p>
+            <h4>Documentation</h4>
+            <p>Documentation with installation steps, system calibration, and maintenance guides.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 9 -->
+    <div class="project-card">
+        <img src="images/iot9.jpg" alt="IoT Security System">
+        <div class="project-info">
+        <h3>IoT Security System</h3>
+        <p>Integrated security solution using cameras, motion sensors, and alarms.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>// Sample code for triggering an alarm
+void triggerAlarm() {
+// Activate alarm and notify security system
+}
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Configuration covers sensor placement, network security, and alert thresholds.</p>
+            <h4>Documentation</h4>
+            <p>Complete project documentation including system diagrams, code walkthrough, and troubleshooting.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 10 -->
+    <div class="project-card">
+        <img src="images/iot10.jpg" alt="Smart Retail System">
+        <div class="project-info">
+        <h3>Smart Retail System</h3>
+        <p>Enhances inventory management and customer experience through IoT integration in retail environments.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>// Code for real-time inventory update
+void updateInventory() {
+// Retrieve and process sales data
+}
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Setup includes barcode scanner integration, database connectivity, and network settings.</p>
+            <h4>Documentation</h4>
+            <p>Full documentation detailing system design, data flow diagrams, and user instructions.</p>
+        </div>
+        </div>
+    </div>
+    </div>
+</main>
+<script>
+    document.querySelectorAll('.accordion-toggle').forEach(button => {
+    button.addEventListener('click', () => {
+        const content = button.nextElementSibling;
+        content.style.display = content.style.display === "block" ? "none" : "block";
+    });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Python Projects | John Patnugot</title>
+<link rel="stylesheet" href="css/style.css">
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+    body { background: #121212; color: #fff; font-family: Arial, sans-serif; }
+    .nav-bar { background: #1a1a1a; padding: 10px 20px; }
+    .nav-bar ul { list-style: none; display: flex; align-items: center; margin: 0; padding: 0; }
+    .nav-bar ul li { margin-right: 20px; }
+    .nav-bar ul li a { color: #00ffea; text-decoration: none; font-weight: bold; }
+    .container { max-width: 1200px; margin: 20px auto; padding: 20px; }
+    .page-title { font-size: 2.5em; margin-left: 20px; margin-bottom: 20px; background: linear-gradient(90deg, #00ffea, #ff00c8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .project-card { background: #222; border: 1px solid #00ffea; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+    .project-card img { width: 100%; }
+    .project-info { padding: 15px; }
+    .project-info h3 { margin-top: 0; }
+    .accordion-toggle { background: #00ffea; color: #000; border: none; padding: 10px; width: 100%; cursor: pointer; text-align: left; font-weight: bold; }
+    .accordion-content { display: none; padding: 10px; background: #333; }
+    pre { background: #444; padding: 10px; overflow-x: auto; }
+</style>
+</head>
+<body>
+<!-- Navigation Bar -->
+<header>
+    <nav class="nav-bar">
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="iot-projects.html">IoT Projects</a></li>
+        <li><a href="python-projects.html">Python Projects</a></li>
+        <li><a href="gamedev-projects.html">Game Dev Projects</a></li>
+        <li><a href="sap-abap-projects.html">SAP ABAP Projects</a></li>
+        <li><a href="sql-projects.html">SQL Projects</a></li>
+        <li><a href="csharp-projects.html">C# Projects</a></li>
+        <li style="margin-left:auto;"><a href="admin.html">Admin</a></li>
+    </ul>
+    </nav>
+</header>
+<main class="container">
+    <h1 class="page-title">Python Projects</h1>
+    <div class="project-grid">
+    <!-- Project 1 -->
+    <div class="project-card">
+        <img src="images/python1.jpg" alt="Web Scraper">
+        <div class="project-info">
+        <h3>Web Scraper</h3>
+        <p>A script that extracts data from websites using BeautifulSoup and Requests.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code># Python web scraping example
+import requests
+from bs4 import BeautifulSoup
+response = requests.get('https://example.com')
+soup = BeautifulSoup(response.text, 'html.parser')
+print(soup.title.text)
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Configure your Python environment and install required packages via pip.</p>
+            <h4>Documentation</h4>
+            <p>Detailed instructions on setting up the scraper, handling exceptions, and data extraction tips.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 2 -->
+    <div class="project-card">
+        <img src="images/python2.jpg" alt="Data Analysis Tool">
+        <div class="project-info">
+        <h3>Data Analysis Tool</h3>
+        <p>Utilizes Pandas and Matplotlib to clean, analyze, and visualize data.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code># Data analysis sample code
+import pandas as pd
+import matplotlib.pyplot as plt
+df = pd.read_csv('data.csv')
+df.plot()
+plt.show()
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Setup with Jupyter Notebook and installation of required libraries.</p>
+            <h4>Documentation</h4>
+            <p>Comprehensive guide covering dataset preparation, analysis steps, and visualization customization.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Projects 3-10 follow a similar structure with sample content -->
+    <div class="project-card">
+        <img src="images/python3.jpg" alt="Machine Learning Model">
+        <div class="project-info">
+        <h3>Machine Learning Model</h3>
+        <p>A regression model built with scikit-learn to predict housing prices.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code># Regression model example
+from sklearn.linear_model import LinearRegression
+model = LinearRegression()
+model.fit(X_train, y_train)
+predictions = model.predict(X_test)
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Includes dataset splitting, feature scaling, and hyperparameter tuning.</p>
+            <h4>Documentation</h4>
+            <p>Documentation on model evaluation, performance metrics, and future improvements.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 4 -->
+    <div class="project-card">
+        <img src="images/python4.jpg" alt="Chatbot Application">
+        <div class="project-info">
+        <h3>Chatbot Application</h3>
+        <p>A conversational AI chatbot built using NLTK and TensorFlow.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code># Chatbot sample code snippet
+import nltk
+# Further chatbot logic...
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Setup includes environment configuration and data preparation for training.</p>
+            <h4>Documentation</h4>
+            <p>Step-by-step guide on chatbot training, integration, and performance tuning.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 5 -->
+    <div class="project-card">
+        <img src="images/python5.jpg" alt="Automation Script">
+        <div class="project-info">
+        <h3>Automation Script</h3>
+        <p>Automates file management and routine tasks using Python.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code># Automation script example
+import os, shutil
+# Code to backup files...
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Configure cron jobs and set up environment variables.</p>
+            <h4>Documentation</h4>
+            <p>Instructions for usage, scheduling tasks, and handling errors.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 6 -->
+    <div class="project-card">
+        <img src="images/python6.jpg" alt="Flask Web Application">
+        <div class="project-info">
+        <h3>Flask Web Application</h3>
+        <p>A lightweight web app built with Flask for rapid development.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code># Flask app example
+from flask import Flask, render_template
+app = Flask(__name__)
+@app.route('/')
+def home():
+    return render_template('index.html')
+if __name__ == '__main__':
+    app.run(debug=True)
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Setup includes virtual environment, dependency management, and deployment settings.</p>
+            <h4>Documentation</h4>
+            <p>Comprehensive guide covering app structure, routing, and production deployment.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 7 -->
+    <div class="project-card">
+        <img src="images/python7.jpg" alt="Data Visualization Dashboard">
+        <div class="project-info">
+        <h3>Data Visualization Dashboard</h3>
+        <p>An interactive dashboard using Dash and Plotly for real-time data visualization.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code># Dash app sample code
+import dash
+import dash_core_components as dcc
+import dash_html_components as html
+app = dash.Dash(__name__)
+app.layout = html.Div(children=[html.H1('Dashboard'), dcc.Graph(figure={})])
+if __name__ == '__main__':
+    app.run_server(debug=True)
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Dashboard configuration and server setup details.</p>
+            <h4>Documentation</h4>
+            <p>Guide on building interactive visualizations and deploying the dashboard.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 8 -->
+    <div class="project-card">
+        <img src="images/python8.jpg" alt="REST API Development">
+        <div class="project-info">
+        <h3>REST API Development</h3>
+        <p>Building robust RESTful APIs using Django Rest Framework.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code># Django REST Framework sample
+from rest_framework import viewsets
+class MyModelViewSet(viewsets.ModelViewSet):
+    queryset = MyModel.objects.all()
+    serializer_class = MyModelSerializer
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Database and middleware configuration details.</p>
+            <h4>Documentation</h4>
+            <p>Comprehensive documentation on API endpoints and error handling.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 9 -->
+    <div class="project-card">
+        <img src="images/python9.jpg" alt="Automation Testing Framework">
+        <div class="project-info">
+        <h3>Automation Testing Framework</h3>
+        <p>Developing a testing framework using PyTest for automated tests.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code># PyTest sample test
+def test_example():
+    assert func(3) == 5
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Setup of test suites and CI/CD integration.</p>
+            <h4>Documentation</h4>
+            <p>Guidelines on writing tests, generating reports, and continuous integration best practices.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 10 -->
+    <div class="project-card">
+        <img src="images/python10.jpg" alt="Automation Chatbot">
+        <div class="project-info">
+        <h3>Automation Chatbot</h3>
+        <p>An AI-powered chatbot for automating customer support built with Python.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code># Chatbot sample using chatterbot
+from chatterbot import ChatBot
+chatbot = ChatBot('SupportBot')
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Includes training data setup and integration with messaging platforms.</p>
+            <h4>Documentation</h4>
+            <p>Detailed documentation covering design, training, and deployment of the chatbot.</p>
+        </div>
+        </div>
+    </div>
+    </div>
+</main>
+<script>
+    document.querySelectorAll('.accordion-toggle').forEach(button => {
+    button.addEventListener('click', () => {
+        const content = button.nextElementSibling;
+        content.style.display = content.style.display === "block" ? "none" : "block";
+    });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SAP ABAP Projects | John Patnugot</title>
+<link rel="stylesheet" href="css/style.css">
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+    body { background: #121212; color: #fff; font-family: Arial, sans-serif; }
+    .nav-bar { background: #1a1a1a; padding: 10px 20px; }
+    .nav-bar ul { list-style: none; display: flex; align-items: center; margin: 0; padding: 0; }
+    .nav-bar ul li { margin-right: 20px; }
+    .nav-bar ul li a { color: #00ffea; text-decoration: none; font-weight: bold; }
+    .container { max-width: 1200px; margin: 20px auto; padding: 20px; }
+    .page-title { font-size: 2.5em; margin-left: 20px; margin-bottom: 20px; background: linear-gradient(90deg, #00ffea, #ff00c8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .project-card { background: #222; border: 1px solid #00ffea; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+    .project-card img { width: 100%; }
+    .project-info { padding: 15px; }
+    .project-info h3 { margin-top: 0; }
+    .accordion-toggle { background: #00ffea; color: #000; border: none; padding: 10px; width: 100%; cursor: pointer; text-align: left; font-weight: bold; }
+    .accordion-content { display: none; padding: 10px; background: #333; }
+    pre { background: #444; padding: 10px; overflow-x: auto; }
+</style>
+</head>
+<body>
+<!-- Navigation Bar -->
+<header>
+    <nav class="nav-bar">
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="iot-projects.html">IoT Projects</a></li>
+        <li><a href="python-projects.html">Python Projects</a></li>
+        <li><a href="gamedev-projects.html">Game Dev Projects</a></li>
+        <li><a href="sap-abap-projects.html">SAP ABAP Projects</a></li>
+        <li><a href="sql-projects.html">SQL Projects</a></li>
+        <li><a href="csharp-projects.html">C# Projects</a></li>
+        <li style="margin-left:auto;"><a href="admin.html">Admin</a></li>
+    </ul>
+    </nav>
+</header>
+<main class="container">
+    <h1 class="page-title">SAP ABAP Projects</h1>
+    <div class="project-grid">
+    <!-- Project 1 -->
+    <div class="project-card">
+        <img src="images/sap1.jpg" alt="Custom Report Development">
+        <div class="project-info">
+        <h3>Custom Report Development</h3>
+        <p>Developing custom ABAP reports to meet unique business requirements.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>* Sample ABAP code for custom report
+REPORT z_custom_report.
+WRITE: 'Custom Report Output'.
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Set up report variants and select appropriate data sources.</p>
+            <h4>Documentation</h4>
+            <p>Documentation covering report design, coding standards, and performance tuning.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 2 -->
+    <div class="project-card">
+        <img src="images/sap2.jpg" alt="Enhancement Implementation">
+        <div class="project-info">
+        <h3>Enhancement Implementation</h3>
+        <p>Utilizing user exits and BAdIs to enhance standard SAP functionality.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>* Example BAdI implementation code
+DATA: lv_value TYPE char10.
+CALL METHOD cl_exits=>method.
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Configure enhancement spots and test thoroughly before deployment.</p>
+            <h4>Documentation</h4>
+            <p>Guidelines on implementation, impact analysis, and rollback procedures.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 3 -->
+    <div class="project-card">
+        <img src="images/sap3.jpg" alt="Smart Form Development">
+        <div class="project-info">
+        <h3>Smart Form Development</h3>
+        <p>Designing and implementing SAP Smart Forms for efficient document generation.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>* Sample smart form code snippet
+FORM display_form.
+WRITE: 'Smart Form Content'.
+ENDFORM.
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Define form layout, bind data elements, and adjust output formatting.</p>
+            <h4>Documentation</h4>
+            <p>Instructions on smart form creation, troubleshooting, and optimization.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 4 -->
+    <div class="project-card">
+        <img src="images/sap4.jpg" alt="Workflow Automation">
+        <div class="project-info">
+        <h3>Workflow Automation</h3>
+        <p>Automating business processes using SAP Workflow and ABAP enhancements.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>* Code to trigger a workflow
+CALL FUNCTION 'SAP_WAPI_START_WORKFLOW'
+EXPORTING
+    workflow_id = 'Z_WORKFLOW'.
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Configure workflow, assign agents, and set up task monitoring.</p>
+            <h4>Documentation</h4>
+            <p>Workflow diagrams, process flows, and integration details are documented.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 5 -->
+    <div class="project-card">
+        <img src="images/sap5.jpg" alt="Data Migration Tool">
+        <div class="project-info">
+        <h3>Data Migration Tool</h3>
+        <p>Developing ABAP programs for efficient data migration between SAP systems.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>* Data migration sample code
+DATA: lt_data TYPE TABLE OF mara.
+SELECT * FROM mara INTO TABLE lt_data.
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Includes data mapping, error handling, and performance optimization.</p>
+            <h4>Documentation</h4>
+            <p>Full documentation covering migration strategy, field mapping, and validation procedures.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 6 -->
+    <div class="project-card">
+        <img src="images/sap6.jpg" alt="User Interface Enhancement">
+        <div class="project-info">
+        <h3>User Interface Enhancement</h3>
+        <p>Improving SAP interfaces with ALV grid enhancements and custom layouts.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>* ALV grid customization sample
+CALL FUNCTION 'REUSE_ALV_GRID_DISPLAY'
+EXPORTING
+    i_callback_program = sy-repid.
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Configure field catalog, layout settings, and event handling.</p>
+            <h4>Documentation</h4>
+            <p>Guidelines on UI improvements, user training, and performance impact.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 7 -->
+    <div class="project-card">
+        <img src="images/sap7.jpg" alt="Custom Transaction">
+        <div class="project-info">
+        <h3>Custom Transaction Code</h3>
+        <p>Creating custom transactions to streamline SAP business processes.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>* ABAP code for a custom transaction
+REPORT z_custom_transaction.
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Set up transaction parameters and user authorizations.</p>
+            <h4>Documentation</h4>
+            <p>Step-by-step instructions on transaction setup, usage, and support.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 8 -->
+    <div class="project-card">
+        <img src="images/sap8.jpg" alt="BAPI Integration">
+        <div class="project-info">
+        <h3>BAPI Integration</h3>
+        <p>Integrating external systems using SAP BAPIs for seamless data exchange.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>* BAPI call sample
+CALL FUNCTION 'BAPI_CUSTOMER_GETDETAIL'
+EXPORTING
+    customerid = '0001'.
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Configure BAPI interfaces, map data fields, and handle errors.</p>
+            <h4>Documentation</h4>
+            <p>Documentation covering integration steps, connection settings, and data validation.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 9 -->
+    <div class="project-card">
+        <img src="images/sap9.jpg" alt="Report Enhancement">
+        <div class="project-info">
+        <h3>Report Enhancement</h3>
+        <p>Upgrading standard SAP reports with additional functionality and better performance.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>* Enhancement sample code
+MODIFY REPORT z_standard_report.
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Parameter tuning and layout adjustments for enhanced performance.</p>
+            <h4>Documentation</h4>
+            <p>Guidelines on report enhancement techniques and testing procedures.</p>
+        </div>
+        </div>
+    </div>
+    <!-- Project 10 -->
+    <div class="project-card">
+        <img src="images/sap10.jpg" alt="Workflow Customization">
+        <div class="project-info">
+        <h3>Workflow Customization</h3>
+        <p>Customizing SAP workflows to meet specific business process needs.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>* Sample code for workflow customization
+FORM customize_workflow.
+WRITE: 'Workflow Customized'.
+ENDFORM.
+</code></pre>
+            <h4>Configuration</h4>
+            <p>Configure workflow settings, approval processes, and monitoring tools.</p>
+            <h4>Documentation</h4>
+            <p>Comprehensive documentation covering customization steps, implementation, and user guides.</p>
+        </div>
+        </div>
+    </div>
+    </div>
+</main>
+<script>
+    document.querySelectorAll('.accordion-toggle').forEach(button => {
+    button.addEventListener('click', () => {
+        const content = button.nextElementSibling;
+        content.style.display = content.style.display === "block" ? "none" : "block";
+    });
+    });
+</script>
+</body>
+</html>
