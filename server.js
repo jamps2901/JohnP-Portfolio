@@ -319,4 +319,76 @@ function loadVideos() {
     })
     .catch(error => console.error('Error loading videos:', error));
 }
+// Projects Express Server and API Endpoints
+// server.js
+
+const mongoose = require('mongoose');
+const cors = require('cors');
+
+const Project = require('./models/Project');
+
+// Middleware
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Connect to MongoDB
+mongoose.connect('mongodb://localhost:27017/projectadmin', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => console.log('MongoDB connected'))
+.catch(err => console.error('MongoDB connection error:', err));
+
+// API Endpoints
+
+// Create a new project
+app.post('/admin/projects', async (req, res) => {
+  try {
+    const project = new Project(req.body);
+    await project.save();
+    res.status(201).json(project);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+// Get all projects or filter by category (e.g., /admin/projects?category=iot)
+app.get('/admin/projects', async (req, res) => {
+  try {
+    const filter = req.query.category ? { category: req.query.category } : {};
+    const projects = await Project.find(filter).sort({ createdAt: -1 });
+    res.json(projects);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Update a project by ID
+app.put('/admin/projects/:id', async (req, res) => {
+  try {
+    const project = await Project.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!project) return res.status(404).json({ error: 'Project not found' });
+    res.json(project);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+// Delete a project by ID
+app.delete('/admin/projects/:id', async (req, res) => {
+  try {
+    const project = await Project.findByIdAndDelete(req.params.id);
+    if (!project) return res.status(404).json({ error: 'Project not found' });
+    res.json({ message: 'Project deleted successfully' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
 

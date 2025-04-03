@@ -25,9 +25,8 @@
     pre { background: #444; padding: 10px; overflow-x: auto; }
 </style>
 </head>
-<body>
+<body class="sql-page">
 <!-- Navigation Bar -->
-<header>
     <nav class="nav-bar">
     <ul>
         <li><a href="index.html">Home</a></li>
@@ -40,7 +39,17 @@
         <li style="margin-left:auto;"><a href="admin.html">Admin</a></li>
     </ul>
     </nav>
+
+<!-- SQL Digital Query Matrix Header -->
+<!-- SQL Floating Data Blocks Header -->
+<header class="sql-header">
+<canvas id="sqlCanvas"></canvas>
+<div class="sql-content">
+    <h1 class="sql-title">SQL Projects</h1>
+    <p class="sql-sub">Precision. Structure. Insight.</p>
+</div>
 </header>
+
 <main class="container">
     <h1 class="page-title">SQL Projects</h1>
     <div class="project-grid">
@@ -238,13 +247,121 @@ SELECT * FROM cloud_table;
     </div>
     </div>
 </main>
+<main class="container">
+    <h1 class="page-title">SQL Projects</h1>
+    <div id="projectsDisplay" class="project-grid"></div>
+</main>
 <script>
+    function loadProjects(category) {
+    fetch('http://localhost:3000/admin/projects?category=' + category)
+        .then(response => response.json())
+        .then(projects => {
+        let html = '';
+        projects.forEach(project => {
+            html += `
+            <div class="project-card">
+                <img src="${project.image}" alt="${project.title}">
+                <div class="project-info">
+                <h3>${project.title}</h3>
+                <p>${project.description}</p>
+                <button class="accordion-toggle">View Details</button>
+                <div class="accordion-content">
+                    <h4>Code</h4>
+                    <pre><code>${project.code}</code></pre>
+                    <h4>Configuration</h4>
+                    <p>${project.configuration}</p>
+                    <h4>Documentation</h4>
+                    <p>${project.documentation}</p>
+                </div>
+                </div>
+            </div>
+            `;
+        });
+        document.getElementById('projectsDisplay').innerHTML = html;
+        document.querySelectorAll('.accordion-toggle').forEach(button => {
+            button.addEventListener('click', () => {
+            const content = button.nextElementSibling;
+            content.style.display = content.style.display === "block" ? "none" : "block";
+            });
+        });
+        })
+        .catch(err => console.error('Error loading projects:', err));
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+    loadProjects('sql');
+    });
+</script>
+<script>
+const canvas = document.getElementById('sqlCanvas');
+const ctx = canvas.getContext('2d');
+
+const keywords = [
+    'SELECT', 'INSERT', 'UPDATE', 'DELETE', 'JOIN', 'LEFT JOIN', 'RIGHT JOIN',
+    'WHERE', 'GROUP BY', 'ORDER BY', 'LIMIT', 'OFFSET', 'HAVING', 'DISTINCT',
+    'UNION', 'CREATE', 'ALTER', 'DROP', 'TABLE', 'VIEW', 'INDEX'
+];
+
+function randomKeyword() {
+    return keywords[Math.floor(Math.random() * keywords.length)];
+}
+
+let blocks = [];
+
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = document.querySelector('.sql-header').offsetHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+function createBlock() {
+    return {
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    size: Math.random() * 40 + 20,
+    speed: Math.random() * 1.5 + 0.5,
+    opacity: Math.random() * 0.4 + 0.2,
+    text: randomKeyword(),
+    fontSize: Math.floor(Math.random() * 14 + 12)
+    };
+}
+
+for (let i = 0; i < 40; i++) blocks.push(createBlock());
+
+function animateSQLBlocks() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (let block of blocks) {
+    // Draw rectangle block
+    ctx.fillStyle = `rgba(0, 255, 200, ${block.opacity})`;
+    ctx.fillRect(block.x, block.y, block.size, block.size);
+
+    // Draw keyword inside
+    ctx.font = `${block.fontSize}px monospace`;
+    ctx.fillStyle = `rgba(255, 255, 255, ${block.opacity + 0.2})`;
+    ctx.fillText(block.text, block.x + 5, block.y + block.size / 1.5);
+
+    block.y -= block.speed;
+    if (block.y + block.size < 0) {
+        Object.assign(block, createBlock(), { y: canvas.height + block.size });
+    }
+    }
+
+    requestAnimationFrame(animateSQLBlocks);
+}
+animateSQLBlocks();
+</script>
+<script>
+    // Toggle for all accordion buttons (both static & dynamic)
+    document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.accordion-toggle').forEach(button => {
-    button.addEventListener('click', () => {
+        button.addEventListener('click', () => {
         const content = button.nextElementSibling;
         content.style.display = content.style.display === "block" ? "none" : "block";
+        });
     });
     });
 </script>
+
 </body>
 </html>

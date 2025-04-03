@@ -8,13 +8,54 @@
 <!-- Font Awesome for icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-    body { background: #121212; color: #fff; font-family: Arial, sans-serif; }
+    /* Global Styles */
+    body { background: #121212; color: #fff; font-family: Arial, sans-serif; margin: 0; padding: 0; }
     .nav-bar { background: #1a1a1a; padding: 10px 20px; }
     .nav-bar ul { list-style: none; display: flex; align-items: center; margin: 0; padding: 0; }
     .nav-bar ul li { margin-right: 20px; }
     .nav-bar ul li a { color: #00ffea; text-decoration: none; font-weight: bold; }
+
+        /* Hero Header for IoT Projects */
+        .hero {
+    position: relative;
+    height: 50vh;
+    width: 100%;
+    overflow: hidden;
+    }
+    .video-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    }
+    .video-container iframe {
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* so interactions pass through */
+    filter: brightness(0.7);
+    }
+    .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    }
+    .hero-overlay h1 {
+    font-size: 3em;
+    background: linear-gradient(90deg, #00ffea, #ff00c8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    }
     .container { max-width: 1200px; margin: 20px auto; padding: 20px; }
-    .page-title { font-size: 2.5em; margin-left: 20px; margin-bottom: 20px; background: linear-gradient(90deg, #00ffea, #ff00c8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .page-title { font-size: 2.5em; margin: 20px; background: linear-gradient(90deg, #00ffea, #ff00c8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
     .project-card { background: #222; border: 1px solid #00ffea; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
     .project-card img { width: 100%; }
@@ -25,24 +66,32 @@
     pre { background: #444; padding: 10px; overflow-x: auto; }
 </style>
 </head>
-<body>
+<body class="iot-page">
 <!-- Navigation Bar -->
-<header>
+
     <nav class="nav-bar">
     <ul>
         <li><a href="index.html">Home</a></li>
-        <li><a href="iot-projects.html">IoT Projects</a></li>
-        <li><a href="python-projects.html">Python Projects</a></li>
-        <li><a href="gamedev-projects.html">Game Dev Projects</a></li>
-        <li><a href="sap-abap-projects.html">SAP ABAP Projects</a></li>
-        <li><a href="sql-projects.html">SQL Projects</a></li>
-        <li><a href="csharp-projects.html">C# Projects</a></li>
+        <li><a href="iot-Projects.html">IoT Projects</a></li>
+        <li><a href="python-Projects.html">Python Projects</a></li>
+        <li><a href="gamedev-Projects.html">Game Dev Projects</a></li>
+        <li><a href="sap-abap-Projects.html">SAP ABAP Projects</a></li>
+        <li><a href="sql-Projects.html">SQL Projects</a></li>
+        <li><a href="csharp-Projects.html">C# Projects</a></li>
         <li style="margin-left:auto;"><a href="admin.html">Admin</a></li>
     </ul>
     </nav>
-</header>
+
+<!-- Hero Header -->
+    <header class="iot-header">
+        <div class="iot-overlay"></div>
+        <h1 class="iot-title">Internet of Things Projects</h1>
+        <p class="iot-sub">Smart. Connected. Intelligent.</p>
+        <canvas id="iotCanvas"></canvas>
+    </header>
+
 <main class="container">
-    <h1 class="page-title">IoT Projects</h1>
+    <h1 class="page-title">Projects</h1>
     <div class="project-grid">
     <!-- Project 1 -->
     <div class="project-card">
@@ -262,13 +311,131 @@ void updateInventory() {
     </div>
     </div>
 </main>
+<main class="container">
+    <h1 class="page-title">IoT Projects</h1>
+    <!-- Container for dynamically loaded Projects -->
+    <div id="ProjectsDisplay" class="project-grid"></div>
+    <!-- (Optional) Static Project Grid for reference. Comment out if not needed.
+    <div class="project-grid">
+    ... (your static project cards) ...
+    </div>
+    -->
+</main>
 <script>
+    function loadPublicIotProjects() {
+    fetch('http://localhost:3000/admin/Projects?category=iot')
+        .then(response => response.json())
+        .then(Projects => {
+        let html = '';
+        Projects.forEach(project => {
+            html += `
+            <div class="project-card">
+                <img src="${project.image}" alt="${project.title}">
+                <div class="project-info">
+                <h3>${project.title}</h3>
+                <p>${project.description}</p>
+                <button class="accordion-toggle">View Details</button>
+                <div class="accordion-content">
+                    <h4>Code</h4>
+                    <pre><code>${project.code}</code></pre>
+                    <h4>Configuration</h4>
+                    <p>${project.configuration}</p>
+                    <h4>Documentation</h4>
+                    <p>${project.documentation}</p>
+                </div>
+                </div>
+            </div>
+            `;
+        });
+        document.getElementById('ProjectsDisplay').innerHTML = html;
+        // Attach toggle functionality to dynamically created buttons
+        document.querySelectorAll('.accordion-toggle').forEach(button => {
+            button.addEventListener('click', () => {
+            const content = button.nextElementSibling;
+            content.style.display = content.style.display === "block" ? "none" : "block";
+            });
+        });
+        })
+        .catch(err => console.error('Error loading public Projects:', err));
+    }
+    document.addEventListener('DOMContentLoaded', loadPublicIotProjects);
+</script>
+<script>
+    const canvas = document.getElementById('iotCanvas');
+    const ctx = canvas.getContext('2d');
+    let nodes = [];
+
+    function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = document.querySelector('.iot-header').offsetHeight;
+    }
+
+    function initNodes() {
+    nodes = [];
+    for (let i = 0; i < 50; i++) {
+        nodes.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: 1 + Math.random() * 2,
+        dx: (Math.random() - 0.5) * 0.5,
+        dy: (Math.random() - 0.5) * 0.5,
+        });
+    }
+    }
+
+    function drawNodes() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    nodes.forEach((n, i) => {
+        n.x += n.dx;
+        n.y += n.dy;
+
+        if (n.x < 0 || n.x > canvas.width) n.dx *= -1;
+        if (n.y < 0 || n.y > canvas.height) n.dy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
+        ctx.fillStyle = '#00ffcc';
+        ctx.fill();
+
+        for (let j = i + 1; j < nodes.length; j++) {
+        const n2 = nodes[j];
+        const dist = Math.hypot(n.x - n2.x, n.y - n2.y);
+        if (dist < 100) {
+            ctx.strokeStyle = `rgba(0,255,204,${1 - dist / 100})`;
+            ctx.lineWidth = 0.5;
+            ctx.beginPath();
+            ctx.moveTo(n.x, n.y);
+            ctx.lineTo(n2.x, n2.y);
+            ctx.stroke();
+        }
+        }
+    });
+    }
+
+    function animate() {
+    drawNodes();
+    requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', () => {
+    resize();
+    initNodes();
+    });
+
+    resize();
+    initNodes();
+    animate();
+</script>
+<script>
+// Toggle for all accordion buttons (both static & dynamic)
+document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.accordion-toggle').forEach(button => {
     button.addEventListener('click', () => {
         const content = button.nextElementSibling;
         content.style.display = content.style.display === "block" ? "none" : "block";
     });
     });
+});
 </script>
 </body>
 </html>

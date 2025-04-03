@@ -25,10 +25,9 @@
     pre { background: #444; padding: 10px; overflow-x: auto; }
 </style>
 </head>
-<body>
+<body class="gamedev-page">
 <!-- Navigation Bar -->
-<header>
-    <nav class="nav-bar">
+<nav class="nav-bar">
     <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="iot-projects.html">IoT Projects</a></li>
@@ -39,8 +38,15 @@
         <li><a href="csharp-projects.html">C# Projects</a></li>
         <li style="margin-left:auto;"><a href="admin.html">Admin</a></li>
     </ul>
-    </nav>
+</nav>
+<header class="gamedev-header">
+    <canvas id="nebulaCanvas"></canvas>
+    <div class="gamedev-content">
+    <h1 class="gamedev-title">Game Development</h1>
+    <p class="gamedev-sub">Level Up Your Code</p>
+    </div>
 </header>
+
 <main class="container">
     <h1 class="page-title">Game Development Projects</h1>
     <div class="project-grid">
@@ -258,13 +264,102 @@ void SimulateCity() {
     </div>
     </div>
 </main>
+
+<main class="container">
+    <h1 class="page-title">Game Dev Projects</h1>
+    <div id="projectsDisplay" class="project-grid"></div>
+</main>
 <script>
-    document.querySelectorAll('.accordion-toggle').forEach(button => {
-    button.addEventListener('click', () => {
-        const content = button.nextElementSibling;
-        content.style.display = content.style.display === "block" ? "none" : "block";
-    });
+    function loadProjects(category) {
+    fetch('http://localhost:3000/admin/projects?category=' + category)
+        .then(response => response.json())
+        .then(projects => {
+        let html = '';
+        projects.forEach(project => {
+            html += `
+            <div class="project-card">
+                <img src="${project.image}" alt="${project.title}">
+                <div class="project-info">
+                <h3>${project.title}</h3>
+                <p>${project.description}</p>
+                <button class="accordion-toggle">View Details</button>
+                <div class="accordion-content">
+                    <h4>Code</h4>
+                    <pre><code>${project.code}</code></pre>
+                    <h4>Configuration</h4>
+                    <p>${project.configuration}</p>
+                    <h4>Documentation</h4>
+                    <p>${project.documentation}</p>
+                </div>
+                </div>
+            </div>
+            `;
+        });
+        document.getElementById('projectsDisplay').innerHTML = html;
+        document.querySelectorAll('.accordion-toggle').forEach(button => {
+            button.addEventListener('click', () => {
+            const content = button.nextElementSibling;
+            content.style.display = content.style.display === "block" ? "none" : "block";
+            });
+        });
+        })
+        .catch(err => console.error('Error loading projects:', err));
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+    loadProjects('gamedev');
     });
 </script>
+<script>
+    const nebulaCanvas = document.getElementById('nebulaCanvas');
+    const ctxNebula = nebulaCanvas.getContext('2d');
+    nebulaCanvas.width = window.innerWidth;
+    nebulaCanvas.height = document.querySelector('.gamedev-header').offsetHeight;
+
+    let stars = Array(200).fill().map(() => ({
+    x: Math.random() * nebulaCanvas.width,
+    y: Math.random() * nebulaCanvas.height,
+    size: Math.random() * 1.5 + 0.5,
+    speed: Math.random() * 0.2 + 0.1,
+    color: `hsl(${Math.random() * 360}, 100%, 75%)`
+    }));
+
+    function drawNebula() {
+    ctxNebula.fillStyle = 'rgba(0, 0, 10, 0.1)';
+    ctxNebula.fillRect(0, 0, nebulaCanvas.width, nebulaCanvas.height);
+
+    stars.forEach(star => {
+        ctxNebula.beginPath();
+        ctxNebula.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+        ctxNebula.fillStyle = star.color;
+        ctxNebula.shadowBlur = 10;
+        ctxNebula.shadowColor = star.color;
+        ctxNebula.fill();
+        star.y += star.speed;
+        if (star.y > nebulaCanvas.height) {
+        star.y = 0;
+        star.x = Math.random() * nebulaCanvas.width;
+        }
+    });
+
+    requestAnimationFrame(drawNebula);
+    }
+    drawNebula();
+
+    window.addEventListener('resize', () => {
+    nebulaCanvas.width = window.innerWidth;
+    nebulaCanvas.height = document.querySelector('.gamedev-header').offsetHeight;
+    });
+    </script>
+    <script>
+        // Toggle for all accordion buttons (both static & dynamic)
+        document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.accordion-toggle').forEach(button => {
+            button.addEventListener('click', () => {
+            const content = button.nextElementSibling;
+            content.style.display = content.style.display === "block" ? "none" : "block";
+            });
+        });
+        });
+    </script>
 </body>
 </html>

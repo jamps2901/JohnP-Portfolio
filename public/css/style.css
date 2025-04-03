@@ -655,5 +655,493 @@ padding: 20px;
     font-weight: bold;
 }
 
+/* IOT Header Section  */
+.iot-header {
+    position: relative;
+    height: 50vh;
+    background: radial-gradient(ellipse at center, #0f0f0f 0%, #000000 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: #00ffcc;
+    text-align: center;
+}
+
+.iot-title {
+    font-size: 3rem;
+    z-index: 2;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.iot-sub {
+    font-size: 1.2rem;
+    z-index: 2;
+    color: #66ffe0;
+}
+
+.iot-overlay {
+    position: absolute;
+    inset: 0;
+    background: url('https://www.transparenttextures.com/patterns/circles.png');
+    opacity: 0.05;
+    z-index: 1;
+}
+
+#iotCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+}
+body {
+    margin: 0;
+}
+
+.nav-bar ul {
+    margin: 0;
+}
+
+/* IOT-SPECIFIC CARD THEME */
+.iot-page .card {
+    background: #0a0f0a;
+    border: 1px solid #00ffea;
+    box-shadow: 0 2px 5px rgba(0, 255, 234, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.iot-page .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 255, 234, 0.6);
+}
+
+/* IOT HEADER TITLE & SECTION THEMES */
+.iot-page .project-title,
+.iot-page h1,
+.iot-page h2,
+.iot-page .slogan {
+    color: #00ffea !important;
+    text-shadow: 0 0 5px #00ffea;
+}
+
+/* IOT ACCORDION & DOWNLOAD BUTTONS */
+.iot-page .download-btn,
+.iot-page .accordion-toggle {
+    background: #00ffea;
+    color: #000;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+    text-align: left;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 5px;
+    font-family: inherit;
+}
+
+.iot-page .download-btn:hover,
+.iot-page .accordion-toggle:hover {
+    background: #33ffcc;
+    transform: scale(1.03);
+    box-shadow: 0 0 10px rgba(0, 255, 234, 0.5);
+}
+
+/* OPTIONAL: ACCORDION CONTENT SMOOTH ANIMATION */
+.iot-page .accordion-content {
+    background: #111;
+    color: #fff;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    animation: fadeIn 0.3s ease;
+}
 
 
+/* Python HTML header and body scope Section  */
+.python-header {
+position: relative;
+height: 50vh;
+background: linear-gradient(160deg, #000000, #0f0f0f);
+overflow: hidden;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.python-content {
+position: relative;
+z-index: 2;
+text-align: center;
+color: #33ff66;
+}
+
+.python-title {
+font-size: 3rem;
+font-weight: bold;
+letter-spacing: 1px;
+}
+
+.python-sub {
+font-size: 1.2rem;
+color: #88ffbb;
+}
+
+#snakeCanvas {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: 1;
+opacity: 0.3;
+}
+
+.python-page .card {
+    background: #0a0f0a;
+    border: 1px solid #33ff66;
+    box-shadow: 0 2px 5px rgba(51, 255, 102, 0.3);
+}
+
+.python-page .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(51, 255, 102, 0.6);
+}
+
+.python-page .project-title,
+.python-page h1,
+.python-page .slogan {
+    color: #33ff66 !important;
+    text-shadow: 0 0 5px #33ff66;
+}
+
+.python-page .download-btn,
+.python-page .accordion-toggle {
+    background: #00ffea;
+color: #000;
+border: none;
+padding: 10px;
+width: 100%;
+cursor: pointer;
+text-align: left;
+font-weight: bold;
+transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+border-radius: 5px;
+}
+
+.python-page .download-btn:hover,
+.python-page .accordion-toggle:hover {
+    background: #44ff88;
+    transform: scale(1.05);
+}
+
+/* ==== C# Tron Themed Header ==== */
+.csharp-header {
+    position: relative;
+    height: 50vh;
+    background: radial-gradient(ellipse at center, #080c10, #000000);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#pulseCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0.25;
+}
+
+.csharp-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: #00ccff;
+}
+
+.csharp-title {
+    font-size: 3rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px #00ccff;
+}
+
+.csharp-sub {
+    font-size: 1.2rem;
+    color: #66faff;
+}
+
+.csharp-page .card {
+    background: #0b1014;
+    border: 1px solid #00ccff;
+    box-shadow: 0 2px 5px rgba(0, 204, 255, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.csharp-page .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 204, 255, 0.6);
+}
+
+.csharp-page .project-title,
+.csharp-page h1,
+.csharp-page h2,
+.csharp-page .slogan {
+    color: #00ccff !important;
+    text-shadow: 0 0 5px #00ccff;
+}
+
+.csharp-page .accordion-toggle,
+.csharp-page .download-btn {
+    background: #00ccff;
+    color: #000;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+    text-align: left;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 5px;
+}
+
+.csharp-page .accordion-toggle:hover,
+.csharp-page .download-btn:hover {
+    background: #33e0ff;
+    transform: scale(1.03);
+    box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+}
+
+
+/* GameDev html CSS script */
+.gamedev-header {
+    position: relative;
+    height: 50vh;
+    background: linear-gradient(180deg, #0d0221, #1a044d);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#nebulaCanvas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    opacity: 0.6;
+}
+
+.gamedev-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: #ff00ff;
+}
+
+.gamedev-title {
+    font-size: 3rem;
+    font-family: 'Orbitron', sans-serif;
+    color: #f0f;
+    text-shadow: 0 0 15px #ff00ff, 0 0 25px #00fff7;
+}
+
+.gamedev-sub {
+    font-size: 1.2rem;
+    color: #66faff;
+    text-shadow: 0 0 5px #fff;
+}
+
+.gamedev-page .card {
+    background: #1a0033;
+    border: 1px solid #ff00ff;
+    box-shadow: 0 2px 10px rgba(255, 0, 255, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.gamedev-page .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(255, 0, 255, 0.8);
+}
+
+.gamedev-page h1,
+.gamedev-page h2,
+.gamedev-page .slogan,
+.gamedev-page .project-title {
+    color: #ff00ff;
+    text-shadow: 0 0 5px #ff00ff;
+}
+
+.gamedev-page .accordion-toggle,
+.gamedev-page .download-btn {
+    background: #ff00ff;
+    color: #000;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.gamedev-page .accordion-toggle:hover,
+.gamedev-page .download-btn:hover {
+    background: #ff66ff;
+    transform: scale(1.03);
+    box-shadow: 0 0 10px #ff00ff;
+}
+
+/* SAP ABAP Crystal Grid Console Theme */
+.sapabap-header {
+    position: relative;
+    height: 50vh;
+    background: linear-gradient(to bottom, #071d2b, #0c2a4d);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#abapGridCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0.5;
+}
+
+.sapabap-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: #aee8ff;
+}
+
+.sapabap-title {
+    font-size: 3rem;
+    font-weight: bold;
+    text-shadow: 0 0 12px #aee8ff;
+}
+
+.sapabap-sub {
+    font-size: 1.2rem;
+    color: #d0f1ff;
+    text-shadow: 0 0 5px #79d4ff;
+}
+
+/* Theme Scope for SAP ABAP Page */
+.sapabap-page .card {
+    background: #0a192f;
+    border: 1px solid #79d4ff;
+    box-shadow: 0 2px 6px rgba(121, 212, 255, 0.4);
+}
+
+.sapabap-page .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(121, 212, 255, 0.7);
+}
+
+.sapabap-page h1,
+.sapabap-page h2,
+.sapabap-page .project-title,
+.sapabap-page .slogan {
+    color: #aee8ff;
+    text-shadow: 0 0 6px #aee8ff;
+}
+
+.sapabap-page .accordion-toggle,
+.sapabap-page .download-btn {
+    background: #79d4ff;
+    color: #000;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sapabap-page .accordion-toggle:hover,
+.sapabap-page .download-btn:hover {
+    background: #b9f2ff;
+    transform: scale(1.03);
+    box-shadow: 0 0 10px rgba(121, 212, 255, 0.6);
+}
+
+/* ==== SQL Floating Data Blocks Theme ==== */
+.sql-header {
+position: relative;
+height: 50vh;
+background: linear-gradient(160deg, #0a0a0a, #001f1f);
+overflow: hidden;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+#sqlCanvas {
+position: absolute;
+width: 100%;
+height: 100%;
+top: 0; left: 0;
+z-index: 1;
+opacity: 0.25;
+}
+
+.sql-content {
+position: relative;
+z-index: 2;
+text-align: center;
+color: #00ffe5;
+}
+
+.sql-title {
+font-size: 3rem;
+font-weight: bold;
+letter-spacing: 1px;
+text-shadow: 0 0 10px #00ffe5;
+}
+
+.sql-sub {
+font-size: 1.2rem;
+color: #99fff2;
+}
+
+/* SQL Page Color Theme */
+.sql-page .card {
+background: #031618;
+border: 1px solid #00ffe5;
+box-shadow: 0 2px 10px rgba(0, 255, 229, 0.3);
+}
+
+.sql-page .card:hover {
+transform: scale(1.05);
+box-shadow: 0 4px 15px rgba(0, 255, 229, 0.6);
+}
+
+.sql-page h1,
+.sql-page h2,
+.sql-page .slogan,
+.sql-page .project-title {
+color: #00ffe5;
+text-shadow: 0 0 5px #00ffe5;
+}
+
+.sql-page .accordion-toggle,
+.sql-page .download-btn {
+background: #00ffe5;
+color: #000;
+transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sql-page .accordion-toggle:hover,
+.sql-page .download-btn:hover {
+background: #66fff2;
+transform: scale(1.03);
+box-shadow: 0 0 10px #00ffe5;
+}

@@ -2,26 +2,86 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Admin Dashboard</title>
+<title>Admin Dashboard | John Patnugot</title>
 <link rel="stylesheet" href="css/style.css">
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-    /* Advanced AI-themed admin dashboard styling */
+    /* Global Styles */
     body {
     background: linear-gradient(45deg, #1a1a2e, #16213e, #0f3460, #53354a);
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
     }
+    @keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+    }
+    /* Navigation Bar */
+    .nav-bar {
+    background: #1a1a1a;
+    padding: 10px 20px;
+    }
+    .nav-bar ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    }
+    .nav-bar ul li {
+    position: relative;
+    margin-right: 20px;
+    }
+    .nav-bar ul li a {
+    color: #00ffea;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 12px;
+    }
+    .nav-bar ul li a:hover {
+    color: #ff00c8;
+    }
+    .dropdown .dropdown-content {
+    display: none;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.9);
+    min-width: 160px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    z-index: 1;
+    }
+    .dropdown .dropdown-content a {
+    color: #00ffea;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background 0.3s;
+    }
+    .dropdown .dropdown-content a:hover {
+    background: rgba(0, 0, 0, 0.7);
+    }
+    .dropdown:hover .dropdown-content {
+    display: block;
+    }
+    /* Dashboard Container */
     .dashboard {
-    max-width: 800px;
+    max-width: 1000px;
     margin: 50px auto;
     padding: 40px;
     border: 1px solid #00ffea;
     border-radius: 10px;
     background: rgba(0, 0, 0, 0.7);
     color: #fff;
-    text-align: center;
     box-shadow: 0 4px 10px rgba(0,0,0,0.5);
     animation: fadeIn 2s;
+    }
+    @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
     }
     .dashboard h2 {
     font-size: 2em;
@@ -29,13 +89,19 @@
     background: linear-gradient(90deg, #00ffea, #ff00c8);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    text-align: center;
     }
-    .dashboard form input, .dashboard form button {
+    /* Forms */
+    .dashboard form input, 
+    .dashboard form textarea, 
+    .dashboard form button {
     width: 90%;
     padding: 12px;
     margin: 10px auto;
     border-radius: 5px;
     border: 1px solid #00ffea;
+    display: block;
+    box-sizing: border-box;
     }
     .dashboard form button {
     background: linear-gradient(90deg, #00ffea, #ff00c8);
@@ -53,12 +119,9 @@
     margin-top: 20px;
     color: #00ffea;
     text-decoration: none;
+    text-align: center;
     }
-    #uploadStatus, #cvUploadStatus, #credentialsStatus {
-    margin-top: 20px;
-    font-size: 1.2em;
-    color: #00ffea;
-    }
+    /* Tables */
     table {
     width: 100%;
     border-collapse: collapse;
@@ -81,9 +144,43 @@
     border-radius: 3px;
     margin: 0 5px;
     }
+    /* Section Headings */
+    section {
+    margin-bottom: 50px;
+    text-align: center;
+    border: 1px solid #00ffea;
+    padding: 20px;
+    border-radius: 10px;
+    }
+    section h3 {
+    margin-top: 0;
+    }
 </style>
 </head>
 <body>
+<!-- Navigation Bar with Projects Dropdown -->
+<header>
+    <nav class="nav-bar">
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li class="dropdown">
+        <a href="javascript:void(0)" class="dropbtn">Projects <i class="fa fa-chevron-down"></i></a>
+        <div class="dropdown-content">
+            <a href="iot-projects.html">IoT Projects</a>
+            <a href="python-projects.html">Python Projects</a>
+            <a href="gamedev-projects.html">Game Dev Projects</a>
+            <a href="sap-abap-projects.html">SAP ABAP Projects</a>
+            <a href="sql-projects.html">SQL Projects</a>
+            <a href="csharp-projects.html">C# Projects</a>
+        </div>
+        </li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contactForm">Contact</a></li>
+        <li style="margin-left:auto;"><a href="admin.html">Admin</a></li>
+    </ul>
+    </nav>
+</header>
+
 <div class="dashboard">
     <h2>Admin Dashboard</h2>
 
@@ -111,6 +208,119 @@
     <button type="submit">Change Credentials</button>
     </form>
     <div id="credentialsStatus"></div>
+
+    <!-- IoT Projects Management Section -->
+    <section id="iot-projects-admin">
+    <h3>Manage IoT Projects</h3>
+    <form id="addIotProjectForm" onsubmit="return false;">
+        <input type="hidden" name="category" value="iot">
+        <input type="text" name="title" placeholder="Project Title" required>
+        <textarea name="description" placeholder="Project Description" required></textarea>
+        <input type="file" name="image" accept="image/*" required>
+        <textarea name="code" placeholder="Project Code (optional)"></textarea>
+        <textarea name="configuration" placeholder="Configuration Details (optional)"></textarea>
+        <textarea name="documentation" placeholder="Documentation (optional)"></textarea>
+        <button type="submit">Add IoT Project</button>
+    </form>
+    <div id="iotProjectsTable">
+        <!-- IoT projects table will be loaded here dynamically -->
+    </div>
+    </section>
+
+    <!-- Python Projects Management Section -->
+    <section id="python-projects-admin">
+    <h3>Manage Python Projects</h3>
+    <form id="addPythonProjectForm" onsubmit="return false;">
+        <input type="hidden" name="category" value="python">
+        <input type="text" name="title" placeholder="Project Title" required>
+        <textarea name="description" placeholder="Project Description" required></textarea>
+        <input type="file" name="image" accept="image/*" required>
+        <textarea name="code" placeholder="Project Code (optional)"></textarea>
+        <textarea name="configuration" placeholder="Configuration Details (optional)"></textarea>
+        <textarea name="documentation" placeholder="Documentation (optional)"></textarea>
+        <button type="submit">Add Python Project</button>
+    </form>
+    <div id="pythonProjectsTable">
+        <!-- Python projects table will be loaded here dynamically -->
+    </div>
+    </section>
+
+    <!-- Game Development Projects Management Section -->
+    <section id="gamedev-projects-admin">
+    <h3>Manage Game Dev Projects</h3>
+    <form id="addGameDevProjectForm" onsubmit="return false;">
+        <input type="hidden" name="category" value="gamedev">
+        <input type="text" name="title" placeholder="Project Title" required>
+        <textarea name="description" placeholder="Project Description" required></textarea>
+        <input type="file" name="image" accept="image/*" required>
+        <textarea name="code" placeholder="Project Code (optional)"></textarea>
+        <textarea name="configuration" placeholder="Configuration Details (optional)"></textarea>
+        <textarea name="documentation" placeholder="Documentation (optional)"></textarea>
+        <button type="submit">Add Game Dev Project</button>
+    </form>
+    <div id="gamedevProjectsTable">
+        <!-- Game Dev projects table will be loaded here dynamically -->
+    </div>
+    </section>
+
+    <!-- SAP ABAP Projects Management Section -->
+    <section id="sapabap-projects-admin">
+    <h3>Manage SAP ABAP Projects</h3>
+    <form id="addSapAbapProjectForm" onsubmit="return false;">
+        <input type="hidden" name="category" value="sapabap">
+        <input type="text" name="title" placeholder="Project Title" required>
+        <textarea name="description" placeholder="Project Description" required></textarea>
+        <input type="file" name="image" accept="image/*" required>
+        <textarea name="code" placeholder="Project Code (optional)"></textarea>
+        <textarea name="configuration" placeholder="Configuration Details (optional)"></textarea>
+        <textarea name="documentation" placeholder="Documentation (optional)"></textarea>
+        <button type="submit">Add SAP ABAP Project</button>
+    </form>
+    <div id="sapabapProjectsTable">
+        <!-- SAP ABAP projects table will be loaded here dynamically -->
+    </div>
+    </section>
+
+    <!-- SQL Projects Management Section -->
+    <section id="sql-projects-admin">
+    <h3>Manage SQL Projects</h3>
+    <form id="addSqlProjectForm" onsubmit="return false;">
+        <input type="hidden" name="category" value="sql">
+        <input type="text" name="title" placeholder="Project Title" required>
+        <textarea name="description" placeholder="Project Description" required></textarea>
+        <input type="file" name="image" accept="image/*" required>
+        <textarea name="code" placeholder="Project Code (optional)"></textarea>
+        <textarea name="configuration" placeholder="Configuration Details (optional)"></textarea>
+        <textarea name="documentation" placeholder="Documentation (optional)"></textarea>
+        <button type="submit">Add SQL Project</button>
+    </form>
+    <div id="sqlProjectsTable">
+        <!-- SQL projects table will be loaded here dynamically -->
+    </div>
+    </section>
+
+    <!-- C# Projects Management Section -->
+    <section id="csharp-projects-admin">
+    <h3>Manage C# Projects</h3>
+    <form id="addCsharpProjectForm" onsubmit="return false;">
+        <input type="hidden" name="category" value="csharp">
+        <input type="text" name="title" placeholder="Project Title" required>
+        <textarea name="description" placeholder="Project Description" required></textarea>
+        <input type="file" name="image" accept="image/*" required>
+        <textarea name="code" placeholder="Project Code (optional)"></textarea>
+        <textarea name="configuration" placeholder="Configuration Details (optional)"></textarea>
+        <textarea name="documentation" placeholder="Documentation (optional)"></textarea>
+        <button type="submit">Add C# Project</button>
+    </form>
+    <div id="csharpProjectsTable">
+        <!-- C# projects table will be loaded here dynamically -->
+    </div>
+    </section>
+
+    <!-- (Optional) Combined Public Display Container -->
+    <!-- Note: The "projectsDisplay" container is typically used on public pages. 
+        If you want to see a combined view on the admin dashboard, you can insert it here.
+        <div id="projectsDisplay"></div> -->
 
     <!-- Video Listing Table -->
     <h3>Uploaded Videos</h3>
@@ -155,7 +365,6 @@
     document.getElementById('uploadCVForm').addEventListener('submit', function(e) {
     e.preventDefault();
     const formData = new FormData(this);
-    // Correct endpoint: /upload-cv (not /admin/upload-cv)
     fetch('/upload-cv', {
         method: 'POST',
         body: formData
@@ -170,7 +379,7 @@
     });
     });
 
-    // Change Credentials Form Submission (AJAX)
+    // Change Credentials Form Submission
     document.getElementById('changeCredentialsForm').addEventListener('submit', function(e) {
     e.preventDefault();
     const formData = new FormData(this);
@@ -188,60 +397,263 @@
     });
     });
 
-    // Load Videos and populate the table
+    // Video Listing Functions
     function loadVideos() {
     fetch('/videos')
-    .then(response => response.json())
-    .then(data => {
+        .then(response => response.json())
+        .then(data => {
         const tbody = document.querySelector('#videosTable tbody');
         tbody.innerHTML = '';
         data.forEach(video => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
             <td>${video.id}</td>
             <td contenteditable="true" onblur="updateTitle('${video.id}', this.innerText)">${video.title}</td>
             <td>
-            <video width="150" controls>
+                <video width="150" controls>
                 <source src="${video.url}" type="${video.contentType}">
                 Your browser does not support the video tag.
-            </video>
+                </video>
             </td>
             <td>
-            <button class="action-btn" onclick="deleteVideo('${video.id}')">Delete</button>
+                <button class="action-btn" onclick="deleteVideo('${video.id}')">Delete</button>
             </td>
-        `;
-        tbody.appendChild(tr);
+            `;
+            tbody.appendChild(tr);
         });
-    })
-    .catch(error => console.error('Error loading videos:', error));
+        })
+        .catch(error => console.error('Error loading videos:', error));
     }
 
-    // Update video title when edited
     function updateTitle(id, newTitle) {
     const formData = new FormData();
     formData.append('videoTitle', newTitle);
     fetch('/admin/edit-video/' + id, { method: 'PUT', body: formData })
-    .then(response => response.text())
-    .then(data => {
+        .then(response => response.text())
+        .then(data => {
         console.log("Update title response:", data);
         loadVideos();
-    })
-    .catch(error => console.error('Error updating video:', error));
+        })
+        .catch(error => console.error('Error updating video:', error));
     }
 
-    // Delete video
     function deleteVideo(id) {
     fetch('/admin/delete-video/' + id, { method: 'DELETE' })
-    .then(response => response.text())
-    .then(message => {
+        .then(response => response.text())
+        .then(message => {
         alert(message);
         loadVideos();
-    })
-    .catch(error => console.error('Error deleting video:', error));
+        })
+        .catch(error => console.error('Error deleting video:', error));
+    }
+    loadVideos();
+
+    // Generic function to load projects by category into its table container
+    function loadProjects(category, tableId) {
+    fetch('http://localhost:3000/admin/projects?category=' + category)
+        .then(response => response.json())
+        .then(projects => {
+        let html = '<table border="1" style="width:100%;"><thead><tr><th>ID</th><th>Title</th><th>Description</th><th>Actions</th></tr></thead><tbody>';
+        projects.forEach(project => {
+            html += `<tr>
+            <td>${project._id}</td>
+            <td>${project.title}</td>
+            <td>${project.description}</td>
+            <td>
+                <button onclick="deleteProject('${project._id}', '${category}', '${tableId}')">Delete</button>
+            </td>
+            </tr>`;
+        });
+        html += '</tbody></table>';
+        document.getElementById(tableId).innerHTML = html;
+        })
+        .catch(err => console.error('Error loading projects:', err));
     }
 
-    // Initial load of videos
-    loadVideos();
+    function deleteProject(id, category, tableId) {
+    fetch('http://localhost:3000/admin/projects/' + id, { method: 'DELETE' })
+        .then(response => response.json())
+        .then(result => {
+        alert(result.message);
+        loadProjects(category, tableId);
+        })
+        .catch(err => console.error('Error deleting project:', err));
+    }
+
+    // Handle IoT Project form submission
+    document.getElementById('addIotProjectForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(this));
+    fetch('http://localhost:3000/admin/projects', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(result => {
+        alert('IoT Project added successfully!');
+        this.reset();
+        loadProjects('iot', 'iotProjectsTable');
+    })
+    .catch(err => console.error('Error adding IoT project:', err));
+    });
+
+    // Handle Python Project form submission
+    document.getElementById('addPythonProjectForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(this));
+    fetch('http://localhost:3000/admin/projects', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(result => {
+        alert('Python Project added successfully!');
+        this.reset();
+        loadProjects('python', 'pythonProjectsTable');
+    })
+    .catch(err => console.error('Error adding Python project:', err));
+    });
+
+    // Handle Game Dev Project form submission
+    document.getElementById('addGameDevProjectForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(this));
+    fetch('http://localhost:3000/admin/projects', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(result => {
+        alert('Game Dev Project added successfully!');
+        this.reset();
+        loadProjects('gamedev', 'gamedevProjectsTable');
+    })
+    .catch(err => console.error('Error adding Game Dev project:', err));
+    });
+
+    // Handle SAP ABAP Project form submission
+    document.getElementById('addSapAbapProjectForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(this));
+    fetch('http://localhost:3000/admin/projects', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(result => {
+        alert('SAP ABAP Project added successfully!');
+        this.reset();
+        loadProjects('sapabap', 'sapabapProjectsTable');
+    })
+    .catch(err => console.error('Error adding SAP ABAP project:', err));
+    });
+
+    // Handle SQL Project form submission
+    document.getElementById('addSqlProjectForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(this));
+    fetch('http://localhost:3000/admin/projects', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(result => {
+        alert('SQL Project added successfully!');
+        this.reset();
+        loadProjects('sql', 'sqlProjectsTable');
+    })
+    .catch(err => console.error('Error adding SQL project:', err));
+    });
+
+    // Handle C# Project form submission
+    document.getElementById('addCsharpProjectForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(this));
+    fetch('http://localhost:3000/admin/projects', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(result => {
+        alert('C# Project added successfully!');
+        this.reset();
+        loadProjects('csharp', 'csharpProjectsTable');
+    })
+    .catch(err => console.error('Error adding C# project:', err));
+    });
+
+    // Load all projects for each category on page load
+    document.addEventListener('DOMContentLoaded', function() {
+    loadProjects('iot', 'iotProjectsTable');
+    loadProjects('python', 'pythonProjectsTable');
+    loadProjects('gamedev', 'gamedevProjectsTable');
+    loadProjects('sapabap', 'sapabapProjectsTable');
+    loadProjects('sql', 'sqlProjectsTable');
+    loadProjects('csharp', 'csharpProjectsTable');
+    });
 </script>
+<script>
+// Apply toggle to all accordion buttons
+function attachAccordionListeners() {
+  document.querySelectorAll('.accordion-toggle').forEach(button => {
+    button.onclick = () => {
+      const content = button.nextElementSibling;
+      content.style.display = content.style.display === "block" ? "none" : "block";
+    };
+  });
+}
+
+// On first load
+document.addEventListener('DOMContentLoaded', function () {
+  attachAccordionListeners();
+
+  // If you're dynamically loading content:
+  const pageCategory = document.body.className.includes("iot-page") ? "iot"
+                      : document.body.className.includes("python-page") ? "python"
+                      : document.body.className.includes("csharp-page") ? "csharp"
+                      : null;
+
+  if (pageCategory) {
+    fetch(`http://localhost:3000/admin/projects?category=${pageCategory}`)
+      .then(res => res.json())
+      .then(projects => {
+        const container = document.getElementById('projectsDisplay');
+        let html = '';
+        projects.forEach(project => {
+          html += `
+            <div class="project-card">
+              <img src="${project.image}" alt="${project.title}">
+              <div class="project-info">
+                <h3>${project.title}</h3>
+                <p>${project.description}</p>
+                <button class="accordion-toggle">View Details</button>
+                <div class="accordion-content">
+                  <h4>Code</h4>
+                  <pre><code>${project.code}</code></pre>
+                  <h4>Configuration</h4>
+                  <p>${project.configuration}</p>
+                  <h4>Documentation</h4>
+                  <p>${project.documentation}</p>
+                </div>
+              </div>
+            </div>
+          `;
+        });
+        container.innerHTML = html;
+
+        // 🔥 VERY IMPORTANT: Re-bind accordion toggles after injecting HTML
+        attachAccordionListeners();
+      })
+      .catch(err => console.error('Error loading projects:', err));
+  }
+});
+</script>
+
 </body>
 </html>

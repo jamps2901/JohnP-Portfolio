@@ -25,22 +25,30 @@
     pre { background: #444; padding: 10px; overflow-x: auto; }
 </style>
 </head>
-<body>
+<body class="python-page">
+
 <!-- Navigation Bar -->
-<header>
-    <nav class="nav-bar">
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="iot-projects.html">IoT Projects</a></li>
-        <li><a href="python-projects.html">Python Projects</a></li>
-        <li><a href="gamedev-projects.html">Game Dev Projects</a></li>
-        <li><a href="sap-abap-projects.html">SAP ABAP Projects</a></li>
-        <li><a href="sql-projects.html">SQL Projects</a></li>
-        <li><a href="csharp-projects.html">C# Projects</a></li>
-        <li style="margin-left:auto;"><a href="admin.html">Admin</a></li>
-    </ul>
-    </nav>
+<nav class="nav-bar">
+<ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="iot-Projects.html">IoT Projects</a></li>
+    <li><a href="python-Projects.html">Python Projects</a></li>
+    <li><a href="gamedev-Projects.html">Game Dev Projects</a></li>
+    <li><a href="sap-abap-Projects.html">SAP ABAP Projects</a></li>
+    <li><a href="sql-Projects.html">SQL Projects</a></li>
+    <li><a href="csharp-Projects.html">C# Projects</a></li>
+    <li style="margin-left:auto;"><a href="admin.html">Admin</a></li>
+</ul>
+</nav>
+
+<header class="python-header">
+<canvas id="snakeCanvas"></canvas>
+<div class="python-content">
+    <h1 class="python-title">Python Projects</h1>
+    <p class="python-sub">Elegant. Powerful. Evolving.</p>
+</div>
 </header>
+
 <main class="container">
     <h1 class="page-title">Python Projects</h1>
     <div class="project-grid">
@@ -266,11 +274,100 @@ chatbot = ChatBot('SupportBot')
     </div>
     </div>
 </main>
+<main class="container">
+    <h1 class="page-title">Python Projects</h1>
+    <div id="ProjectsDisplay" class="project-grid"></div>
+</main>
 <script>
+    function loadProjects(category) {
+    fetch('http://localhost:3000/admin/Projects?category=' + category)
+        .then(response => response.json())
+        .then(Projects => {
+        let html = '';
+        Projects.forEach(project => {
+            html += `
+            <div class="project-card">
+                <img src="${project.image}" alt="${project.title}">
+                <div class="project-info">
+                <h3>${project.title}</h3>
+                <p>${project.description}</p>
+                <button class="accordion-toggle">View Details</button>
+                <div class="accordion-content">
+                    <h4>Code</h4>
+                    <pre><code>${project.code}</code></pre>
+                    <h4>Configuration</h4>
+                    <p>${project.configuration}</p>
+                    <h4>Documentation</h4>
+                    <p>${project.documentation}</p>
+                </div>
+                </div>
+            </div>
+            `;
+        });
+        document.getElementById('ProjectsDisplay').innerHTML = html;
+        document.querySelectorAll('.accordion-toggle').forEach(button => {
+            button.addEventListener('click', () => {
+            const content = button.nextElementSibling;
+            content.style.display = content.style.display === "block" ? "none" : "block";
+            });
+        });
+        })
+        .catch(err => console.error('Error loading Projects:', err));
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+    loadProjects('python');
+    });
+</script>
+<script>
+    const snakeCanvas = document.getElementById('snakeCanvas');
+    const ctxSnake = snakeCanvas.getContext('2d');
+
+    snakeCanvas.width = window.innerWidth;
+    snakeCanvas.height = document.querySelector('.python-header').offsetHeight;
+
+    const letters = '🐍PYTHON🐍'.split('');
+    const fontSize = 16;
+    const columns = snakeCanvas.width / fontSize;
+    const drops = [];
+
+    for (let i = 0; i < columns; i++) {
+    drops[i] = Math.random() * snakeCanvas.height;
+    }
+
+    function drawMatrixSnake() {
+    ctxSnake.fillStyle = 'rgba(0, 0, 0, 0.05)';
+    ctxSnake.fillRect(0, 0, snakeCanvas.width, snakeCanvas.height);
+
+    ctxSnake.fillStyle = '#33ff66';
+    ctxSnake.font = `${fontSize}px monospace`;
+
+    for (let i = 0; i < drops.length; i++) {
+        const text = letters[Math.floor(Math.random() * letters.length)];
+        ctxSnake.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > snakeCanvas.height && Math.random() > 0.975) {
+        drops[i] = 0;
+        }
+
+        drops[i]++;
+    }
+    }
+
+    setInterval(drawMatrixSnake, 33);
+
+    window.addEventListener('resize', () => {
+    snakeCanvas.width = window.innerWidth;
+    snakeCanvas.height = document.querySelector('.python-header').offsetHeight;
+    });
+</script>
+<script>
+    // Toggle for all accordion buttons (both static & dynamic)
+    document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.accordion-toggle').forEach(button => {
-    button.addEventListener('click', () => {
+        button.addEventListener('click', () => {
         const content = button.nextElementSibling;
         content.style.display = content.style.display === "block" ? "none" : "block";
+        });
     });
     });
 </script>
