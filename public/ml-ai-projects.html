@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Machine Learning / AI Projects | John Patnugot</title>
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="mlai-page">
+
+<!-- Navbar -->
+<nav class="nav-bar">
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="iot-projects.html">IoT</a></li>
+        <li><a href="ml-ai-projects.htmltml">AI/ML</a></li>
+        <li><a href="python-projects.html">Python</a></li>
+        <li><a href="gameDev-projects.html">Game Dev </a></li>
+        <li><a href="sap-abap-projects.html">SAP ABAP</a></li>
+        <li><a href="sql-projects.html">SQL</a></li>
+        <li><a href="csharp-projects.html">C#</a></li>
+        <li style="margin-left:auto;"><a href="admin.html">Admin</a></li>
+        </ul>
+</nav>
+
+<!-- Header -->
+<header class="mlai-header">
+<canvas id="mlCanvas"></canvas>
+<div class="mlai-content">
+<h1 class="mlai-title">Machine Learning / AI</h1>
+<p class="mlai-sub">Smarter Solutions Through Code</p>
+</div>
+</header>
+
+<main class="container mlai-page">
+    <h1 class="page-title">Machine Learning / AI Projects</h1>
+    <div class="project-grid">
+    <!-- Project 1 -->
+    <div class="project-card">
+        <img src="images/ml1.jpg" alt="Image Classification CNN">
+        <div class="project-info">
+        <h3>Image Classification (CNN)</h3>
+        <p>Trained a convolutional neural network on the CIFAR-10 dataset using TensorFlow and Keras.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>model = tf.keras.models.Sequential([
+    tf.keras.layers.Conv2D(32, (3,3), activation='relu', input_shape=(32,32,3)),
+    tf.keras.layers.MaxPooling2D(2,2),
+    ...
+])</code></pre>
+            <h4>Configuration</h4>
+            <p>Configured training with GPU acceleration, batch normalization, and data augmentation.</p>
+            <h4>Documentation</h4>
+            <p>Walkthrough of model architecture, evaluation metrics, and improvement strategies.</p>
+        </div>
+        </div>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="project-card">
+        <img src="images/ml2.jpg" alt="Sentiment Analysis with NLP">
+        <div class="project-info">
+        <h3>Sentiment Analysis (NLP)</h3>
+        <p>Used a recurrent neural network (LSTM) to classify sentiment in movie reviews.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>model = Sequential()
+model.add(Embedding(vocab_size, 128))
+model.add(LSTM(64))
+model.add(Dense(1, activation='sigmoid'))</code></pre>
+            <h4>Configuration</h4>
+            <p>Tokenization, padding, dropout layers and Glove embeddings configured.</p>
+            <h4>Documentation</h4>
+            <p>Explains training data preprocessing, tuning, and deployment tips.</p>
+        </div>
+        </div>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="project-card">
+        <img src="images/ml3.jpg" alt="Recommendation System">
+        <div class="project-info">
+        <h3>Recommendation System</h3>
+        <p>Built a collaborative filtering system using matrix factorization and cosine similarity.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>from sklearn.metrics.pairwise import cosine_similarity
+similarity_matrix = cosine_similarity(user_matrix)</code></pre>
+            <h4>Configuration</h4>
+            <p>Uses a normalized user-item matrix and filters results for cold-start scenarios.</p>
+            <h4>Documentation</h4>
+            <p>Describes similarity scoring, ranking logic, and use case scenarios.</p>
+        </div>
+        </div>
+    </div>
+
+    <!-- Project 4 -->
+    <div class="project-card">
+        <img src="images/ml4.jpg" alt="AI Voice Assistant">
+        <div class="project-info">
+        <h3>AI Voice Assistant</h3>
+        <p>Python-based smart assistant that listens and responds to voice commands.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>import speech_recognition as sr
+r = sr.Recognizer()
+with sr.Microphone() as source:
+    audio = r.listen(source)</code></pre>
+            <h4>Configuration</h4>
+            <p>Integrated speech recognition, text-to-speech and task automation libraries.</p>
+            <h4>Documentation</h4>
+            <p>Setup instructions and customizable command list.</p>
+        </div>
+        </div>
+    </div>
+
+    <!-- Project 5 -->
+    <div class="project-card">
+        <img src="images/ml5.jpg" alt="YOLOv5 Object Detection">
+        <div class="project-info">
+        <h3>Object Detection (YOLOv5)</h3>
+        <p>Real-time object detection using YOLOv5 and OpenCV for video streams.</p>
+        <button class="accordion-toggle">View Details</button>
+        <div class="accordion-content">
+            <h4>Code</h4>
+            <pre><code>import torch
+model = torch.hub.load('ultralytics/yolov5', 'yolov5s')
+results = model(img)</code></pre>
+            <h4>Configuration</h4>
+            <p>Pretrained model, custom dataset annotation, and confidence threshold tuning.</p>
+            <h4>Documentation</h4>
+            <p>Deployment notes for Jetson Nano and Raspberry Pi.</p>
+        </div>
+        </div>
+    </div>
+
+    </div>
+</main>
+
+
+<!-- Dynamic Project Section -->
+<main class="container">
+<h1 class="page-title">ML / AI Projects</h1>
+<div id="projectsDisplay" class="project-grid"></div>
+</main>
+
+<!-- Canvas Animation -->
+<script>
+const canvas = document.getElementById('mlCanvas');
+const ctx = canvas.getContext('2d');
+let width, height;
+
+const keywords = ['predict()', 'fit()', 'sigmoid', 'NeuralNet', 'loss=0.02', 'ML', 'accuracy=98%', 'epoch', 'AI', 'train_test_split'];
+
+function resize() {
+width = canvas.width = window.innerWidth;
+height = canvas.height = document.querySelector('.mlai-header').offsetHeight;
+}
+window.addEventListener('resize', resize);
+resize();
+
+const dots = Array.from({ length: 40 }, () => ({
+x: Math.random() * width,
+y: Math.random() * height,
+size: 1 + Math.random() * 2,
+keyword: keywords[Math.floor(Math.random() * keywords.length)],
+alpha: 0.7 + Math.random() * 0.3,
+speed: 0.2 + Math.random() * 0.5
+}));
+
+function animate() {
+ctx.clearRect(0, 0, width, height);
+dots.forEach(dot => {
+    ctx.fillStyle = `rgba(166, 0, 255, ${dot.alpha})`;
+    ctx.beginPath();
+    ctx.arc(dot.x, dot.y, dot.size, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = `rgba(255,255,255,0.4)`;
+    ctx.font = '12px Courier New';
+    ctx.fillText(dot.keyword, dot.x + 4, dot.y + 4);
+
+    dot.y += dot.speed;
+    if (dot.y > height) {
+    dot.y = 0;
+    dot.x = Math.random() * width;
+    dot.keyword = keywords[Math.floor(Math.random() * keywords.length)];
+    }
+});
+requestAnimationFrame(animate);
+}
+animate();
+</script>
+
+<!-- Load Projects Dynamically from Admin -->
+<script>
+function loadProjects(category) {
+fetch('http://localhost:3000/admin/projects?category=' + category)
+    .then(response => response.json())
+    .then(projects => {
+    let html = '';
+    projects.forEach(project => {
+        html += `
+        <div class="project-card">
+            <img src="${project.image}" alt="${project.title}">
+            <div class="project-info">
+            <h3>${project.title}</h3>
+            <p>${project.description}</p>
+            <button class="accordion-toggle">View Details</button>
+            <div class="accordion-content">
+                <h4>Code</h4>
+                <pre><code>${project.code}</code></pre>
+                <h4>Configuration</h4>
+                <p>${project.configuration}</p>
+                <h4>Documentation</h4>
+                <p>${project.documentation}</p>
+            </div>
+            </div>
+        </div>
+        `;
+    });
+    document.getElementById('projectsDisplay').innerHTML = html;
+
+    // Rebind accordion toggles
+    document.querySelectorAll('.accordion-toggle').forEach(button => {
+        button.addEventListener('click', () => {
+        const content = button.nextElementSibling;
+        content.style.display = content.style.display === "block" ? "none" : "block";
+        });
+    });
+    })
+    .catch(err => console.error('Error loading projects:', err));
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+loadProjects('mlai');
+});
+</script>
+<script>
+    // Toggle for all accordion buttons (both static & dynamic)
+    document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.accordion-toggle').forEach(button => {
+        button.addEventListener('click', () => {
+        const content = button.nextElementSibling;
+        content.style.display = content.style.display === "block" ? "none" : "block";
+        });
+    });
+    });
+</script>
+</body>
+</html>
