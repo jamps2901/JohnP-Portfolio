@@ -41,10 +41,10 @@ pre { background: #444; padding: 10px; overflow-x: auto; }
 </nav>
 <!-- C# Cyber Grid Header -->
 <header class="csharp-header">
-<canvas id="pulseCanvas"></canvas>
+<canvas id="circuitCanvas"></canvas>
 <div class="csharp-content">
-<h1 class="csharp-title">C# Projects</h1>
-<p class="csharp-sub">Structured. Secure. Scalable.</p>
+    <h1 class="csharp-title">C# Projects</h1>
+    <p class="csharp-sub">Structured. Secure. Scalable.</p>
 </div>
 </header>
 <main class="container">
@@ -321,42 +321,43 @@ loadProjects('csharp');
 });
 </script>
 <script>
-const sqlCanvas = document.getElementById("sqlCanvas");
-const ctx = sqlCanvas.getContext("2d");
+const canvas = document.getElementById("circuitCanvas");
+const ctx = canvas.getContext("2d");
 
-function resizeSQLCanvas() {
-    sqlCanvas.width = window.innerWidth;
-    sqlCanvas.height = document.querySelector(".sql-header").offsetHeight;
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = document.querySelector('.csharp-header').offsetHeight;
 }
-resizeSQLCanvas();
-window.addEventListener("resize", resizeSQLCanvas);
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
 
-let pulse = 0;
+// Generate nodes
+const nodes = [];
+const gridSize = 50;
 
-function drawGridPulse() {
-    ctx.clearRect(0, 0, sqlCanvas.width, sqlCanvas.height);
-    const spacing = 40;
-    const width = sqlCanvas.width;
-    const height = sqlCanvas.height;
-
-    for (let x = 0; x < width; x += spacing) {
-    for (let y = 0; y < height; y += spacing) {
-        const glow = 0.3 + 0.2 * Math.sin(pulse + (x + y) * 0.01);
-        ctx.strokeStyle = `rgba(0, 255, 255, ${glow})`;
-        ctx.beginPath();
-        ctx.moveTo(x, y);
-        ctx.lineTo(x + spacing, y);
-        ctx.lineTo(x + spacing, y + spacing);
-        ctx.lineTo(x, y + spacing);
-        ctx.closePath();
-        ctx.stroke();
+for (let x = 0; x < window.innerWidth; x += gridSize) {
+    for (let y = 0; y < 400; y += gridSize) {
+    nodes.push({ x, y, pulse: Math.random() * 100 });
     }
-    }
-
-    pulse += 0.08;
-    requestAnimationFrame(drawGridPulse);
 }
-drawGridPulse();
+
+ctx.font = "bold 16px Consolas, monospace";
+
+function drawCircuit() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    nodes.forEach(node => {
+    const intensity = 0.5 + 0.5 * Math.sin(node.pulse / 10);
+    ctx.fillStyle = `rgba(0, 255, 255, ${intensity})`;
+    ctx.shadowColor = `rgba(0, 255, 255, ${intensity})`;
+    ctx.shadowBlur = 10 * intensity;
+
+    ctx.fillText("#", node.x, node.y);
+    node.pulse += 1 + Math.random() * 0.5;
+    });
+
+    requestAnimationFrame(drawCircuit);
+}
+drawCircuit();
 </script>
 
 <script>
